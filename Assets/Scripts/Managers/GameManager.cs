@@ -13,6 +13,14 @@ public class GameManager : MonoBehaviour
 
     public float InitialDifficultyValue;
 
+    [Header("Game Ending")]
+    public GameObject successPanel;
+    public GameObject failPanel;
+
+    [Header("Open/Close")]
+    [SerializeField] private GameObject[] open_close;
+
+
 
     private void Awake() 
     {
@@ -63,11 +71,40 @@ public class GameManager : MonoBehaviour
     }
 
     
-
     
     void ClearData()
     {
 
+    }
+
+    public void OpenSuccessMenu(bool station)
+    {
+
+        OpenClose(open_close,false);
+
+        successPanel.SetActive(station);
+        successPanel.transform.DOScale(Vector2.one*1.15f,0.5f).OnComplete(()=> {
+            successPanel.transform.DOScale(Vector2.one,0.5f);
+        });
+    }
+
+    public void OpenFailMenu()
+    {
+        failPanel.SetActive(true);
+        failPanel.transform.DOScale(Vector2.one*1.15f,0.5f).OnComplete(()=> {
+            failPanel.transform.DOScale(Vector2.one,0.5f);
+        });
+    }
+
+    public void OpenClose(GameObject[] gameObjects,bool canOpen)
+    {
+        for (int i = 0; i < gameObjects.Length; i++)
+        {
+            if(canOpen)
+                gameObjects[i].SetActive(true);
+            else
+                gameObjects[i].SetActive(false);
+        }
     }
 
     

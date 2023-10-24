@@ -6,6 +6,10 @@ public enum GameEvent
 {
     //Player
     OnTargetHit,
+    OnPassBetween,
+
+    //Panel
+    OnButtonClicked,
 
 
     //Game Management
