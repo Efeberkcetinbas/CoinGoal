@@ -8,6 +8,9 @@ public enum GameEvent
     OnTargetHit,
     OnPassBetween,
 
+    //Touch
+    OnFingerRelease,
+
     //Panel
     OnButtonClicked,
 

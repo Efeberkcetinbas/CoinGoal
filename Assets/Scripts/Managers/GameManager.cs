@@ -20,6 +20,14 @@ public class GameManager : MonoBehaviour
     [Header("Open/Close")]
     [SerializeField] private GameObject[] open_close;
 
+    
+    //Daha iyisi olana kadar
+    [Header("Line Collisions")]
+    public List<GameObject> LinesCol=new List<GameObject>(); 
+    public bool canCollide=false;
+    public bool success=false;
+    public bool isWall=false;
+
 
 
     private void Awake() 
@@ -38,7 +46,16 @@ public class GameManager : MonoBehaviour
     {
         EventManager.RemoveHandler(GameEvent.OnIncreaseScore, OnIncreaseScore);
     }
-    
+    public void LineOpenControl(int selected)
+    {
+        for (int i = 0; i < LinesCol.Count; i++)
+        {
+            LinesCol[i].SetActive(false);
+        }
+
+        LinesCol[selected].SetActive(true);
+    }
+
     void OnGameOver()
     {
         FailPanel.SetActive(true);

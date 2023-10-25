@@ -22,7 +22,7 @@ public class BallControl : MonoBehaviour
     private Camera cm;
 
     
-    private GameManager gameManager;
+    public GameManager gameManager;
     private LevelManager levelManager;
 
     private void Start()
@@ -30,20 +30,16 @@ public class BallControl : MonoBehaviour
         cm=Camera.main;
         ballManager=FindObjectOfType<BallManager>();
         lrManager=FindObjectOfType<LineRendererManager>();
-        gameManager=GameManager.Instance;
-        levelManager=LevelManager.Instance;
     }
     
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnNextLevel,StopSpinning);
-        EventManager.AddHandler(GameEvent.OnBossDie,OnBossDie);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnNextLevel,StopSpinning);
-        EventManager.RemoveHandler(GameEvent.OnBossDie,OnBossDie);
     }
 
     private void StopSpinning()
@@ -59,12 +55,8 @@ public class BallControl : MonoBehaviour
 
     private void Update()
     {
-        if(!GameManager.Instance.isGameEnd)
-        {
-            if(canShoot)
+        if(canShoot)
                 DragControl();
-        }
-            
     }
 
     
@@ -113,7 +105,7 @@ public class BallControl : MonoBehaviour
 
         Vector3 dragReleasePos = cm.ScreenToWorldPoint(touch.position);
         dragStartPos.z = 0f;
-        GameManager.Instance.isWall=false;
+        gameManager.isWall=false;
 
         Vector3 force = dragStartPos - dragReleasePos;
         Vector3 clampedForce = Vector3.ClampMagnitude(force, maxDrag) * power;
