@@ -21,6 +21,9 @@ public class BallController : MonoBehaviour
     public float maxPower=20f;
 
     public float maxLineLength=2f;
+
+
+    
     
 
     void Start()
@@ -80,6 +83,8 @@ public class BallController : MonoBehaviour
                 }
             }
         }
+    
+
     }
 
     void UpdatePowerIndicator()
@@ -106,4 +111,6 @@ public class BallController : MonoBehaviour
         Color color = Color.Lerp(Color.green, Color.red, normalizedDistance);
         lineMaterial.color = color;
     }
+
+    
 }

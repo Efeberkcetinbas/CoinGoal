@@ -15,6 +15,14 @@ public class CameraManager : MonoBehaviour
     public float frequencyGain=1;
     private CinemachineBasicMultiChannelPerlin noise;
 
+    [SerializeField] private List<Transform> balls=new List<Transform>();
+
+    //Data
+    public BallData ballData;
+
+
+    
+
 
     
 
@@ -22,12 +30,14 @@ public class CameraManager : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnPassBetween,OnPassBetween);
+        EventManager.AddHandler(GameEvent.OnBallIndexIncrease,OnBallIndexIncrease);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnPassBetween,OnPassBetween);
+        EventManager.RemoveHandler(GameEvent.OnBallIndexIncrease,OnBallIndexIncrease);
     }
 
     private void OnGoal()
@@ -44,6 +54,11 @@ public class CameraManager : MonoBehaviour
     private void OnSpawnWeapon()
     {
         Noise(1,1,0.1f);
+    }
+
+    private void OnBallIndexIncrease()
+    {
+        ChangeFollow(balls[ballData.currentBallIndex].transform);
     }
 
 
@@ -88,5 +103,10 @@ public class CameraManager : MonoBehaviour
         DOTween.To(() => cm.m_Lens.OrthographicSize, x => cm.m_Lens.OrthographicSize = x, newFieldOfView, duration).OnComplete(()=>{
             DOTween.To(() => cm.m_Lens.OrthographicSize, x => cm.m_Lens.OrthographicSize = x, oldFieldOfView, duration);
         });
+    }
+
+    public void ChangeFollow(Transform Ball)
+    {
+        cm.m_Follow=Ball;
     }
 }
