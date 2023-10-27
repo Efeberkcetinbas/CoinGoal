@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class BallColor : MonoBehaviour
@@ -13,11 +14,11 @@ public class BallColor : MonoBehaviour
     private void Start() 
     {
         ballController=GetComponent<BallController>();
+        
     }
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnBallIndexIncrease,OnBallIndexIncrease);
-        
     }
 
     private void OnDisable() 

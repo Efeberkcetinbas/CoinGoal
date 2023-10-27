@@ -7,64 +7,67 @@ public abstract class Obstacleable : MonoBehaviour
 {
     float st = 0;
     internal float interval = 3;
+    internal bool canStay=true;
     internal bool canInteract = true;
+    internal bool canDamageToPlayer=true;
     internal string interactionTag = "Player";
 
-
-
-    void OnTriggerExit(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (!canInteract) return;
         if (other.tag == interactionTag)
         {
-            StartInteractWithPlayer(other.GetComponent<Player>());
+            StartInteractWithEnemy(other.GetComponent<Player>());
         }
     }
-    
-    // !!!!!!!!!!!!!!
-    //Kaldigi sure boyunca burasi da aktif oluyor
     void OnTriggerStay(Collider other)
     {
-        /*if (!canInteract) return;
+        if (!canInteract) return;
         if (other.tag == interactionTag)
         {
-            InteractWithPlayer(other.GetComponent<Player>());
-        }*/
+            InteractWithEnemy(other.GetComponent<Player>());
+        }
     }
-    /*void OnTriggerExit2D(Collider2D other)
+    void OnTriggerExit(Collider other)
     {
         if (other.tag == interactionTag)
         {
-            InteractionExit(other.GetComponent<Player>());
+            StopInteractWithEnemy(other.GetComponent<Player>());
         }
     }
-*/
-    void StartInteractWithPlayer(Player player)
+
+    void StartInteractWithEnemy(Player player)
     {
         DoAction(player);
     }
 
-    void InteractWithPlayer(Player player)
+    void StopInteractWithEnemy(Player player)
+    {
+        StopAction(player);
+    }
+
+    void InteractWithEnemy(Player player)
     {
         st += Time.deltaTime;
-        if (st > interval)
+        if (st > interval && canStay)
         {
             ResetProgress();
             DoAction(player);
         }
     }
-    //virtuallarin hepsini implemente ediyor
     internal virtual void ResetProgress()
     {
         st = 0;
     }
-    internal virtual void InteractionExit(Player player)
-    {
-        throw new System.NotImplementedException();
-    }
+    
     internal virtual void DoAction(Player player)
     {
         throw new System.NotImplementedException();
+    }
+
+    internal virtual void StopAction(Player player)
+    {
+        st = 0;
     }
     internal void StopInteract()
     {

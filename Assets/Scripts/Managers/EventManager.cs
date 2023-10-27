@@ -11,6 +11,12 @@ public enum GameEvent
     //Ball
     OnBallIndexIncrease,
 
+    //Environment
+    OnOpenButton,
+    OnCloseButton,
+    OnOpenTraps,
+    OnCloseTraps,
+
     //Touch
     OnFingerRelease,
 
@@ -52,6 +58,27 @@ public class EventManager
     {
         if(eventTable[gameEvent]!=null)
             eventTable[gameEvent]();
+    }
+
+    public static void AddIdHandler(GameEvent gameIdEvent,Action<int> actionId)
+    {
+        if(!IdEventTable.ContainsKey(gameIdEvent))
+            IdEventTable[gameIdEvent]=actionId;
+        else IdEventTable[gameIdEvent]+=actionId;
+    }
+
+    public static void RemoveIdHandler(GameEvent gameIdEvent,Action<int> actionId)
+    {
+        if(IdEventTable[gameIdEvent]!=null)
+            IdEventTable[gameIdEvent]-=actionId;
+        if(IdEventTable[gameIdEvent]==null)
+            IdEventTable.Remove(gameIdEvent);
+    }
+
+    public static void BroadcastId(GameEvent gameIdEvent,int id)
+    {
+        if(IdEventTable[gameIdEvent]!=null)
+            IdEventTable[gameIdEvent](id);
     }
     
 }
