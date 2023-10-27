@@ -7,6 +7,7 @@ public enum GameEvent
     //Player
     OnTargetHit,
     OnPassBetween,
+    OnPlayerTakeDamage,
 
     //Ball
     OnBallIndexIncrease,

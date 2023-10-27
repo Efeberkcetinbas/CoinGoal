@@ -14,6 +14,7 @@ public class BallColor : MonoBehaviour
     private void Start() 
     {
         ballController=GetComponent<BallController>();
+        OnBallIndexIncrease();
         
     }
     private void OnEnable() 

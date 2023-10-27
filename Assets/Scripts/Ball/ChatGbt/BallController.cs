@@ -32,7 +32,6 @@ public class BallController : MonoBehaviour
         powerIndicator.positionCount = 2;
         powerIndicator.useWorldSpace = true;
         powerIndicator.material = lineMaterial;
-        EventManager.Broadcast(GameEvent.OnBallIndexIncrease);
     }
 
     void Update()
