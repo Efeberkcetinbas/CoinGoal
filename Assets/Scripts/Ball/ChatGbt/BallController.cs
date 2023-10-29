@@ -73,6 +73,7 @@ public class BallController : MonoBehaviour
 
                             BallLines[ballData.currentBallIndex].SetActive(true);
                             EventManager.Broadcast(GameEvent.OnBallIndexIncrease);
+                            ballData.isItPassed=false;
                         }
                         break;
 

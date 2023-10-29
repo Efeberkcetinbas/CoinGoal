@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public GameData gameData;
     public PlayerData playerData;
+    public BallData ballData;
 
     [SerializeField] private GameObject FailPanel;
     [SerializeField] private Ease ease;
@@ -91,7 +92,7 @@ public class GameManager : MonoBehaviour
     
     void ClearData()
     {
-
+        ballData.isItPassed=false;
     }
 
     public void OpenSuccessMenu(bool station)
