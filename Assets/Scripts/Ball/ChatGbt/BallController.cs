@@ -5,7 +5,9 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {   
     public GameObject[] balls;
+    public List<GameObject> BallLines= new List<GameObject>();
     private bool isDragging = false;
+    private bool isTurn=false;
     private Vector3 touchStartPos;
     private Vector3 touchEndPos;
 
@@ -29,6 +31,13 @@ public class BallController : MonoBehaviour
     void Start()
     {
         currentBallRigidbody=balls[ballData.currentBallIndex].GetComponent<Rigidbody>();
+        for (int i = 0; i < BallLines.Count; i++)
+        {
+            BallLines[i].SetActive(false);
+        }
+
+        BallLines[ballData.currentBallIndex].SetActive(true);
+        
         powerIndicator.positionCount = 2;
         powerIndicator.useWorldSpace = true;
         powerIndicator.material = lineMaterial;
@@ -47,6 +56,24 @@ public class BallController : MonoBehaviour
                     case TouchPhase.Began:
                         isDragging = true;
                         touchStartPos = touch.position;
+                        if(isTurn)
+                        {
+                            ballData.currentBallIndex++;
+                            
+                            if (ballData.currentBallIndex >= balls.Length)
+                            {
+                                ballData.currentBallIndex = 0; // Reset to the first ball once all balls have been used.
+                            }
+
+                            currentBallRigidbody = balls[ballData.currentBallIndex].GetComponent<Rigidbody>();
+                            for (int i = 0; i < BallLines.Count; i++)
+                            {
+                                BallLines[i].SetActive(false);
+                            }
+
+                            BallLines[ballData.currentBallIndex].SetActive(true);
+                            EventManager.Broadcast(GameEvent.OnBallIndexIncrease);
+                        }
                         break;
 
                     case TouchPhase.Moved:
@@ -66,17 +93,13 @@ public class BallController : MonoBehaviour
                             powerIndicator.startColor = Color.green;
                             powerIndicator.endColor = Color.green;
                             Debug.Log("FORCE MAG " + (int)forceMagnitude);
-                            ballData.currentBallIndex++;
                             
-                            if (ballData.currentBallIndex >= balls.Length)
-                            {
-                                ballData.currentBallIndex = 0; // Reset to the first ball once all balls have been used.
-                            }
+                            //Ball is Change when I touch to start
+                            isTurn=true;
 
                             powerIndicator.SetPosition(0, Vector3.zero);
                             powerIndicator.SetPosition(1, Vector3.zero);
-                            currentBallRigidbody = balls[ballData.currentBallIndex].GetComponent<Rigidbody>();
-                            EventManager.Broadcast(GameEvent.OnBallIndexIncrease);
+                            
                         }
                         break;
                 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8398949535920686960}
   - component: {fileID: 8398949535920686964}
   - component: {fileID: 8398949535920686965}
+  - component: {fileID: 198465964}
   m_Layer: 0
   m_Name: Ball1
   m_TagString: Player
@@ -128,3 +129,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeParticle: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845, type: 3}
+--- !u!114 &198465964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8398949535920686975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85175bba424594744b061fd450dd117d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  line: {fileID: 0}
+  ball1: {fileID: 0}
+  ball2: {fileID: 0}
