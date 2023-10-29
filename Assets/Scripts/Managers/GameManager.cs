@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public PlayerData playerData;
     public BallData ballData;
 
-
+    //Level Progress
 
 
     [Header("Game Ending")]
@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     {
         ClearData();
     }
+    
 
     
 
@@ -42,11 +43,31 @@ public class GameManager : MonoBehaviour
     }
 
 
+    
+    
+
+    #region LEVEL PROPERTIES
+
+    //When Level Change Update Req Ball Pass Number
+    private void UpdateRequirement()
+    {
+        gameData.LevelRequirementNumber=FindObjectOfType<RequirementControl>().RequirementNumber;
+        EventManager.Broadcast(GameEvent.OnUIRequirementUpdate);
+        //Update UI
+    }
+
     private void OnPassBetween()
     {
         EventManager.Broadcast(GameEvent.OnIncreaseScore);
+        float value=1/(float)gameData.LevelRequirementNumber;
+        gameData.ProgressNumber+=value;
+        //Update UI progress bar
     }
-    
+  
+
+    #endregion
+
+
 
     void OnGameOver()
     {
@@ -62,6 +83,7 @@ public class GameManager : MonoBehaviour
     void ClearData()
     {
         ballData.isItPassed=false;
+        gameData.ProgressNumber=0;
     }
 
     public void OpenSuccessMenu(bool station)

@@ -90,6 +90,7 @@ public class BallController : MonoBehaviour
                             float dragDistance = dragDirection.magnitude;
                             float forceMagnitude = Mathf.Clamp(dragDistance * 0.05f, minPower, maxPower);
                             Vector3 force = new Vector3(dragDirection.x, 0f, dragDirection.y).normalized*forceMagnitude;
+                            //Inverse Drag Not Swipe You Must do -force                            
                             currentBallRigidbody.AddForce(force, ForceMode.Impulse);
                             isDragging = false;
                             powerIndicator.startColor = Color.green;

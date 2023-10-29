@@ -8,9 +8,14 @@ public class GameData : ScriptableObject
 {
 
     public int score;
+    public int coin;
     public int increaseScore;
     public int increaseCoinAmount;
     public int LevelNumberIndex;
+    public int LevelRequirementNumber;
+    
+    
+    public float ProgressNumber;
 
     public bool isGameEnd=false;
 }

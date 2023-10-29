@@ -27,10 +27,14 @@ public enum GameEvent
     //Panel
     OnButtonClicked,
 
+    //Shopping
+    OnBallSelected,
+
 
     //Game Management
     OnIncreaseScore,
     OnUIUpdate,
+    OnUIRequirementUpdate,
     OnUIGameOver,
     OnNextLevel,
     OnGameOver
