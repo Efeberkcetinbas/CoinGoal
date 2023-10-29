@@ -24,8 +24,6 @@ public class CameraManager : MonoBehaviour
     
     
 
-    
-
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
@@ -48,7 +46,7 @@ public class CameraManager : MonoBehaviour
     private void OnPassBetween()
     {
         Noise(2,2,0.2f);
-        ChangeFieldOfViewHit(4,5,0.2f);
+        ChangeFieldOfViewHit(70,80,0.5f);
     }
 
     private void OnSpawnWeapon()
@@ -93,15 +91,15 @@ public class CameraManager : MonoBehaviour
     }
     public void ChangeFieldOfView(float fieldOfView, float duration = 1)
     {
-        DOTween.To(() => cm.m_Lens.OrthographicSize, x => cm.m_Lens.OrthographicSize = x, fieldOfView, duration);
+        DOTween.To(() => cm.m_Lens.FieldOfView, x => cm.m_Lens.FieldOfView = x, fieldOfView, duration);
     }
 
     
 
     public void ChangeFieldOfViewHit(float newFieldOfView, float oldFieldOfView, float duration = 1)
     {
-        DOTween.To(() => cm.m_Lens.OrthographicSize, x => cm.m_Lens.OrthographicSize = x, newFieldOfView, duration).OnComplete(()=>{
-            DOTween.To(() => cm.m_Lens.OrthographicSize, x => cm.m_Lens.OrthographicSize = x, oldFieldOfView, duration);
+        DOTween.To(() => cm.m_Lens.FieldOfView, x => cm.m_Lens.FieldOfView = x, newFieldOfView, duration).OnComplete(()=>{
+            DOTween.To(() => cm.m_Lens.FieldOfView, x => cm.m_Lens.FieldOfView = x, oldFieldOfView, duration);
         });
     }
 

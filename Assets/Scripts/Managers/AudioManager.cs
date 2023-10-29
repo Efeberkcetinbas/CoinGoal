@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
-    public AudioClip HitSound1,HitSound2,GameOverSound,PassBetweenSound;
+    public AudioClip GameOverSound,PassBetweenSound,TouchStartSound,TouchEndSound;
 
     AudioSource musicSource,effectSource;
 
@@ -22,34 +22,38 @@ public class AudioManager : MonoBehaviour
 
     private void OnEnable() 
     {
-        EventManager.AddHandler(GameEvent.OnTargetHit,OnHit);
         EventManager.AddHandler(GameEvent.OnGameOver,OnGameOver);
         EventManager.AddHandler(GameEvent.OnPassBetween,OnPassBetween);
+        EventManager.AddHandler(GameEvent.OnTouchStart,OnTouchStart);
+        EventManager.AddHandler(GameEvent.OnTouchEnd,OnTouchEnd);
     }
     private void OnDisable() 
     {
-        EventManager.RemoveHandler(GameEvent.OnTargetHit,OnHit);
         EventManager.RemoveHandler(GameEvent.OnGameOver,OnGameOver);
         EventManager.RemoveHandler(GameEvent.OnPassBetween,OnPassBetween);
+        EventManager.RemoveHandler(GameEvent.OnTouchStart,OnTouchStart);
+        EventManager.RemoveHandler(GameEvent.OnTouchEnd,OnTouchEnd);
     }
 
-    void OnHit()
-    {
-        hit=!hit;
-        if(hit)
-            effectSource.PlayOneShot(HitSound1);
-        else
-            effectSource.PlayOneShot(HitSound2);
-    }
 
     private void OnPassBetween()
     {
         effectSource.PlayOneShot(PassBetweenSound);   
     }
 
-    void OnGameOver()
+    private void OnGameOver()
     {
         effectSource.PlayOneShot(GameOverSound);
+    }
+
+    private void OnTouchStart()
+    {
+        effectSource.PlayOneShot(TouchStartSound);
+    }
+
+    private void OnTouchEnd()
+    {
+        effectSource.PlayOneShot(TouchEndSound);
     }
 
 }

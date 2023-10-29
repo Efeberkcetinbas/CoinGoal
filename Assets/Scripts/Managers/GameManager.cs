@@ -5,29 +5,22 @@ using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Scriptable Data's")]
     public GameData gameData;
     public PlayerData playerData;
     public BallData ballData;
 
-    [SerializeField] private GameObject FailPanel;
-    [SerializeField] private Ease ease;
 
-    public float InitialDifficultyValue;
+
 
     [Header("Game Ending")]
     public GameObject successPanel;
     public GameObject failPanel;
+    [SerializeField] private Ease ease;
+
 
     [Header("Open/Close")]
     [SerializeField] private GameObject[] open_close;
-
-    
-    //Daha iyisi olana kadar
-    [Header("Line Collisions")]
-    public List<GameObject> LinesCol=new List<GameObject>(); 
-    public bool canCollide=false;
-    public bool success=false;
-    public bool isWall=false;
 
 
 
@@ -40,53 +33,29 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.AddHandler(GameEvent.OnIncreaseScore, OnIncreaseScore);
+        EventManager.AddHandler(GameEvent.OnPassBetween, OnPassBetween);
     }
 
     private void OnDisable()
     {
-        EventManager.RemoveHandler(GameEvent.OnIncreaseScore, OnIncreaseScore);
-    }
-    public void LineOpenControl(int selected)
-    {
-        for (int i = 0; i < LinesCol.Count; i++)
-        {
-            LinesCol[i].SetActive(false);
-        }
-
-        LinesCol[selected].SetActive(true);
+        EventManager.RemoveHandler(GameEvent.OnPassBetween, OnPassBetween);
     }
 
-    void OnGameOver()
-    {
-        FailPanel.SetActive(true);
-        FailPanel.transform.DOScale(Vector3.one,1f).SetEase(ease);
-        playerData.playerCanMove=false;
-        gameData.isGameEnd=true;
 
+    private void OnPassBetween()
+    {
+        EventManager.Broadcast(GameEvent.OnIncreaseScore);
     }
     
 
-    void OnIncreaseScore()
+    void OnGameOver()
     {
-        //gameData.score += 50;
-        DOTween.To(GetScore,ChangeScore,gameData.score+gameData.increaseScore,1f).OnUpdate(UpdateUI);
+        failPanel.SetActive(true);
+        failPanel.transform.DOScale(Vector3.one,1f).SetEase(ease);
+        playerData.playerCanMove=false;
+        gameData.isGameEnd=true;
     }
-
-    private int GetScore()
-    {
-        return gameData.score;
-    }
-
-    private void ChangeScore(int value)
-    {
-        gameData.score=value;
-    }
-
-    private void UpdateUI()
-    {
-        EventManager.Broadcast(GameEvent.OnUIUpdate);
-    }
+    
 
     
     

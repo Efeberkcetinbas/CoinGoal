@@ -5,9 +5,11 @@ using UnityEngine;
 public enum GameEvent
 {
     //Player
-    OnTargetHit,
     OnPassBetween,
     OnPlayerTakeDamage,
+
+    //Pass Between
+    
 
     //Ball
     OnBallIndexIncrease,
@@ -19,7 +21,8 @@ public enum GameEvent
     OnCloseTraps,
 
     //Touch
-    OnFingerRelease,
+    OnTouchStart,
+    OnTouchEnd,
 
     //Panel
     OnButtonClicked,

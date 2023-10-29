@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class BallLineCollision : MonoBehaviour
 {
     public Transform gapStart; // The transform of the starting point of the gap
@@ -12,6 +12,7 @@ public class BallLineCollision : MonoBehaviour
     private LineRenderer lineRenderer;
 
     [SerializeField] private int ID1,ID2;
+
 
     public BallData ballData;
 
@@ -47,6 +48,7 @@ public class BallLineCollision : MonoBehaviour
                 {
                 // A collision has occurred with an object that meets the criteria
                     Debug.Log("Collision with " + hit.collider.gameObject.name);
+                    EventManager.Broadcast(GameEvent.OnPassBetween);
                     ballData.isItPassed=true;
                 }
             }

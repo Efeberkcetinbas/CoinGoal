@@ -56,6 +56,7 @@ public class BallController : MonoBehaviour
                     case TouchPhase.Began:
                         isDragging = true;
                         touchStartPos = touch.position;
+                        EventManager.Broadcast(GameEvent.OnTouchStart);
                         if(isTurn)
                         {
                             ballData.currentBallIndex++;
@@ -100,6 +101,8 @@ public class BallController : MonoBehaviour
 
                             powerIndicator.SetPosition(0, Vector3.zero);
                             powerIndicator.SetPosition(1, Vector3.zero);
+
+                            EventManager.Broadcast(GameEvent.OnTouchEnd);
                             
                         }
                         break;
