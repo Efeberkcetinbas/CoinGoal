@@ -56,7 +56,11 @@ public class BallController : MonoBehaviour
                     case TouchPhase.Began:
                         isDragging = true;
                         touchStartPos = touch.position;
+                        //Otherwise It Moves With Max Speed
+                        touchEndPos=touch.position;
+                        
                         EventManager.Broadcast(GameEvent.OnTouchStart);
+
                         if(isTurn)
                         {
                             ballData.currentBallIndex++;
@@ -67,6 +71,7 @@ public class BallController : MonoBehaviour
                             }
 
                             currentBallRigidbody = balls[ballData.currentBallIndex].GetComponent<Rigidbody>();
+                            currentBallRigidbody.isKinematic=true;
                             for (int i = 0; i < BallLines.Count; i++)
                             {
                                 BallLines[i].SetActive(false);
@@ -80,6 +85,7 @@ public class BallController : MonoBehaviour
 
                     case TouchPhase.Moved:
                         touchEndPos = touch.position;
+                        currentBallRigidbody.isKinematic=false;
                         UpdatePowerIndicator();
                         break;
 
@@ -113,6 +119,8 @@ public class BallController : MonoBehaviour
     
 
     }
+
+   
 
     void UpdatePowerIndicator()
     {

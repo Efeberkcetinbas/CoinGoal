@@ -4,7 +4,10 @@ using UnityEngine;
 using DG.Tweening;
 public class Player : MonoBehaviour
 {
-
+    
+    [SerializeField] private GameObject explodeParticle;
+    
+    
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnPlayerTakeDamage,OnPlayerTakeDamage);
@@ -16,11 +19,12 @@ public class Player : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnPlayerTakeDamage,OnPlayerTakeDamage);
         
     }
-    [SerializeField] private GameObject explodeParticle;
     private void OnPlayerTakeDamage()
     {
         //Cesitlendirilebilir
         Instantiate(explodeParticle,transform.position,Quaternion.identity);
         
     }
+
+    
 }
