@@ -18,6 +18,8 @@ public class BallController : MonoBehaviour
     public Material lineMaterial;
 
 
+    public Transform powerIndicate;
+
 
     public float minPower=1f;
     public float maxPower=20f;
@@ -109,8 +111,9 @@ public class BallController : MonoBehaviour
 
                             powerIndicator.SetPosition(0, Vector3.zero);
                             powerIndicator.SetPosition(1, Vector3.zero);
-
+                            //powerIndicate.localScale=new Vector3(1,1,1);
                             EventManager.Broadcast(GameEvent.OnTouchEnd);
+
                             
                         }
                         break;
@@ -146,6 +149,9 @@ public class BallController : MonoBehaviour
         // Update the Line Renderer color based on the normalized distance.
         Color color = Color.Lerp(Color.green, Color.red, normalizedDistance);
         lineMaterial.color = color;
+
+        /*float arrowLength=Vector3.Distance(worldEndPos,worldStartPos);
+        powerIndicate.localScale=new Vector3(1,1,arrowLength);*/
     }
 
     

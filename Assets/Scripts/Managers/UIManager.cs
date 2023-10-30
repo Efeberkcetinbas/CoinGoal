@@ -9,7 +9,8 @@ public class UIManager : MonoBehaviour
 {
     [Header("Text's")]
     [SerializeField] private TextMeshProUGUI score;
-    [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private TextMeshProUGUI fromLevelText;
+    [SerializeField] private TextMeshProUGUI toLevelText;
 
     [Header("Image's")]
     [SerializeField] private Image progressBar;
@@ -44,7 +45,8 @@ public class UIManager : MonoBehaviour
 
     private void OnNextLevel()
     {
-        levelText.SetText("Level " + gameData.LevelNumberIndex.ToString());
+        fromLevelText.SetText("Level " + gameData.LevelNumberIndex.ToString());
+        fromLevelText.SetText("Level " + (gameData.LevelNumberIndex+1).ToString());
     }
 
     private void OnUIRequirementUpdate()

@@ -163,6 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeParticle: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845, type: 3}
+  ballData: {fileID: 11400000, guid: 6692e14ad7a601e4ca2edd6e74a2debb, type: 2}
+  ID: 1
 --- !u!114 &198465964
 MonoBehaviour:
   m_ObjectHideFlags: 0

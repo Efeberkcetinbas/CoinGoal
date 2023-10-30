@@ -9,6 +9,13 @@ public enum GameEvent
     OnPlayerTakeDamage,
 
     //Pass Between
+
+
+    //Buffs
+    OnInvulnerable,
+    OnVulnerable,
+    OnDestroyer,
+    OnNormal,
     
 
     //Ball
@@ -38,6 +45,7 @@ public enum GameEvent
     OnUIRequirementUpdate,
     OnUIGameOver,
     OnNextLevel,
+    OnGameStart,
     OnGameOver
 }
 public class EventManager

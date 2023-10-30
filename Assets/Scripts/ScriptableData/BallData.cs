@@ -9,4 +9,8 @@ public class BallData : ScriptableObject
     public int currentBallIndex;
 
     public bool isItPassed=false;
+
+
+    //Buffs
+    public bool isInvulnerable=false;
 }

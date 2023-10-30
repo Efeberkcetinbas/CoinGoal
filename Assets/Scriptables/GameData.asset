@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14db6eb11dc14d4a9aadc380891c5fd, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  score: 91
+  score: 121
+  coin: 0
   increaseScore: 10
   increaseCoinAmount: 1
   LevelNumberIndex: 0
+  LevelRequirementNumber: 10
+  BackTime: 10
+  ProgressNumber: 0
   isGameEnd: 0

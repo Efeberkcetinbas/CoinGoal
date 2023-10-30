@@ -13,6 +13,9 @@ public class GameData : ScriptableObject
     public int increaseCoinAmount;
     public int LevelNumberIndex;
     public int LevelRequirementNumber;
+
+    //Buff backTime
+    public int BackTime;
     
     
     public float ProgressNumber;
