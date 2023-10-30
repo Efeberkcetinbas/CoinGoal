@@ -19,6 +19,7 @@ public enum GameEvent
     OnCloseButton,
     OnOpenTraps,
     OnCloseTraps,
+    OnHitWall,
 
     //Touch
     OnTouchStart,

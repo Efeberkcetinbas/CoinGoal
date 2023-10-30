@@ -72,6 +72,7 @@ public class BallController : MonoBehaviour
 
                             currentBallRigidbody = balls[ballData.currentBallIndex].GetComponent<Rigidbody>();
                             currentBallRigidbody.isKinematic=true;
+                            balls[ballData.currentBallIndex].transform.rotation=Quaternion.identity;
                             for (int i = 0; i < BallLines.Count; i++)
                             {
                                 BallLines[i].SetActive(false);
@@ -97,7 +98,7 @@ public class BallController : MonoBehaviour
                             float forceMagnitude = Mathf.Clamp(dragDistance * 0.05f, minPower, maxPower);
                             Vector3 force = new Vector3(dragDirection.x, 0f, dragDirection.y).normalized*forceMagnitude;
                             //Inverse Drag Not Swipe You Must do -force                            
-                            currentBallRigidbody.AddForce(force, ForceMode.Impulse);
+                            currentBallRigidbody.AddForce(-force, ForceMode.Impulse);
                             isDragging = false;
                             powerIndicator.startColor = Color.green;
                             powerIndicator.endColor = Color.green;

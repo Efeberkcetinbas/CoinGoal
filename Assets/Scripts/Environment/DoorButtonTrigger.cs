@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using DG.Tweening;
 using UnityEngine;
 
 public class DoorButtonTrigger : Obstacleable
@@ -12,10 +12,14 @@ public class DoorButtonTrigger : Obstacleable
     [SerializeField] private Material greenMat,redMat;
 
     [SerializeField] private bool isUp=false;
+    [SerializeField] private ParticleSystem particle;
+
+    private float oldScale;
 
     private void Start() 
     {
         meshRenderer=GetComponent<MeshRenderer>();
+        oldScale=transform.localScale.y;
     }
 
     public DoorButtonTrigger()
@@ -28,6 +32,8 @@ public class DoorButtonTrigger : Obstacleable
     {
         EventManager.BroadcastId(GameEvent.OnOpenButton,id);
         meshRenderer.material=greenMat;
+        particle.Play();
+        transform.DOScaleY(oldScale/1.5f,0.5f);
     }
 
     internal override void StopAction(Player player)
@@ -36,6 +42,10 @@ public class DoorButtonTrigger : Obstacleable
         {
             EventManager.BroadcastId(GameEvent.OnCloseButton,id);
             meshRenderer.material=redMat;
+            particle.Play();
+            
         }
+
+        transform.DOScaleY(oldScale,0.5f);
     }
 }

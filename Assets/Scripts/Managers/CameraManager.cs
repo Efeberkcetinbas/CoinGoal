@@ -10,9 +10,11 @@ public class CameraManager : MonoBehaviour
     public CinemachineVirtualCamera cm;
 
     [Header("Shake Control")]
-    public float shakeTime = 0.5f;
-    public float amplitudeGain=1;
-    public float frequencyGain=1;
+    [SerializeField] private float shakeTime = 0.5f;
+    [SerializeField] private float amplitudeGain=1;
+    [SerializeField] private float frequencyGain=1;
+    [SerializeField] private float newFieldOfView;
+    [SerializeField] private float oldFieldOfView;
     private CinemachineBasicMultiChannelPerlin noise;
 
     [SerializeField] private List<Transform> balls=new List<Transform>();
@@ -38,15 +40,11 @@ public class CameraManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnBallIndexIncrease,OnBallIndexIncrease);
     }
 
-    private void OnGoal()
-    {
-        Noise(amplitudeGain,frequencyGain,shakeTime);
-    }
 
     private void OnPassBetween()
     {
-        Noise(2,2,0.2f);
-        ChangeFieldOfViewHit(70,80,0.5f);
+        Noise(amplitudeGain,frequencyGain,shakeTime);
+        ChangeFieldOfViewHit(newFieldOfView,oldFieldOfView,shakeTime);
     }
 
     private void OnSpawnWeapon()
@@ -74,6 +72,8 @@ public class CameraManager : MonoBehaviour
             Debug.LogError("No MultiChannelPerlin on the virtual camera.", this);
         else
             Debug.Log($"Noise Component: {noise}");
+
+        OnBallIndexIncrease();
     }
 
     private void Noise(float amplitudeGain,float frequencyGain,float shakeTime) 

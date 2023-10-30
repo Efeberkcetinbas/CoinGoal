@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class BallSelected : MonoBehaviour
@@ -30,6 +31,7 @@ public class BallSelected : MonoBehaviour
     {
         particle.gameObject.SetActive(true);
         particle.transform.position=ballsTransform[ballData.currentBallIndex].position;
+        //particle.transform.rotation=quaternion.identity;
         particle.Play();
     }
 
