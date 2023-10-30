@@ -32,7 +32,10 @@ public class Player : MonoBehaviour
     private void OnHitWall(int id)
     {
         if(ID==id)
-            Debug.Log("WORK TIME");
+        {
+            transform.DOScale(Vector3.one/1.3f,0.2f).OnComplete(()=>transform.DOScale(Vector3.one,0.2f));
+        }
+            
     }
 
     
