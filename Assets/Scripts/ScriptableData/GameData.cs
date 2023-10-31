@@ -17,6 +17,7 @@ public class GameData : ScriptableObject
     //Buff backTime
     public int BackTime;
     
+    public int BorderIndex;
     
     public float ProgressNumber;
 

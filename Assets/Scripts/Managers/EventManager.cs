@@ -28,6 +28,9 @@ public enum GameEvent
     OnCloseTraps,
     OnHitWall,
 
+    //Levels
+    OnBordersDown,
+
     //Touch
     OnTouchStart,
     OnTouchEnd,

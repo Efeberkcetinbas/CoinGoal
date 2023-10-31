@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class BorderListControl : MonoBehaviour
 {
@@ -11,8 +12,11 @@ public class BorderListControl : MonoBehaviour
 
     private int index=0;
     private int tempReq=0;
+    [SerializeField] private int y;
 
     [SerializeField] private List<TextMeshPro> borderReqTexts=new List<TextMeshPro>();
+
+    public GameData gameData;
 
     private void Start() 
     {
@@ -45,7 +49,7 @@ public class BorderListControl : MonoBehaviour
         if (index >= borderReq.Count)
         {
         // Handle the out-of-range condition, for example:
-            Debug.LogError("Index out of range");
+            //Debug.LogError("Index out of range");
             return;
         }
 
@@ -56,7 +60,9 @@ public class BorderListControl : MonoBehaviour
         if (tempReq <= 0)
         {
             // Kapi Acilacak. Efektif yaparsin bunu
-            borders[index].SetActive(false);
+            gameData.BorderIndex=index;
+            EventManager.BroadcastId(GameEvent.OnBordersDown,index);
+            borders[index].transform.DOMoveY(y,2);
             index++;
 
             if (index < borderReq.Count)

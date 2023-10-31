@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
-    public AudioClip GameOverSound,PassBetweenSound,TouchStartSound,TouchEndSound,HitWallSound,ButtonSound;
+    public AudioClip GameOverSound,PassBetweenSound,TouchStartSound,TouchEndSound,HitWallSound,ButtonSound,BorderDownSound;
 
     AudioSource musicSource,effectSource;
 
@@ -27,6 +27,7 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnTouchEnd,OnTouchEnd);
         EventManager.AddIdHandler(GameEvent.OnHitWall,OnHitWall);
         EventManager.AddIdHandler(GameEvent.OnOpenButton,OnOpenButton);
+        EventManager.AddIdHandler(GameEvent.OnBordersDown,OnBordersDown);
     }
     private void OnDisable() 
     {
@@ -36,6 +37,7 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnTouchEnd,OnTouchEnd);
         EventManager.RemoveIdHandler(GameEvent.OnHitWall,OnHitWall);
         EventManager.RemoveIdHandler(GameEvent.OnOpenButton,OnOpenButton);
+        EventManager.RemoveIdHandler(GameEvent.OnBordersDown,OnBordersDown);
     }
 
 
@@ -73,6 +75,12 @@ public class AudioManager : MonoBehaviour
     {
         SetVolume(0.3f);
         effectSource.PlayOneShot(ButtonSound);
+    }
+
+    private void OnBordersDown(int id)
+    {
+        SetVolume(0.1f);
+        effectSource.PlayOneShot(BorderDownSound);
     }
 
     private float SetVolume(float vol)
