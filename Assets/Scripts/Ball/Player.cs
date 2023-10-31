@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnVulnerable,OnVulnerable);
         EventManager.AddHandler(GameEvent.OnDestroyer,OnDestroyer);
         EventManager.AddHandler(GameEvent.OnNormal,OnNormal);
+        EventManager.AddHandler(GameEvent.OnSpeedUp,OnSpeedUp);
+        EventManager.AddHandler(GameEvent.OnSpeedNormal,OnSpeedNormal);
 
     }
 
@@ -35,6 +37,8 @@ public class Player : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnVulnerable,OnVulnerable);
         EventManager.RemoveHandler(GameEvent.OnDestroyer,OnDestroyer);
         EventManager.RemoveHandler(GameEvent.OnNormal,OnNormal);
+        EventManager.RemoveHandler(GameEvent.OnSpeedUp,OnSpeedUp);
+        EventManager.RemoveHandler(GameEvent.OnSpeedNormal,OnSpeedNormal);
 
     }
     private void OnPlayerTakeDamage()
@@ -70,6 +74,19 @@ public class Player : MonoBehaviour
     {
         Debug.Log("OH NO ITS RED SUN");
         ballData.isInvulnerable=false;
+    }
+    
+    private void OnSpeedUp()
+    {
+        Debug.Log("IAM THE FLASH");
+        //WILL IMPROVE
+        ballData.BallSpeed=25;
+    }
+
+    private void OnSpeedNormal()
+    {
+        Debug.Log("IAM BARRY ALLEN");
+        ballData.BallSpeed=20;
     }
 
     private void OnDestroyer()

@@ -12,6 +12,7 @@ public class BallController : MonoBehaviour
     private Vector3 touchEndPos;
 
     public BallData ballData;
+    public GameData gameData;
     private Rigidbody currentBallRigidbody;
 
     [SerializeField] private LineRenderer powerIndicator;
@@ -22,7 +23,7 @@ public class BallController : MonoBehaviour
 
 
     public float minPower=1f;
-    public float maxPower=20f;
+    
 
     public float maxLineLength=2f;
 
@@ -46,7 +47,12 @@ public class BallController : MonoBehaviour
         powerIndicator.material = lineMaterial;
     }
 
-    void Update()
+    private void Update() 
+    {
+        if(!gameData.isGameEnd)
+            MoveBalls();
+    }
+    private void MoveBalls()
     {
         if(ballData.currentBallIndex<balls.Length)
         {
@@ -99,7 +105,7 @@ public class BallController : MonoBehaviour
                         {
                             Vector3 dragDirection = touchEndPos - touchStartPos;
                             float dragDistance = dragDirection.magnitude;
-                            float forceMagnitude = Mathf.Clamp(dragDistance * 0.05f, minPower, maxPower);
+                            float forceMagnitude = Mathf.Clamp(dragDistance * 0.05f, minPower, ballData.MaxBallSpeed);
                             Vector3 force = new Vector3(dragDirection.x, 0f, dragDirection.y).normalized*forceMagnitude;
                             //Inverse Drag Not Swipe You Must do -force                            
                             currentBallRigidbody.AddForce(-force, ForceMode.Impulse);

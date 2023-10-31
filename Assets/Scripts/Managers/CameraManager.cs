@@ -31,6 +31,7 @@ public class CameraManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnPassBetween,OnPassBetween);
         EventManager.AddHandler(GameEvent.OnBallIndexIncrease,OnBallIndexIncrease);
+        EventManager.AddIdHandler(GameEvent.OnBordersDown,OnBordersDown);
     }
 
     private void OnDisable() 
@@ -38,6 +39,7 @@ public class CameraManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnPassBetween,OnPassBetween);
         EventManager.RemoveHandler(GameEvent.OnBallIndexIncrease,OnBallIndexIncrease);
+        EventManager.RemoveIdHandler(GameEvent.OnBordersDown,OnBordersDown);
     }
 
 
@@ -61,6 +63,12 @@ public class CameraManager : MonoBehaviour
     private void OnNextLevel()
     {
         ChangeFieldOfView(5,0.1f);
+    }
+
+    private void OnBordersDown(int id)
+    {
+        Debug.Log("TITRETTIN BENI TITTRETTIN");
+        Noise(3,3,1f);
     }
 
     

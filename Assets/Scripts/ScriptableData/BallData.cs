@@ -9,6 +9,8 @@ public class BallData : ScriptableObject
     public int currentBallIndex;
     public float BallSpeed;
 
+    public int MaxBallSpeed=20;
+
     public bool isItPassed=false;
 
     //Buffs

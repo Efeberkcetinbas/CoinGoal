@@ -16,6 +16,8 @@ public enum GameEvent
     OnVulnerable,
     OnDestroyer,
     OnNormal,
+    OnSpeedUp,
+    OnSpeedNormal,
     
 
     //Ball

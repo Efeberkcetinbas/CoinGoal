@@ -6,15 +6,18 @@ using UnityEngine.UI;
 
 public class PanelManager : MonoBehaviour
 {
-    [SerializeField] private RectTransform StartPanel,CharacterPanel,WeaponPanel;
+    [SerializeField] private RectTransform StartPanel,BuffPanel,BallsPanel;
 
 
     [SerializeField] private Image Fade;
 
-    [SerializeField] private float StartX,StartY,CharacterX,CharacterY,WeaponX,WeaponY,duration;
+    [SerializeField] private float StartX,StartY,BuffX,BuffY,BallX,BallY,duration;
 
     public GameData gameData;
 
+
+    //Insert Coin
+    [SerializeField] private RectTransform coinImage;
 
     private void OnEnable() 
     {
@@ -29,8 +32,11 @@ public class PanelManager : MonoBehaviour
     
     public void StartGame() 
     {
-        gameData.isGameEnd=false;
-        StartPanel.gameObject.SetActive(false);
+        coinImage.DOAnchorPosY(0,1f).OnComplete(()=>coinImage.transform.DORotate(new Vector3(0,90,0), 1f).OnComplete(()=>{
+            gameData.isGameEnd=false;
+            StartPanel.gameObject.SetActive(false);
+            EventManager.Broadcast(GameEvent.OnGameStart);
+        }));
     }
 
     private void OnNextLevel()
@@ -55,20 +61,20 @@ public class PanelManager : MonoBehaviour
     }
 
 
-    public void OpenCharacterPanel()
+    public void OpenBuffsPanel()
     {
-        EventManager.Broadcast(GameEvent.OnButtonClicked);
+        //EventManager.Broadcast(GameEvent.OnButtonClicked);
         StartPanel.DOAnchorPos(new Vector2(StartX,StartY),duration).OnComplete(()=>StartPanel.gameObject.SetActive(false));
-        CharacterPanel.gameObject.SetActive(true);
-        CharacterPanel.DOAnchorPos(Vector2.zero,duration);
+        BuffPanel.gameObject.SetActive(true);
+        BuffPanel.DOAnchorPos(Vector2.zero,duration);
     }
 
-    public void OpenWeaponPanel()
+    public void OpenBallsPanel()
     {
-        EventManager.Broadcast(GameEvent.OnButtonClicked);
+        //EventManager.Broadcast(GameEvent.OnButtonClicked);
         StartPanel.DOAnchorPos(new Vector2(StartX,StartY),duration).OnComplete(()=>StartPanel.gameObject.SetActive(false));
-        WeaponPanel.gameObject.SetActive(true);
-        WeaponPanel.DOAnchorPos(Vector2.zero,duration);
+        BallsPanel.gameObject.SetActive(true);
+        BallsPanel.DOAnchorPos(Vector2.zero,duration);
     }
 
     public void BackToStart(bool isOnCharacter)
@@ -78,18 +84,18 @@ public class PanelManager : MonoBehaviour
         {
             StartPanel.gameObject.SetActive(true);
             StartPanel.DOAnchorPos(Vector2.zero,duration);
-            CharacterPanel.DOAnchorPos(new Vector2(CharacterX,CharacterY),duration);
+            BuffPanel.DOAnchorPos(new Vector2(BuffX,BuffY),duration);
             //.OnComplete(()=>CharacterPanel.gameObject.SetActive(false));
         }
         else
         {
             StartPanel.gameObject.SetActive(true);
             StartPanel.DOAnchorPos(Vector2.zero,duration);
-            WeaponPanel.DOAnchorPos(new Vector2(WeaponX,WeaponY),duration);
+            BallsPanel.DOAnchorPos(new Vector2(BallX,BallY),duration);
             //.OnComplete(()=>WeaponPanel.gameObject.SetActive(false));
         }
 
-        EventManager.Broadcast(GameEvent.OnButtonClicked);
+        //EventManager.Broadcast(GameEvent.OnButtonClicked);
 
     }
 
