@@ -6,9 +6,15 @@ public class Player : MonoBehaviour
 {
     
     [SerializeField] private GameObject explodeParticle;
+    
     public BallData ballData;
     
     public int ID;
+
+    internal bool isInTheButton=false;
+
+    internal Rigidbody tempRigidbody;
+    
 
     private void OnEnable() 
     {
@@ -18,7 +24,7 @@ public class Player : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnVulnerable,OnVulnerable);
         EventManager.AddHandler(GameEvent.OnDestroyer,OnDestroyer);
         EventManager.AddHandler(GameEvent.OnNormal,OnNormal);
-        
+
     }
 
     private void OnDisable() 
@@ -29,7 +35,7 @@ public class Player : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnVulnerable,OnVulnerable);
         EventManager.RemoveHandler(GameEvent.OnDestroyer,OnDestroyer);
         EventManager.RemoveHandler(GameEvent.OnNormal,OnNormal);
-        
+
     }
     private void OnPlayerTakeDamage()
     {
@@ -46,6 +52,13 @@ public class Player : MonoBehaviour
         }
             
     }
+
+    internal void SetTempRigidbody()
+    {
+        tempRigidbody=ballData.currentBallRigidbodyData;
+    }
+
+   
 
     #region Buff
     private void OnInvulnerable()

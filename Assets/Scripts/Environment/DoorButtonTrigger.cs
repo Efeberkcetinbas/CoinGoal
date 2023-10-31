@@ -16,6 +16,10 @@ public class DoorButtonTrigger : Obstacleable
 
     private float oldScale;
 
+    private int enterId;
+
+    private bool isInAnyBall=false;
+
     private void Start() 
     {
         meshRenderer=GetComponent<MeshRenderer>();
@@ -30,22 +34,36 @@ public class DoorButtonTrigger : Obstacleable
 
     internal override void DoAction(Player player)
     {
-        EventManager.BroadcastId(GameEvent.OnOpenButton,id);
-        meshRenderer.material=greenMat;
-        particle.Play();
-        transform.DOScaleY(oldScale/1.5f,0.5f);
+        if(!isInAnyBall && !player.isInTheButton)
+        {
+            isInAnyBall=true;
+            enterId=player.ID;
+            EventManager.BroadcastId(GameEvent.OnOpenButton,id);
+            meshRenderer.material=greenMat;
+            particle.Play();
+            transform.DOScaleY(oldScale/1.5f,0.5f);
+            player.isInTheButton=true;
+        }
+        
     }
 
     internal override void StopAction(Player player)
     {
-        if(isUp)
+        if(enterId==player.ID)
         {
-            EventManager.BroadcastId(GameEvent.OnCloseButton,id);
-            meshRenderer.material=redMat;
-            particle.Play();
+            if(isUp)
+            {
+                EventManager.BroadcastId(GameEvent.OnCloseButton,id);
+                meshRenderer.material=redMat;
+                particle.Play();
+                isInAnyBall=false;
+                player.isInTheButton=false; 
+                transform.DOScaleY(oldScale,0.5f);
+            }
+
+            
             
         }
-
-        transform.DOScaleY(oldScale,0.5f);
+        
     }
 }

@@ -7,10 +7,13 @@ using UnityEngine;
 public class BallData : ScriptableObject 
 {
     public int currentBallIndex;
+    public float BallSpeed;
 
     public bool isItPassed=false;
 
-
     //Buffs
     public bool isInvulnerable=false;
+
+
+    internal Rigidbody currentBallRigidbodyData;
 }

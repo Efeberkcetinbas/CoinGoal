@@ -7,7 +7,6 @@ public class BallLineCollision : MonoBehaviour
     public Transform gapStart; // The transform of the starting point of the gap
     public Transform gapEnd;   // The transform of the ending point of the gap
 
-    private bool passedThrough = false;
 
     private LineRenderer lineRenderer;
 

@@ -33,6 +33,7 @@ public class BallController : MonoBehaviour
     void Start()
     {
         currentBallRigidbody=balls[ballData.currentBallIndex].GetComponent<Rigidbody>();
+        ballData.currentBallRigidbodyData=currentBallRigidbody;
         for (int i = 0; i < BallLines.Count; i++)
         {
             BallLines[i].SetActive(false);
@@ -73,6 +74,7 @@ public class BallController : MonoBehaviour
                             }
 
                             currentBallRigidbody = balls[ballData.currentBallIndex].GetComponent<Rigidbody>();
+                            ballData.currentBallRigidbodyData=currentBallRigidbody;
                             currentBallRigidbody.isKinematic=true;
                             balls[ballData.currentBallIndex].transform.rotation=Quaternion.identity;
                             for (int i = 0; i < BallLines.Count; i++)
@@ -105,7 +107,7 @@ public class BallController : MonoBehaviour
                             powerIndicator.startColor = Color.green;
                             powerIndicator.endColor = Color.green;
                             Debug.Log("FORCE MAG " + (int)forceMagnitude);
-                            
+                            //ballData.BallSpeed=(int)forceMagnitude;
                             //Ball is Change when I touch to start
                             isTurn=true;
 
@@ -120,6 +122,8 @@ public class BallController : MonoBehaviour
                 }
             }
         }
+
+        ballData.BallSpeed=currentBallRigidbody.velocity.magnitude;
     
 
     }
