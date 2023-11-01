@@ -20,7 +20,6 @@ public class BallController : MonoBehaviour
     public Material lineMaterial;
 
 
-    public Transform powerIndicate;
 
 
     public float minPower=1f;
@@ -28,7 +27,24 @@ public class BallController : MonoBehaviour
 
     public float maxLineLength=2f;
 
+    [SerializeField] private LineRenderer lineRenderer;
 
+    /*
+    
+    
+        private void Start() 
+    {
+        line.positionCount=2;
+    }
+    //Bu scripte gerek yok ama rendereri dogru olcmek icin dogrulama amacli kullaniyorum. Ilerde scripti kaldiririm.
+    private void Update() 
+    {
+        line.SetPosition(0,ball1.position);
+        line.SetPosition(1,ball2.position);
+
+    }
+    
+    */
     
     
 
@@ -48,6 +64,9 @@ public class BallController : MonoBehaviour
         powerIndicator.material = lineMaterial;
 
         OnNextLevel();
+
+        lineRenderer.positionCount=2;
+        
     }   
 
     private void OnEnable() 
@@ -88,7 +107,7 @@ public class BallController : MonoBehaviour
                         touchEndPos=touch.position;
                         
                         EventManager.Broadcast(GameEvent.OnTouchStart);
-
+                        currentBallRigidbody.transform.DOScale(Vector3.one/1.15f,0.3f);
                         if(isTurn)
                         {
                             ballData.currentBallIndex++;
@@ -109,6 +128,7 @@ public class BallController : MonoBehaviour
 
                             BallLines[ballData.currentBallIndex].SetActive(true);
                             EventManager.Broadcast(GameEvent.OnBallIndexIncrease);
+                            
                             ballData.isItPassed=false;
                         }
                         break;
@@ -117,6 +137,7 @@ public class BallController : MonoBehaviour
                         touchEndPos = touch.position;
                         currentBallRigidbody.isKinematic=false;
                         UpdatePowerIndicator();
+                        
                         break;
 
                     case TouchPhase.Ended:
@@ -132,7 +153,8 @@ public class BallController : MonoBehaviour
                             powerIndicator.startColor = Color.green;
                             powerIndicator.endColor = Color.green;
                             Debug.Log("FORCE MAG " + (int)forceMagnitude);
-                            //ballData.BallSpeed=(int)forceMagnitude;
+                            currentBallRigidbody.transform.DOScale(new Vector3(1.3f,1.3f,1),0.15f).OnComplete(()=> currentBallRigidbody.transform.DOScale(Vector3.one,0.15f));
+                            
                             //Ball is Change when I touch to start
                             isTurn=true;
 
@@ -170,15 +192,15 @@ public class BallController : MonoBehaviour
 
         float normalizedDistance = Mathf.Clamp(dragDistance / maxLineLength, 0f, 1f);
 
-        powerIndicator.SetPosition(0, worldStartPos);
-        powerIndicator.SetPosition(1, worldStartPos + dragDirection);
+        powerIndicator.SetPosition(0, currentBallRigidbody.position);
+        powerIndicator.SetPosition(1, currentBallRigidbody.position+dragDirection);
 
         // Update the Line Renderer color based on the normalized distance.
         Color color = Color.Lerp(Color.green, Color.red, normalizedDistance);
         lineMaterial.color = color;
 
-        /*float arrowLength=Vector3.Distance(worldEndPos,worldStartPos);
-        powerIndicate.localScale=new Vector3(1,1,arrowLength);*/
+        
+
     }
 
     private void OnNextLevel()

@@ -3594,9 +3594,9 @@ MonoBehaviour:
   gameData: {fileID: 11400000, guid: 714e86a42ad2e4443a9a9db6ac3f3bff, type: 2}
   powerIndicator: {fileID: 950565331}
   lineMaterial: {fileID: 2100000, guid: dfc7a5e3e67ad164593345afb208414f, type: 2}
-  powerIndicate: {fileID: 0}
   minPower: 1
   maxLineLength: 5
+  lineRenderer: {fileID: 950565331}
 --- !u!4 &756641983
 Transform:
   m_ObjectHideFlags: 0
