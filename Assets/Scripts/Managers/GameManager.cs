@@ -35,11 +35,15 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnPassBetween, OnPassBetween);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnPassBetween, OnPassBetween);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
     }
 
 
@@ -61,6 +65,7 @@ public class GameManager : MonoBehaviour
         EventManager.Broadcast(GameEvent.OnIncreaseScore);
         float value=1/(float)gameData.LevelRequirementNumber;
         gameData.ProgressNumber+=value;
+        EventManager.Broadcast(GameEvent.OnUIRequirementUpdate);
         //Update UI progress bar
     }
   
@@ -76,13 +81,24 @@ public class GameManager : MonoBehaviour
         playerData.playerCanMove=false;
         gameData.isGameEnd=true;
     }
-    
+    private void OnNextLevel()
+    {
+        gameData.ProgressNumber=0;
+        gameData.isGameEnd=true;
+        EventManager.Broadcast(GameEvent.OnUIRequirementUpdate);
+    }
+
+    private void OnGameStart()
+    {
+        UpdateRequirement();
+    }
 
     
     
     void ClearData()
     {
         ballData.isItPassed=false;
+        gameData.isGameEnd=true;
         gameData.ProgressNumber=0;
     }
 

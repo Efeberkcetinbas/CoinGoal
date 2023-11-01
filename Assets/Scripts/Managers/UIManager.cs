@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
 
     private void Start() 
     {
-        //OnNextLevel();
+        OnNextLevel();
     }
     
     private void OnUIUpdate()
@@ -45,8 +45,8 @@ public class UIManager : MonoBehaviour
 
     private void OnNextLevel()
     {
-        fromLevelText.SetText("Level " + gameData.LevelNumberIndex.ToString());
-        fromLevelText.SetText("Level " + (gameData.LevelNumberIndex+1).ToString());
+        fromLevelText.SetText((gameData.LevelNumberIndex+1).ToString());
+        toLevelText.SetText((gameData.LevelNumberIndex+2).ToString());
     }
 
     private void OnUIRequirementUpdate()

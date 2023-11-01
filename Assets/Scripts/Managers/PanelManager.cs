@@ -15,6 +15,8 @@ public class PanelManager : MonoBehaviour
 
     public GameData gameData;
 
+    public GameObject UICanvas;
+
 
     //Insert Coin
     [SerializeField] private RectTransform coinImage;
@@ -35,7 +37,9 @@ public class PanelManager : MonoBehaviour
         coinImage.DOAnchorPosY(0,1f).OnComplete(()=>coinImage.transform.DORotate(new Vector3(0,90,0), 1f).OnComplete(()=>{
             gameData.isGameEnd=false;
             StartPanel.gameObject.SetActive(false);
+            UICanvas.SetActive(true);
             EventManager.Broadcast(GameEvent.OnGameStart);
+
         }));
     }
 

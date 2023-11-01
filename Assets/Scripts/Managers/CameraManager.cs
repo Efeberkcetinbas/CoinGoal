@@ -62,7 +62,7 @@ public class CameraManager : MonoBehaviour
 
     private void OnNextLevel()
     {
-        ChangeFieldOfView(5,0.1f);
+        
     }
 
     private void OnBordersDown(int id)

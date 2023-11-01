@@ -19,25 +19,26 @@ public class LevelManager : MonoBehaviour
     {
 
 
-        levelIndex = PlayerPrefs.GetInt("LevelNumber");
+        levelIndex = PlayerPrefs.GetInt("NumberOfLevel");
         if (levelIndex == levels.Count) levelIndex = 0;
-        PlayerPrefs.SetInt("LevelNumber", levelIndex);
+        PlayerPrefs.SetInt("NumberOfLevel", levelIndex);
        
 
         for (int i = 0; i < levels.Count; i++)
         {
             levels[i].SetActive(false);
         }
+        Debug.Log(levelIndex);
         levels[levelIndex].SetActive(true);
     }
 
     public void LoadNextLevel()
     {
-        PlayerPrefs.SetInt("LevelNumber", levelIndex + 1);
-        PlayerPrefs.SetInt("RealLevel", PlayerPrefs.GetInt("RealLevel", 0) + 1);
+        PlayerPrefs.SetInt("NumberOfLevel", levelIndex + 1);
+        PlayerPrefs.SetInt("RealNumberLevel", PlayerPrefs.GetInt("RealNumberLevel", 0) + 1);
         gameData.LevelNumberIndex++;
-        EventManager.Broadcast(GameEvent.OnNextLevel);
         LoadLevel();
+        EventManager.Broadcast(GameEvent.OnNextLevel);
     }
 
     public void RestartLevel()

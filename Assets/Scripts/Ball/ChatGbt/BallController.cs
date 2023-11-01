@@ -45,6 +45,20 @@ public class BallController : MonoBehaviour
         powerIndicator.positionCount = 2;
         powerIndicator.useWorldSpace = true;
         powerIndicator.material = lineMaterial;
+
+        OnNextLevel();
+    }   
+
+    private void OnEnable() 
+    {
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+        
+    }
+
+    private void OnDisable() 
+    {
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        
     }
 
     private void Update() 
@@ -162,6 +176,14 @@ public class BallController : MonoBehaviour
 
         /*float arrowLength=Vector3.Distance(worldEndPos,worldStartPos);
         powerIndicate.localScale=new Vector3(1,1,arrowLength);*/
+    }
+
+    private void OnNextLevel()
+    {
+        for (int i = 0; i < balls.Length; i++)
+        {
+            balls[i].transform.position=FindObjectOfType<BallPositions>().PositionsOfBall[i];
+        }
     }
 
     
