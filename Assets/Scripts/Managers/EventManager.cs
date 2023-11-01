@@ -12,6 +12,7 @@ public enum GameEvent
 
 
     //Buffs
+    OnUpdateBuff,
     OnInvulnerable,
     OnVulnerable,
     OnDestroyer,

@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Image's")]
     [SerializeField] private Image progressBar;
+    [SerializeField] private Image buffProgressBar;
     
     [Header("Data's")]
     public GameData gameData;
@@ -24,12 +25,14 @@ public class UIManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnUIUpdate, OnUIUpdate);
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnUIRequirementUpdate,OnUIRequirementUpdate);
+        EventManager.AddHandler(GameEvent.OnUpdateBuff,OnUpdateBuff);
     }
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnUIUpdate, OnUIUpdate);
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnUIRequirementUpdate,OnUIRequirementUpdate);
+        EventManager.RemoveHandler(GameEvent.OnUpdateBuff,OnUpdateBuff);
     }
 
     private void Start() 
@@ -52,6 +55,11 @@ public class UIManager : MonoBehaviour
     private void OnUIRequirementUpdate()
     {
         progressBar.DOFillAmount(gameData.ProgressNumber,0.25f);
+    }
+
+    private void OnUpdateBuff()
+    {
+        buffProgressBar.DOFillAmount(0,gameData.BackTime).OnComplete(()=>buffProgressBar.gameObject.SetActive(false));
     }
 
 

@@ -14,15 +14,19 @@ public class BuffControl : MonoBehaviour
 
     [SerializeField] private bool isSpeedUp,isDestroyer,isInvulnerable=false;
 
+
+    [SerializeField] private GameObject buffBar;
     
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
     private void OnNextLevel()
@@ -89,10 +93,12 @@ public class BuffControl : MonoBehaviour
             if(isInvulnerable) DoInvincle();
             if(isSpeedUp) DoSpeedUp();
             
+            buffBar.SetActive(true);
+            EventManager.Broadcast(GameEvent.OnUpdateBuff);
         }
-
-       
     }
+
+    
 
 
 

@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     
     [SerializeField] private GameObject explodeParticle;
+
+    [SerializeField] private List<ParticleSystem> buffParticles;
     
     public BallData ballData;
     
@@ -69,11 +71,14 @@ public class Player : MonoBehaviour
     {
         Debug.Log("IAM INVINCIBLE");
         ballData.isInvulnerable=true;
+        
+        OpenParticle(0);
     }
     private void OnVulnerable()
     {
         Debug.Log("OH NO ITS RED SUN");
         ballData.isInvulnerable=false;
+        CloseParticles();
     }
     
     private void OnSpeedUp()
@@ -81,22 +86,43 @@ public class Player : MonoBehaviour
         Debug.Log("IAM THE FLASH");
         //WILL IMPROVE
         ballData.BallSpeed=25;
+        OpenParticle(1);
     }
 
     private void OnSpeedNormal()
     {
         Debug.Log("IAM BARRY ALLEN");
         ballData.BallSpeed=20;
+        CloseParticles();
     }
 
     private void OnDestroyer()
     {
         Debug.Log("SUPERMAN");
+        ballData.isDestroyer=true;
+        OpenParticle(2);
     }
     private void OnNormal()
     {
         Debug.Log("Clark Kent");
+        ballData.isDestroyer=false;
+        CloseParticles();
     }
+
+    private void OpenParticle(int id)
+    {
+        buffParticles[id].gameObject.SetActive(true);
+        buffParticles[id].Play();
+    }
+    private void CloseParticles()
+    {
+        for (int i = 0; i < buffParticles.Count; i++)
+        {
+            buffParticles[i].Stop();
+            buffParticles[i].gameObject.SetActive(false);
+        }
+    }
+    
 
 
     #endregion

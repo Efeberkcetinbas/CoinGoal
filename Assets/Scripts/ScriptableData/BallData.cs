@@ -15,6 +15,7 @@ public class BallData : ScriptableObject
 
     //Buffs
     public bool isInvulnerable=false;
+    public bool isDestroyer=false;
 
 
     internal Rigidbody currentBallRigidbodyData;
