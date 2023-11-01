@@ -34,6 +34,11 @@ public enum GameEvent
     OnCloseTraps,
     OnHitWall,
 
+    //Boss
+    OnBossDamage,
+    OnUIBossUpdate,
+    OnBossActive,
+
     //Levels
     OnBordersDown,
 

@@ -24,12 +24,14 @@ public class PanelManager : MonoBehaviour
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.AddHandler(GameEvent.OnBossActive,OnBossActive);
     }
 
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.RemoveHandler(GameEvent.OnBossActive,OnBossActive);
     }
 
     private void Start() 
@@ -49,6 +51,11 @@ public class PanelManager : MonoBehaviour
             EventManager.Broadcast(GameEvent.OnGameStart);
 
         }));
+    }
+
+    private void OnBossActive()
+    {
+        UICanvas.SetActive(false);
     }
 
     private void OnNextLevel()

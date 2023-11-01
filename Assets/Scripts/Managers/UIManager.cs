@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     [Header("Image's")]
     [SerializeField] private Image progressBar;
     [SerializeField] private Image buffProgressBar;
+
+    
     
     [Header("Data's")]
     public GameData gameData;
@@ -61,6 +63,8 @@ public class UIManager : MonoBehaviour
     {
         buffProgressBar.DOFillAmount(0,gameData.BackTime).OnComplete(()=>buffProgressBar.gameObject.SetActive(false));
     }
+
+    
 
 
     

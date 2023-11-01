@@ -55,6 +55,11 @@ public class GameManager : MonoBehaviour
         EventManager.Broadcast(GameEvent.OnBossDead);
     }
 
+    public void BossActive()
+    {
+        EventManager.Broadcast(GameEvent.OnBossActive);
+    }
+
     #region LEVEL PROPERTIES
 
     //When Level Change Update Req Ball Pass Number
