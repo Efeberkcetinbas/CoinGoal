@@ -15,6 +15,17 @@ public class LevelManager : MonoBehaviour
     {
         LoadLevel();
     }
+
+    private void OnEnable() 
+    {
+        EventManager.AddHandler(GameEvent.OnLoadNextLevel,LoadNextLevel);
+        
+    }
+
+    private void OnDisable() 
+    {
+        EventManager.RemoveHandler(GameEvent.OnLoadNextLevel,LoadNextLevel);
+    }
     private void LoadLevel()
     {
 

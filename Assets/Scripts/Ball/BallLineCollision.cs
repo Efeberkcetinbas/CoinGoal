@@ -14,6 +14,7 @@ public class BallLineCollision : MonoBehaviour
 
 
     public BallData ballData;
+    public GameData gameData;
 
     private void Start() 
     {
@@ -22,7 +23,7 @@ public class BallLineCollision : MonoBehaviour
 
     private void Update()
     {
-        if(!ballData.isItPassed)
+        if(!ballData.isItPassed && !gameData.isGameEnd)
             CalculateIntersection();
     }
 
@@ -49,6 +50,7 @@ public class BallLineCollision : MonoBehaviour
                     Debug.Log("Collision with " + hit.collider.gameObject.name);
                     EventManager.Broadcast(GameEvent.OnPassBetween);
                     ballData.isItPassed=true;
+                    
                 }
             }
         }

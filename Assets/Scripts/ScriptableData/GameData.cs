@@ -7,19 +7,26 @@ using UnityEngine;
 public class GameData : ScriptableObject 
 {
 
+    //Level Score and Coin
     public int score;
     public int coin;
     public int increaseScore;
     public int increaseCoinAmount;
+    
+    //Level Property
     public int LevelNumberIndex;
     public int LevelRequirementNumber;
+    public int BorderIndex;
 
-    //Buff backTime
+    
+
+    //Buff
     public int BackTime;
     
-    public int BorderIndex;
     
+    //UI Progress 
     public float ProgressNumber;
 
+    //Game Management
     public bool isGameEnd=false;
 }

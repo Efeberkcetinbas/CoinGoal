@@ -31,6 +31,14 @@ public class PanelManager : MonoBehaviour
     {
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
+
+    private void Start() 
+    {
+        UICanvas.SetActive(false);
+    }
+
+    
+    
     
     public void StartGame() 
     {
@@ -46,6 +54,7 @@ public class PanelManager : MonoBehaviour
     private void OnNextLevel()
     {
         StartPanel.gameObject.SetActive(true);
+        coinImage.DOAnchorPosY(-200,0.2f).OnComplete(()=>coinImage.transform.DORotate(new Vector3(0,0,0), 0.2f));
         StartPanel.DOAnchorPos(Vector2.zero,0.1f);
         StartCoroutine(Blink(Fade.gameObject,Fade));
     }
@@ -58,8 +67,8 @@ public class PanelManager : MonoBehaviour
         
         gameObject.SetActive(true);
         image.color=new Color(0,0,0,1);
-        image.DOFade(0,0.2f);
-        yield return new WaitForSeconds(0.2f);
+        image.DOFade(0,2f);
+        yield return new WaitForSeconds(2f);
         gameObject.SetActive(false);
 
     }

@@ -48,7 +48,12 @@ public class GameManager : MonoBehaviour
 
 
     
-    
+    //DENEME
+    public void KillBoss()
+    {
+        gameData.isGameEnd=true;
+        EventManager.Broadcast(GameEvent.OnBossDead);
+    }
 
     #region LEVEL PROPERTIES
 

@@ -11,20 +11,21 @@ public class BallSelected : MonoBehaviour
 
     [SerializeField] private ParticleSystem particle;
 
-    private void Start() 
-    {
-        OnBallIndexIncrease();
-    }
+    
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnBallIndexIncrease,OnBallIndexIncrease);
         EventManager.AddHandler(GameEvent.OnTouchEnd,OnTouchEnd);
+        EventManager.AddHandler(GameEvent.OnBossDead,OnBossDead);
+        EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnBallIndexIncrease,OnBallIndexIncrease);
         EventManager.RemoveHandler(GameEvent.OnTouchEnd,OnTouchEnd);
+        EventManager.RemoveHandler(GameEvent.OnBossDead,OnBossDead);
+        EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
     }
 
     private void OnBallIndexIncrease()
@@ -35,11 +36,23 @@ public class BallSelected : MonoBehaviour
         particle.Play();
     }
 
+    private void OnGameStart()
+    {
+        OnBallIndexIncrease();
+    }
+
     private void OnTouchEnd()
     {
         particle.Stop();
         particle.gameObject.SetActive(false);
         
+    }
+
+    
+
+    private void OnBossDead()
+    {
+        particle.gameObject.SetActive(false);
     }
 
     

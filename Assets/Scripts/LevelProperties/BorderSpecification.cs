@@ -28,7 +28,6 @@ public class BorderSpecification : MonoBehaviour
         if(gameData.BorderIndex==id)
         {
             dustParticle.Play();
-            Debug.Log("ASASASASAS");
         }
         
     }

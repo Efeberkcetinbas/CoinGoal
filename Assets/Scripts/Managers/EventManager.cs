@@ -8,7 +8,10 @@ public enum GameEvent
     OnPassBetween,
     OnPlayerTakeDamage,
 
-    //Pass Between
+    //EndGame
+    OnBossDead,
+    OnPortalOpen,
+    
 
 
     //Buffs
@@ -51,6 +54,7 @@ public enum GameEvent
     OnUIRequirementUpdate,
     OnUIGameOver,
     OnNextLevel,
+    OnLoadNextLevel,
     OnGameStart,
     OnGameOver
 }

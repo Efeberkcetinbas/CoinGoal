@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class BallController : MonoBehaviour
@@ -52,12 +53,16 @@ public class BallController : MonoBehaviour
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.AddHandler(GameEvent.OnPortalOpen,OnPortalOpen);
+        EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
         
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnPortalOpen);
+        EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
         
     }
 
@@ -135,8 +140,6 @@ public class BallController : MonoBehaviour
                             powerIndicator.SetPosition(1, Vector3.zero);
                             //powerIndicate.localScale=new Vector3(1,1,1);
                             EventManager.Broadcast(GameEvent.OnTouchEnd);
-
-                            
                         }
                         break;
                 }
@@ -182,9 +185,37 @@ public class BallController : MonoBehaviour
     {
         for (int i = 0; i < balls.Length; i++)
         {
+            balls[i].GetComponent<SphereCollider>().isTrigger=false;
+            balls[i].GetComponent<Rigidbody>().useGravity=true;
             balls[i].transform.position=FindObjectOfType<BallPositions>().PositionsOfBall[i];
         }
+        currentBallRigidbody.isKinematic=false;
     }
+
+    private void OnGameStart()
+    {
+        isTurn=false;
+    }
+
+    private void OnPortalOpen()
+    {
+        StartCoroutine(MoveBallsJump());
+    }
+
+    private IEnumerator MoveBallsJump()
+    {
+        for (int i = 0; i < balls.Length; i++)
+        {
+            balls[i].GetComponent<SphereCollider>().isTrigger=true;
+            balls[i].GetComponent<Rigidbody>().useGravity=false;
+            balls[i].transform.DOJump(FindObjectOfType<PortalControl>().PortalPosition,2,4,3);
+
+            yield return new WaitForSeconds(i+2);
+        }
+
+        EventManager.Broadcast(GameEvent.OnLoadNextLevel);
+    }
+
 
     
 }
