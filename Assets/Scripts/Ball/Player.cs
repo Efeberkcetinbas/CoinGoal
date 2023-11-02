@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 
     private void OnEnable() 
     {
-        EventManager.AddHandler(GameEvent.OnPlayerTakeDamage,OnPlayerTakeDamage);
+        EventManager.AddHandler(GameEvent.OnTrapHitPlayer,OnTrapHitPlayer);
         EventManager.AddIdHandler(GameEvent.OnHitWall,OnHitWall);
         EventManager.AddHandler(GameEvent.OnInvulnerable,OnInvulnerable);
         EventManager.AddHandler(GameEvent.OnVulnerable,OnVulnerable);
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
 
     private void OnDisable() 
     {
-        EventManager.RemoveHandler(GameEvent.OnPlayerTakeDamage,OnPlayerTakeDamage);
+        EventManager.RemoveHandler(GameEvent.OnTrapHitPlayer,OnTrapHitPlayer);
         EventManager.RemoveIdHandler(GameEvent.OnHitWall,OnHitWall);
         EventManager.RemoveHandler(GameEvent.OnInvulnerable,OnInvulnerable);
         EventManager.RemoveHandler(GameEvent.OnVulnerable,OnVulnerable);
@@ -43,11 +43,18 @@ public class Player : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnSpeedNormal,OnSpeedNormal);
 
     }
-    private void OnPlayerTakeDamage()
+    private void OnTrapHitPlayer()
     {
         //Cesitlendirilebilir
-        Instantiate(explodeParticle,transform.position,Quaternion.identity);
-        
+        //Instantiate(explodeParticle,transform.position,Quaternion.identity);
+        if(ballData.isInvulnerable || ballData.isDestroyer)
+        {
+            Debug.Log("NO DAMAGE");
+        }
+        else
+        {
+            Debug.Log("DAMAGE TO PLAYER");
+        }
     }
 
     private void OnHitWall(int id)

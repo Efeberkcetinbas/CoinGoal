@@ -11,6 +11,10 @@ GameObject:
   - component: {fileID: 7628020933301794540}
   - component: {fileID: 5745966732650837328}
   - component: {fileID: 454049942679421563}
+  - component: {fileID: 1295987761}
+  - component: {fileID: 1295987762}
+  - component: {fileID: 1295987763}
+  - component: {fileID: 1295987760}
   m_Layer: 0
   m_Name: Obstacle-18.002
   m_TagString: Untagged
@@ -28,10 +32,11 @@ Transform:
   m_LocalRotation: {x: 0.50000036, y: -0.49999964, z: 0.49999967, w: 0.50000036}
   m_LocalPosition: {x: -0.4692299, y: 0.3740943, z: 0.10784894}
   m_LocalScale: {x: 0.52707773, y: 0.61453706, z: 0.5270775}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8128785594273342688}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 89.98021, y: -177.00014, z: 0}
 --- !u!33 &5745966732650837328
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -51,10 +56,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,6 +87,61 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &1295987761
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4266885382495223301}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1295987762
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4266885382495223301}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.54950094, y: 2.0464633, z: 0.5455919}
+  m_Center: {x: -0.009175245, y: -0.812863, z: -0.0030899094}
+--- !u!65 &1295987763
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4266885382495223301}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.54950094, y: 2.0464633, z: 0.5455919}
+  m_Center: {x: -0.009175245, y: -0.812863, z: -0.0030899094}
+--- !u!114 &1295987760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4266885382495223301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff412be950817974d908f40886efd03f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6616765734575644120
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,6 +153,10 @@ GameObject:
   - component: {fileID: 7016568155922286874}
   - component: {fileID: 5063211465546890940}
   - component: {fileID: 6564581209033940912}
+  - component: {fileID: 125718111}
+  - component: {fileID: 125718112}
+  - component: {fileID: 125718113}
+  - component: {fileID: 125718110}
   m_Layer: 0
   m_Name: Obstacle-18.003
   m_TagString: Untagged
@@ -108,10 +174,11 @@ Transform:
   m_LocalRotation: {x: 0.5000003, y: 0.49999973, z: -0.49999973, w: 0.50000024}
   m_LocalPosition: {x: 0.42017832, y: 0.83519113, z: 0.10784894}
   m_LocalScale: {x: 0.52707773, y: 0.61453706, z: 0.5270775}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8128785594273342688}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 89.99781, y: 179.6345, z: 0}
 --- !u!33 &5063211465546890940
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -131,10 +198,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -160,6 +229,61 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &125718111
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6616765734575644120}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &125718112
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6616765734575644120}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5495009, y: 2.0464633, z: 0.5455917}
+  m_Center: {x: -0.009175183, y: -0.812863, z: -0.003089848}
+--- !u!65 &125718113
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6616765734575644120}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5495009, y: 2.0464633, z: 0.5455917}
+  m_Center: {x: -0.009175183, y: -0.812863, z: -0.003089848}
+--- !u!114 &125718110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6616765734575644120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff412be950817974d908f40886efd03f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6699656545406166883
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,6 +295,10 @@ GameObject:
   - component: {fileID: 386761761524194168}
   - component: {fileID: 1735861872627712081}
   - component: {fileID: 5406872071908978517}
+  - component: {fileID: 771900019}
+  - component: {fileID: 771900020}
+  - component: {fileID: 771900021}
+  - component: {fileID: 771900018}
   m_Layer: 0
   m_Name: Obstacle-18.001
   m_TagString: Untagged
@@ -188,10 +316,11 @@ Transform:
   m_LocalRotation: {x: 0.50000036, y: -0.49999964, z: 0.49999967, w: 0.50000036}
   m_LocalPosition: {x: -0.4692299, y: 1.2745624, z: 0.10784894}
   m_LocalScale: {x: 0.52707773, y: 0.61453706, z: 0.5270775}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8128785594273342688}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 89.98021, y: -177.00014, z: 0}
 --- !u!33 &1735861872627712081
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -211,10 +340,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -240,6 +371,61 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &771900019
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6699656545406166883}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &771900020
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6699656545406166883}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.54950094, y: 2.0464633, z: 0.5455919}
+  m_Center: {x: -0.009175245, y: -0.812863, z: -0.0030899094}
+--- !u!65 &771900021
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6699656545406166883}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.54950094, y: 2.0464633, z: 0.5455919}
+  m_Center: {x: -0.009175245, y: -0.812863, z: -0.0030899094}
+--- !u!114 &771900018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6699656545406166883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff412be950817974d908f40886efd03f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8900502382564736602
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +439,7 @@ GameObject:
   - component: {fileID: 6954705382575333263}
   - component: {fileID: 8594422880656988521}
   m_Layer: 0
-  m_Name: Obstacle-18
+  m_Name: Spikey Sticks Trap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,7 +454,8 @@ Transform:
   m_GameObject: {fileID: 8900502382564736602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 386761761524194168}
   - {fileID: 7628020933301794540}
@@ -295,10 +482,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -324,9 +513,10 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &8594422880656988521
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -339,6 +529,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1

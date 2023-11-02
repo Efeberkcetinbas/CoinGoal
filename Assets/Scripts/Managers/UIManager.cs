@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
 
     private void OnUpdateBuff()
     {
-        buffProgressBar.DOFillAmount(0,gameData.BackTime).OnComplete(()=>buffProgressBar.gameObject.SetActive(false));
+        buffProgressBar.DOFillAmount(0,gameData.BackTime+1).OnComplete(()=>buffProgressBar.gameObject.SetActive(false));
     }
 
     

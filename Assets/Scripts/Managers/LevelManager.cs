@@ -11,10 +11,11 @@ public class LevelManager : MonoBehaviour
     public GameData gameData;
     public List<GameObject> levels;
 
-    private void Start()
+    private void Awake() 
     {
         LoadLevel();
     }
+    
 
     private void OnEnable() 
     {

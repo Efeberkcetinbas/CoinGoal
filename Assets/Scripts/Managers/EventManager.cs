@@ -6,7 +6,7 @@ public enum GameEvent
 {
     //Player
     OnPassBetween,
-    OnPlayerTakeDamage,
+    OnTrapHitPlayer,
 
     //EndGame
     OnBossDead,
