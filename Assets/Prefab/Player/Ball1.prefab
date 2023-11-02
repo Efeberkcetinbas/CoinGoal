@@ -43343,7 +43343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964a2f8cd968f0e4293cbbc9d21c1709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explodeParticle: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845, type: 3}
+  explodeParticle: {fileID: 9157105887711914197, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
   buffParticles:
   - {fileID: 6369911583898623994}
   - {fileID: 2955720551665216425}

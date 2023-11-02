@@ -1227,7 +1227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &230336397
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1295,7 +1295,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 958788288}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: BossActive
+        m_MethodName: KillBoss
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3466,6 +3466,8 @@ MonoBehaviour:
   ButtonSound: {fileID: 8300000, guid: 9aeb56682df76874fa06a58c6e5dd731, type: 3}
   BorderDownSound: {fileID: 8300000, guid: 32374942e97df5a4894dd8f4ec55d559, type: 3}
   GameStartSound: {fileID: 8300000, guid: 2bfbb967b1ec5564b93ebab4fe39009b, type: 3}
+  PlayerDeadSound: {fileID: 8300000, guid: b4750b98232cc424bb4723e1c2ef15fe, type: 3}
+  BounceSound: {fileID: 8300000, guid: 026d0f8185114c140ba0f8880af4cf09, type: 3}
 --- !u!1 &729539604
 GameObject:
   m_ObjectHideFlags: 0
@@ -3593,10 +3595,9 @@ MonoBehaviour:
   ballData: {fileID: 11400000, guid: 6692e14ad7a601e4ca2edd6e74a2debb, type: 2}
   gameData: {fileID: 11400000, guid: 714e86a42ad2e4443a9a9db6ac3f3bff, type: 2}
   powerIndicator: {fileID: 950565331}
-  lineMaterial: {fileID: 2100000, guid: dfc7a5e3e67ad164593345afb208414f, type: 2}
+  lineMaterial: {fileID: 2100000, guid: db428a0b10ed47f40b36b6b32ef8eb6c, type: 2}
   minPower: 1
   maxLineLength: 5
-  lineRenderer: {fileID: 950565331}
 --- !u!4 &756641983
 Transform:
   m_ObjectHideFlags: 0
@@ -23814,7 +23815,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8e36233d9e012294e88c9e2c02c71323, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2fb165919b2cf6e448380a015dbbd833, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -24399,7 +24400,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dfc7a5e3e67ad164593345afb208414f, type: 2}
+  - {fileID: 2100000, guid: db428a0b10ed47f40b36b6b32ef8eb6c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24421,16 +24422,16 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: -0.35499018, z: 0}
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.5
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 0.011142731
         value: 1
         inSlope: 0
         outSlope: 0
@@ -24439,8 +24440,8 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.9441341
-        value: 0.031446517
+        time: 1
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -24482,7 +24483,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 1

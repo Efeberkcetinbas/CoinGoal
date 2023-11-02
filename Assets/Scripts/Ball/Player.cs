@@ -53,7 +53,13 @@ public class Player : MonoBehaviour
         }
         else
         {
+            EventManager.Broadcast(GameEvent.OnDamagePlayer);
             Debug.Log("DAMAGE TO PLAYER");
+            transform.DOScale(new Vector3(transform.localScale.x*2f,transform.localScale.y*1.2f,transform.localScale.z*1.2f),2f).OnComplete(()=>{
+                Instantiate(explodeParticle,transform.position,Quaternion.identity);
+                EventManager.Broadcast(GameEvent.OnPlayerDead);
+                gameObject.SetActive(false);
+            });
         }
     }
 

@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnPassBetween, OnPassBetween);
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.AddHandler(GameEvent.OnDamagePlayer,OnDamagePlayer);
     }
 
     private void OnDisable()
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnPassBetween, OnPassBetween);
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.RemoveHandler(GameEvent.OnDamagePlayer,OnDamagePlayer);
     }
 
 
@@ -58,6 +60,11 @@ public class GameManager : MonoBehaviour
     public void BossActive()
     {
         EventManager.Broadcast(GameEvent.OnBossActive);
+    }
+
+    private void OnDamagePlayer()
+    {
+        gameData.isGameEnd=true;
     }
 
     #region LEVEL PROPERTIES

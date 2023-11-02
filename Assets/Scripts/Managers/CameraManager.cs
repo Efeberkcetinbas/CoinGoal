@@ -33,6 +33,7 @@ public class CameraManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnBallIndexIncrease,OnBallIndexIncrease);
         EventManager.AddIdHandler(GameEvent.OnBordersDown,OnBordersDown);
         EventManager.AddHandler(GameEvent.OnPortalOpen,OnPortalOpen);
+        EventManager.AddHandler(GameEvent.OnTrapHitPlayer,OnTrapHitPlayer);
     }
 
     private void OnDisable() 
@@ -42,6 +43,7 @@ public class CameraManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnBallIndexIncrease,OnBallIndexIncrease);
         EventManager.RemoveIdHandler(GameEvent.OnBordersDown,OnBordersDown);
         EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnPortalOpen);
+        EventManager.RemoveHandler(GameEvent.OnTrapHitPlayer,OnTrapHitPlayer);
     }
 
 
@@ -54,6 +56,11 @@ public class CameraManager : MonoBehaviour
     private void OnSpawnWeapon()
     {
         Noise(1,1,0.1f);
+    }
+
+    private void OnTrapHitPlayer()
+    {
+        Noise(5,5,2.5f);
     }
 
     private void OnBallIndexIncrease()

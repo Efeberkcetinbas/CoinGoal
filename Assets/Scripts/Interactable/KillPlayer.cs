@@ -5,6 +5,8 @@ using UnityEngine;
 public class KillPlayer : Obstacleable
 {
     [SerializeField] private GameObject destroyEffect;
+
+    private bool isOne=false;
     internal override void DoAction(Player player)
     {
         if(player.ballData.isDestroyer)
@@ -14,7 +16,12 @@ public class KillPlayer : Obstacleable
         }
         else
         {
-            EventManager.Broadcast(GameEvent.OnTrapHitPlayer);
+            if(!isOne)
+            {
+                EventManager.Broadcast(GameEvent.OnTrapHitPlayer);
+                isOne=true;
+            }
+            
         }
         
     }

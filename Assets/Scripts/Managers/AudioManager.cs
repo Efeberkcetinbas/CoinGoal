@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
-    public AudioClip GameOverSound,PassBetweenSound,TouchStartSound,TouchEndSound,HitWallSound,ButtonSound,BorderDownSound,GameStartSound;
+    public AudioClip GameOverSound,PassBetweenSound,TouchStartSound,TouchEndSound,HitWallSound,ButtonSound,BorderDownSound,GameStartSound,PlayerDeadSound,BounceSound;
 
     AudioSource musicSource,effectSource;
 
@@ -29,6 +29,8 @@ public class AudioManager : MonoBehaviour
         EventManager.AddIdHandler(GameEvent.OnOpenButton,OnOpenButton);
         EventManager.AddIdHandler(GameEvent.OnBordersDown,OnBordersDown);
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.AddHandler(GameEvent.OnPlayerDead,OnPlayerDead);
+        EventManager.AddHandler(GameEvent.OnGroundSound,OnGroundOpen);
     }
     private void OnDisable() 
     {
@@ -40,6 +42,8 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveIdHandler(GameEvent.OnOpenButton,OnOpenButton);
         EventManager.RemoveIdHandler(GameEvent.OnBordersDown,OnBordersDown);
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.RemoveHandler(GameEvent.OnPlayerDead,OnPlayerDead);
+        EventManager.RemoveHandler(GameEvent.OnGroundSound,OnGroundOpen);
     }
 
 
@@ -66,6 +70,17 @@ public class AudioManager : MonoBehaviour
         effectSource.PlayOneShot(TouchEndSound);
     }
 
+    private void OnPlayerDead()
+    {
+        SetVolume(0.5f);
+        effectSource.PlayOneShot(PlayerDeadSound);
+    }
+
+    private void OnGroundOpen()
+    {
+        SetVolume(0.4f);
+        effectSource.PlayOneShot(BounceSound);
+    }
     private void OnHitWall(int id)
     {
         //Cok dikkat dagitiyor

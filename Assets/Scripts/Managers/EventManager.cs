@@ -7,10 +7,13 @@ public enum GameEvent
     //Player
     OnPassBetween,
     OnTrapHitPlayer,
+    OnDamagePlayer,
+    OnPlayerDead,
 
     //EndGame
     OnBossDead,
     OnPortalOpen,
+    OnGroundSound,
     
 
 

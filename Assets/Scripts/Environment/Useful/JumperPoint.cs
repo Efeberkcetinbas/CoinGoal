@@ -10,5 +10,6 @@ public class JumperPoint : Obstacleable
     {
         player.SetTempRigidbody();
         player.tempRigidbody.AddForce(Vector3.up*jumpForce,ForceMode.Impulse);
+        EventManager.Broadcast(GameEvent.OnGroundSound);
     }
 }

@@ -27,7 +27,6 @@ public class BallController : MonoBehaviour
 
     public float maxLineLength=2f;
 
-    [SerializeField] private LineRenderer lineRenderer;
 
     /*
     
@@ -65,7 +64,6 @@ public class BallController : MonoBehaviour
 
         OnNextLevel();
 
-        lineRenderer.positionCount=2;
         
     }   
 
@@ -74,6 +72,7 @@ public class BallController : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.AddHandler(GameEvent.OnDamagePlayer,OnDamagePlayer);
         
     }
 
@@ -82,6 +81,7 @@ public class BallController : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.RemoveHandler(GameEvent.OnDamagePlayer,OnDamagePlayer);
         
     }
 
@@ -145,7 +145,9 @@ public class BallController : MonoBehaviour
                         {
                             Vector3 dragDirection = touchEndPos - touchStartPos;
                             float dragDistance = dragDirection.magnitude;
-                            float forceMagnitude = Mathf.Clamp(dragDistance * 0.05f, minPower, ballData.MaxBallSpeed);
+                            Debug.Log("DRAG DISTANCE: " + dragDistance);
+                            //0.05f
+                            float forceMagnitude = Mathf.Clamp(dragDistance * 0.02f, minPower, ballData.MaxBallSpeed);
                             Vector3 force = new Vector3(dragDirection.x, 0f, dragDirection.y).normalized*forceMagnitude;
                             //Inverse Drag Not Swipe You Must do -force                            
                             currentBallRigidbody.AddForce(-force, ForceMode.Impulse);
@@ -173,6 +175,10 @@ public class BallController : MonoBehaviour
 
     }
 
+    private void OnDamagePlayer()
+    {
+        currentBallRigidbody.isKinematic=true;
+    }
    
 
     void UpdatePowerIndicator()
@@ -197,7 +203,7 @@ public class BallController : MonoBehaviour
 
         // Update the Line Renderer color based on the normalized distance.
         Color color = Color.Lerp(Color.green, Color.red, normalizedDistance);
-        lineMaterial.color = color;
+        lineMaterial.color = color; 
 
         
 
