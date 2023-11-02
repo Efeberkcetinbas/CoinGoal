@@ -21,6 +21,7 @@ public class BreakeableWall : Obstacleable
         {
             if (index < wallList.Count)
             {
+                //Daha optimize count atayip sonra yazmak
                 int children = wallList[index].transform.childCount;
                 for (int i = 0; i < children; i++)
                 {

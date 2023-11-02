@@ -27,23 +27,8 @@ public class BallController : MonoBehaviour
 
     public float maxLineLength=2f;
 
-
-    /*
+    private Camera cam;
     
-    
-        private void Start() 
-    {
-        line.positionCount=2;
-    }
-    //Bu scripte gerek yok ama rendereri dogru olcmek icin dogrulama amacli kullaniyorum. Ilerde scripti kaldiririm.
-    private void Update() 
-    {
-        line.SetPosition(0,ball1.position);
-        line.SetPosition(1,ball2.position);
-
-    }
-    
-    */
     
     
 
@@ -61,6 +46,8 @@ public class BallController : MonoBehaviour
         powerIndicator.positionCount = 2;
         powerIndicator.useWorldSpace = true;
         powerIndicator.material = lineMaterial;
+
+        cam=Camera.main;
 
         OnNextLevel();
 
@@ -117,6 +104,7 @@ public class BallController : MonoBehaviour
                                 ballData.currentBallIndex = 0; // Reset to the first ball once all balls have been used.
                             }
 
+                            //Daha optimize hali var mi?
                             currentBallRigidbody = balls[ballData.currentBallIndex].GetComponent<Rigidbody>();
                             ballData.currentBallRigidbodyData=currentBallRigidbody;
                             currentBallRigidbody.isKinematic=true;
@@ -183,8 +171,8 @@ public class BallController : MonoBehaviour
 
     void UpdatePowerIndicator()
     {
-        Vector3 worldStartPos = Camera.main.ScreenToWorldPoint(new Vector3(touchStartPos.x, touchStartPos.y, 10f));
-        Vector3 worldEndPos = Camera.main.ScreenToWorldPoint(new Vector3(touchEndPos.x, touchEndPos.y, 10f));
+        Vector3 worldStartPos = cam.ScreenToWorldPoint(new Vector3(touchStartPos.x, touchStartPos.y, 10f));
+        Vector3 worldEndPos = cam.ScreenToWorldPoint(new Vector3(touchEndPos.x, touchEndPos.y, 10f));
 
         Vector3 dragDirection = worldEndPos - worldStartPos;
         dragDirection.y=0;
@@ -196,10 +184,10 @@ public class BallController : MonoBehaviour
             dragDirection = dragDirection.normalized * maxLineLength;
         }
 
-        float normalizedDistance = Mathf.Clamp(dragDistance / maxLineLength, 0f, 1f);
+        float normalizedDistance = Mathf.Clamp(dragDistance * 1/maxLineLength, 0f, 1f);
 
-        powerIndicator.SetPosition(0, currentBallRigidbody.position);
-        powerIndicator.SetPosition(1, currentBallRigidbody.position+dragDirection);
+        powerIndicator.SetPosition(0, currentBallRigidbody.transform.localPosition);
+        powerIndicator.SetPosition(1, currentBallRigidbody.transform.localPosition+dragDirection);
 
         // Update the Line Renderer color based on the normalized distance.
         Color color = Color.Lerp(Color.green, Color.red, normalizedDistance);
@@ -213,6 +201,7 @@ public class BallController : MonoBehaviour
     {
         for (int i = 0; i < balls.Length; i++)
         {
+            //Daha optimize hali var mi?
             balls[i].GetComponent<SphereCollider>().isTrigger=false;
             balls[i].GetComponent<Rigidbody>().useGravity=true;
             balls[i].transform.position=FindObjectOfType<BallPositions>().PositionsOfBall[i];

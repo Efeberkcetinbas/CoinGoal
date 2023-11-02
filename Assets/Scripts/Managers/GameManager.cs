@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Ending")]
     public GameObject successPanel;
+
+    //Bir Canvas‘ı gizlemek için SetActive(false) yerine enabled=false‘u tercih edin
     public GameObject failPanel;
     [SerializeField] private Ease ease;
 

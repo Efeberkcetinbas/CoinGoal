@@ -26,14 +26,16 @@ public class BallColor : MonoBehaviour
     {
         EventManager.RemoveHandler(GameEvent.OnBallIndexIncrease,OnBallIndexIncrease);
     }
-
+    
 
     private void OnBallIndexIncrease()
     {
         for (int i = 0; i < ballController.balls.Length; i++)
         {
-            ballController.balls[i].GetComponent<MeshRenderer>().material=otherMat;
+            //ballController.balls[i].GetComponent<MeshRenderer>().material=otherMat;
+            ballController.balls[i].GetComponent<MeshRenderer>().material.color=Color.white;
         }
-        ballController.balls[ballData.currentBallIndex].GetComponent<MeshRenderer>().material=selectedMat;
+        //ballController.balls[ballData.currentBallIndex].GetComponent<MeshRenderer>().material=selectedMat;
+        ballController.balls[ballData.currentBallIndex].GetComponent<MeshRenderer>().material.color=Color.green;
     }
 }

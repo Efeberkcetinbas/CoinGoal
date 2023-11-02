@@ -44,6 +44,7 @@ public class BallLineCollision : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(startPoint, direction, out hit, distance))
             {
+                //GetComponent Yerine Daha Optimize bir cozum var mi?
                 if (hit.collider.CompareTag("Player") && hit.collider.GetComponent<BallIdentifier>().BallID != ID1 && hit.collider.GetComponent<BallIdentifier>().BallID != ID2) 
                 {
                 // A collision has occurred with an object that meets the criteria
