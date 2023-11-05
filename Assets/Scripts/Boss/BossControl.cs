@@ -29,6 +29,8 @@ public class BossControl : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnBossActive,OnBossActive);
     }
 
+   
+
 
     private void OnBossActive()
     {

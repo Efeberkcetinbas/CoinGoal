@@ -11,7 +11,6 @@ public enum GameEvent
     OnPlayerDead,
 
     //EndGame
-    OnBossDead,
     OnPortalOpen,
     OnGroundSound,
     
@@ -39,6 +38,7 @@ public enum GameEvent
 
     //Boss
     OnBossDamage,
+    OnBossDead,
     OnUIBossUpdate,
     OnBossActive,
 

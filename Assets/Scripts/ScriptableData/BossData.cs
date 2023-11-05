@@ -8,9 +8,7 @@ using UnityEngine;
 public class BossData : ScriptableObject {
     public string Name;
     
-    public int MaxBullet;
     public int Health;
 
-    public float FireRate; 
 
 }
