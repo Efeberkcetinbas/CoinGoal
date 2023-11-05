@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Ares
   m_EditorClassIdentifier: 
   Name: Ares
+  MaxBullet: -129
   Health: 5
+  FireRate: 3

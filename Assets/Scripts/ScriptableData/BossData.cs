@@ -7,6 +7,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BossData", menuName = "Data/BossData", order = 4)]
 public class BossData : ScriptableObject {
     public string Name;
-
+    
+    public int MaxBullet;
     public int Health;
+
+    public float FireRate; 
+
 }

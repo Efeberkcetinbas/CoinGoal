@@ -8,13 +8,11 @@ public class BallLineRendererControl : MonoBehaviour
 
     [SerializeField] private Transform ball1,ball2;
 
-    //Sira hangisine gecerse onu acariz
 
     private void Start() 
     {
         line.positionCount=2;
     }
-    //Bu scripte gerek yok ama rendereri dogru olcmek icin dogrulama amacli kullaniyorum. Ilerde scripti kaldiririm.
     private void Update() 
     {
         line.SetPosition(0,ball1.position);
