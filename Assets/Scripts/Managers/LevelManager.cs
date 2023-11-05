@@ -56,6 +56,8 @@ public class LevelManager : MonoBehaviour
     public void RestartLevel()
     {
         LoadLevel();
+        Debug.Log("RESTART LEVEL");
+        EventManager.Broadcast(GameEvent.OnRestartLevel);
     }
 
     

@@ -63,6 +63,8 @@ public class Player : MonoBehaviour
         }
     }
 
+    
+    
     private void OnHitWall(int id)
     {
         if(ID==id)

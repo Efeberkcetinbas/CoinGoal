@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
         EventManager.AddHandler(GameEvent.OnDamagePlayer,OnDamagePlayer);
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.AddHandler(GameEvent.OnPlayerDead,OnPlayerDead);
     }
 
     private void OnDisable()
@@ -48,6 +50,8 @@ public class GameManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
         EventManager.RemoveHandler(GameEvent.OnDamagePlayer,OnDamagePlayer);
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.RemoveHandler(GameEvent.OnPlayerDead,OnPlayerDead);
     }
 
 
@@ -59,6 +63,24 @@ public class GameManager : MonoBehaviour
         EventManager.Broadcast(GameEvent.OnBossDead);
     }
 
+    private void OnRestartLevel()
+    {
+        OnNextLevel();
+        failPanel.transform.localScale=Vector3.zero;
+        failPanel.SetActive(false);
+    }
+
+    private void OnPlayerDead()
+    {
+        StartCoroutine(OpenFailPanel());
+    }
+
+    private IEnumerator OpenFailPanel()
+    {
+        yield return new WaitForSeconds(2);
+        OnGameOver();
+    }
+    //Her 5 Levelde 1
     public void BossActive()
     {
         EventManager.Broadcast(GameEvent.OnBossActive);
@@ -121,24 +143,6 @@ public class GameManager : MonoBehaviour
         gameData.ProgressNumber=0;
     }
 
-    public void OpenSuccessMenu(bool station)
-    {
-
-        OpenClose(open_close,false);
-
-        successPanel.SetActive(station);
-        successPanel.transform.DOScale(Vector2.one*1.15f,0.5f).OnComplete(()=> {
-            successPanel.transform.DOScale(Vector2.one,0.5f);
-        });
-    }
-
-    public void OpenFailMenu()
-    {
-        failPanel.SetActive(true);
-        failPanel.transform.DOScale(Vector2.one*1.15f,0.5f).OnComplete(()=> {
-            failPanel.transform.DOScale(Vector2.one,0.5f);
-        });
-    }
 
     public void OpenClose(GameObject[] gameObjects,bool canOpen)
     {

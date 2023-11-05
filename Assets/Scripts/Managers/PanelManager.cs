@@ -25,6 +25,7 @@ public class PanelManager : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnBossActive,OnBossActive);
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
     }
 
 
@@ -32,6 +33,7 @@ public class PanelManager : MonoBehaviour
     {
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnBossActive,OnBossActive);
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
     }
 
     private void Start() 
@@ -56,6 +58,11 @@ public class PanelManager : MonoBehaviour
     private void OnBossActive()
     {
         UICanvas.SetActive(false);
+    }
+
+    private void OnRestartLevel()
+    {
+        OnNextLevel();
     }
 
     private void OnNextLevel()

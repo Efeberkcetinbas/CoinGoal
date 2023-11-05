@@ -63,6 +63,7 @@ public enum GameEvent
     OnUIGameOver,
     OnNextLevel,
     OnLoadNextLevel,
+    OnRestartLevel,
     OnGameStart,
     OnGameOver
 }

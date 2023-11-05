@@ -60,6 +60,7 @@ public class BallController : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
         EventManager.AddHandler(GameEvent.OnDamagePlayer,OnDamagePlayer);
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         
     }
 
@@ -69,7 +70,7 @@ public class BallController : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
         EventManager.RemoveHandler(GameEvent.OnDamagePlayer,OnDamagePlayer);
-        
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
     }
 
     private void Update() 
@@ -79,6 +80,7 @@ public class BallController : MonoBehaviour
     }
     private void MoveBalls()
     {
+        #region Normal Gameplay
         if(ballData.currentBallIndex<balls.Length)
         {
             if (Input.touchCount > 0)
@@ -158,6 +160,8 @@ public class BallController : MonoBehaviour
             }
         }
 
+        #endregion
+
         ballData.BallSpeed=currentBallRigidbody.velocity.magnitude;
     
 
@@ -207,6 +211,16 @@ public class BallController : MonoBehaviour
             balls[i].transform.position=FindObjectOfType<BallPositions>().PositionsOfBall[i];
         }
         currentBallRigidbody.isKinematic=false;
+    }
+
+    private void OnRestartLevel()
+    {
+        for (int i = 0; i < balls.Length; i++)
+        {
+            balls[i].SetActive(true);
+            balls[i].transform.localScale=Vector3.one;
+        }
+        OnNextLevel();
     }
 
     private void OnGameStart()
