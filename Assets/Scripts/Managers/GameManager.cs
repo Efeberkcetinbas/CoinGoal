@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Open/Close")]
     [SerializeField] private GameObject[] open_close;
+    [SerializeField] private GameObject[] NormalBalls;
+    [SerializeField] private GameObject[] BossBalls;
+    //Boss Ball
 
 
 
@@ -42,6 +45,8 @@ public class GameManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnDamagePlayer,OnDamagePlayer);
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.AddHandler(GameEvent.OnPlayerDead,OnPlayerDead);
+        EventManager.AddHandler(GameEvent.OnNormalBalls,OnNormalBalls);
+        EventManager.AddHandler(GameEvent.OnBossBall,OnBossBall);
     }
 
     private void OnDisable()
@@ -52,15 +57,44 @@ public class GameManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnDamagePlayer,OnDamagePlayer);
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.RemoveHandler(GameEvent.OnPlayerDead,OnPlayerDead);
+        EventManager.RemoveHandler(GameEvent.OnNormalBalls,OnNormalBalls);
+        EventManager.RemoveHandler(GameEvent.OnBossBall,OnBossBall);
     }
 
+    //Boss Ball and Normal Ball Activity Settings.
+    //Boss Ball Canvas Open and the others false
+    private void OnBossBall()
+    {
+        OpenClose(BossBalls,true);
+        OpenClose(NormalBalls,false);
+    }
 
+    private void OnNormalBalls()
+    {
+        OpenClose(BossBalls,false);
+        OpenClose(NormalBalls,true);
+    }
     
     //DENEME
     public void KillBoss()
     {
         gameData.isGameEnd=true;
         EventManager.Broadcast(GameEvent.OnBossDead);
+    }
+
+    public void BossActive()
+    {
+        EventManager.Broadcast(GameEvent.OnBossActive);
+    }
+
+    public void ChangeBoss()
+    {
+        EventManager.Broadcast(GameEvent.OnBossBall);
+    }
+
+    public void ChangeNormalBall()
+    {
+        EventManager.Broadcast(GameEvent.OnNormalBalls);
     }
 
     private void OnRestartLevel()
@@ -81,10 +115,7 @@ public class GameManager : MonoBehaviour
         OnGameOver();
     }
     //Her 5 Levelde 1
-    public void BossActive()
-    {
-        EventManager.Broadcast(GameEvent.OnBossActive);
-    }
+   
 
     private void OnDamagePlayer()
     {
