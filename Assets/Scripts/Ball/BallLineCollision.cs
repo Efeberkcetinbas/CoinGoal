@@ -50,10 +50,19 @@ public class BallLineCollision : MonoBehaviour
                 // A collision has occurred with an object that meets the criteria
                     Debug.Log("Collision with " + hit.collider.gameObject.name);
                     EventManager.Broadcast(GameEvent.OnPassBetween);
+                    hit.collider.GetComponent<Player>().XPEffect();
                     ballData.isItPassed=true;
+                    StartCoroutine(LineEffect());
                     
                 }
             }
         }
+    }
+
+    private IEnumerator LineEffect()
+    {
+        lineRenderer.enabled=true;
+        yield return new WaitForSeconds(0.25f);
+        lineRenderer.enabled=false;
     }
 }

@@ -7,6 +7,7 @@ public class BossDamageControl : Obstacleable
 {
     public BossData bossData;
     [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private ParticleSystem bossParticle;
 
     private void Start() 
     {
@@ -15,11 +16,13 @@ public class BossDamageControl : Obstacleable
     internal override void DoAction(Player player)
     {
         bossData.Health--;
+        bossParticle.Play();
         StartCoroutine(ChangeColor());
         EventManager.Broadcast(GameEvent.OnUIBossUpdate);
 
         if(bossData.Health<=0)
         {
+
             EventManager.Broadcast(GameEvent.OnBossDead);
             //Particle
             //Camera Shake

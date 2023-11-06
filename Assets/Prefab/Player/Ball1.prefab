@@ -43349,7 +43349,9 @@ MonoBehaviour:
   - {fileID: 2955720551665216425}
   - {fileID: 1617699004592593317}
   ballData: {fileID: 11400000, guid: 6692e14ad7a601e4ca2edd6e74a2debb, type: 2}
+  gameData: {fileID: 11400000, guid: 714e86a42ad2e4443a9a9db6ac3f3bff, type: 2}
   ID: 1
+  scoreXP: {fileID: 1570700559065996922, guid: 55f1d3a882cce124fa65a248952fe779, type: 3}
 --- !u!114 &198465964
 MonoBehaviour:
   m_ObjectHideFlags: 0

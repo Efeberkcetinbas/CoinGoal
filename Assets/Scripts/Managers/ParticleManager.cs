@@ -8,7 +8,19 @@ public class ParticleManager : MonoBehaviour
 
     [SerializeField] private List<ParticleSystem> successExplosion=new List<ParticleSystem>();
 
+
     
+    private void OnEnable() 
+    {
+        EventManager.AddHandler(GameEvent.OnPortalOpen,OnSuccess);
+        
+    }
+
+    private void OnDisable() 
+    {
+        EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnSuccess);
+        
+    }
 
 
     private void PlayPointParticles()
@@ -26,4 +38,6 @@ public class ParticleManager : MonoBehaviour
             successExplosion[i].Play();
         }
     }
+
+    
 }

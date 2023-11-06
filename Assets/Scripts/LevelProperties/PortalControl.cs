@@ -23,9 +23,11 @@ public class PortalControl : MonoBehaviour
 
     private void OnBossDead()
     {
-        portal.SetActive(true);
-        EventManager.Broadcast(GameEvent.OnPortalOpen);
+        /*portal.SetActive(true);
+        EventManager.Broadcast(GameEvent.OnPortalOpen);*/
     }
+
+    
 
     private void OnPortalOpen()
     {

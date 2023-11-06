@@ -24,6 +24,8 @@ public class CameraManager : MonoBehaviour
 
     [SerializeField] private Transform BossBall,NormalBall;
 
+    private Transform Portal;
+
     
     
 
@@ -37,6 +39,7 @@ public class CameraManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnTrapHitPlayer,OnTrapHitPlayer);
         EventManager.AddHandler(GameEvent.OnBossBall,OnBossBall);
         EventManager.AddHandler(GameEvent.OnNormalBalls,OnNormalBalls);
+        EventManager.AddHandler(GameEvent.OnBossDead,OnBossDead);
     }
 
     private void OnDisable() 
@@ -49,6 +52,7 @@ public class CameraManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnTrapHitPlayer,OnTrapHitPlayer);
         EventManager.RemoveHandler(GameEvent.OnBossBall,OnBossBall);
         EventManager.RemoveHandler(GameEvent.OnNormalBalls,OnNormalBalls);
+        EventManager.RemoveHandler(GameEvent.OnBossDead,OnBossDead);
     }
 
 
@@ -90,17 +94,23 @@ public class CameraManager : MonoBehaviour
     private void OnNextLevel()
     {
         ChangeFieldOfView(80,5);
+        ChangeFollow(balls[ballData.currentBallIndex].transform);
     }
 
+    private void OnBossDead()
+    {
+        Noise(5,5,1.75f);
+    }
 
     private void OnPortalOpen()
     {
+        Portal=FindObjectOfType<PortalControl>().transform;
         ChangeFieldOfView(40,5);
+        ChangeFollow(Portal);
     }
 
     private void OnBordersDown(int id)
     {
-        Debug.Log("TITRETTIN BENI TITTRETTIN");
         Noise(3,3,1f);
     }
 

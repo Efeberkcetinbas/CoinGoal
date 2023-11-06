@@ -20,22 +20,33 @@ public class BallColor : MonoBehaviour
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnBallIndexIncrease,OnBallIndexIncrease);
+        EventManager.AddHandler(GameEvent.OnPortalOpen,OnPortalOpen);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnBallIndexIncrease,OnBallIndexIncrease);
+        EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnPortalOpen);
     }
     
 
     private void OnBallIndexIncrease()
     {
+        ChangeMatColor(Color.white,Color.green);
+    }
+
+    private void OnPortalOpen()
+    {
+        ChangeMatColor(Color.white,Color.white);
+    }
+
+
+    private void ChangeMatColor(Color color1,Color color2)
+    {
         for (int i = 0; i < ballController.balls.Length; i++)
         {
-            //ballController.balls[i].GetComponent<MeshRenderer>().material=otherMat;
-            ballController.balls[i].GetComponent<MeshRenderer>().material.color=Color.white;
+            ballController.balls[i].GetComponent<MeshRenderer>().material.color=color1;
         }
-        //ballController.balls[ballData.currentBallIndex].GetComponent<MeshRenderer>().material=selectedMat;
-        ballController.balls[ballData.currentBallIndex].GetComponent<MeshRenderer>().material.color=Color.green;
+        ballController.balls[ballData.currentBallIndex].GetComponent<MeshRenderer>().material.color=color2;
     }
 }

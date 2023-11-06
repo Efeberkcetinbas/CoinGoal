@@ -39,7 +39,6 @@ public enum GameEvent
     OnHitWall,
 
     //Boss
-    OnBossDamage,
     OnBossDead,
     OnUIBossUpdate,
     OnBossActive,

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 public class Player : MonoBehaviour
 {
     
@@ -10,12 +11,17 @@ public class Player : MonoBehaviour
     [SerializeField] private List<ParticleSystem> buffParticles;
     
     public BallData ballData;
+    public GameData gameData;
     
     public int ID;
 
     internal bool isInTheButton=false;
 
     internal Rigidbody tempRigidbody;
+
+    [SerializeField] private GameObject scoreXP;
+
+
     
 
     private void OnEnable() 
@@ -63,6 +69,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    internal void XPEffect()
+    {
+        //BUNU 3UNDE DE YAPIYOR. ONA DIKKAT ETMEK LAZIM. BALL CONTROLLERDEN YAZ
+
+        GameObject XP=Instantiate(scoreXP,transform.position,Quaternion.identity);
+        XP.transform.DOLocalJump(XP.transform.localPosition,1,1,1,false);
+        XP.transform.GetChild(0).GetComponent<TextMeshPro>().text=" + " + gameData.increaseScore.ToString();
+        XP.transform.GetChild(0).GetComponent<TextMeshPro>().DOFade(0,1.5f).OnComplete(()=>XP.transform.GetChild(0).gameObject.SetActive(false));
+        Destroy(XP,2);
+    }
     
     
     private void OnHitWall(int id)
