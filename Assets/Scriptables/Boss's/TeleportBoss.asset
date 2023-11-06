@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a4e00563480204a870239e677f803a, type: 3}
   m_Name: TeleportBoss
   m_EditorClassIdentifier: 
-  Name: Thanos
-  Health: 15
+  Name: Teleporter
+  Health: 5

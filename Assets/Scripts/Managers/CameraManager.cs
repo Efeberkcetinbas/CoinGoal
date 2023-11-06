@@ -58,9 +58,12 @@ public class CameraManager : MonoBehaviour
         ChangeFieldOfViewHit(newFieldOfView,oldFieldOfView,shakeTime);
     }
 
+    
+
     private void OnBossBall()
     {
         ChangeFollow(BossBall);
+        ChangeFieldOfView(80,2);
     }
 
     private void OnNormalBalls()

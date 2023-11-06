@@ -8,13 +8,22 @@ public class TeleporterBoss : MonoBehaviour, IBossMove
 
     private int index;
     private int randomPos;
+    [SerializeField] private float moveTime;
 
     [SerializeField] private ParticleSystem PortalEffect;
 
+    [SerializeField] private bool isRandom=false;
+
+    private List<Tween> tween=new List<Tween>();
 
     private void Start() 
     {
-        InvokeRepeating("Move",3,5);
+        tween=new List<Tween>(2);
+        for (int i = 0; i < 2; i++)
+        {
+            tween.Add(null);
+        }
+        InvokeRepeating("Move",3,moveTime);
     }
 
      private void OnEnable() 
@@ -35,6 +44,11 @@ public class TeleporterBoss : MonoBehaviour, IBossMove
 
     public void OnBossDead()
     {
+        for (int i = 0; i < tween.Count; i++)
+        {
+            tween[i].Kill();
+        }
+        
         CancelInvoke();
     }
 
@@ -46,7 +60,7 @@ public class TeleporterBoss : MonoBehaviour, IBossMove
         //yield return new WaitForSeconds(1);
         yield return new WaitForSeconds(2);
         PlayParticleEffect();
-        transform.DOScale(new Vector3(0.1f,0.1f,0.1f),0.25f).OnComplete(()=>{
+        tween[0]=transform.DOScale(new Vector3(0.1f,0.1f,0.1f),0.25f).OnComplete(()=>{
             Movement();
         });
     }
@@ -54,7 +68,7 @@ public class TeleporterBoss : MonoBehaviour, IBossMove
     {
         //Sadece sahnedeki groudlarin uzerinde olsun.
         transform.position=points[randomPos].transform.position;
-        transform.DOScale(new Vector3(1,1,1),0.3f);
+        tween[1]=transform.DOScale(new Vector3(1,1,1),0.3f);
     }
 
     public void PlayParticleEffect()
@@ -82,7 +96,11 @@ public class TeleporterBoss : MonoBehaviour, IBossMove
             index=0;
         }
         //randomPos=Random.Range(0,index);
-        randomPos=index;
+        if(isRandom)
+            randomPos=Random.Range(0,points.Count);
+        else
+            randomPos=index;
+        
         Debug.Log(randomPos);
         return randomPos;
     }

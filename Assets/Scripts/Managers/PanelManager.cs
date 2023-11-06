@@ -38,7 +38,7 @@ public class PanelManager : MonoBehaviour
 
     private void Start() 
     {
-        UICanvas.SetActive(false);
+        //UICanvas.SetActive(false);
     }
 
     
@@ -49,7 +49,7 @@ public class PanelManager : MonoBehaviour
         coinImage.DOAnchorPosY(0,1f).OnComplete(()=>coinImage.transform.DORotate(new Vector3(0,90,0), 1f).OnComplete(()=>{
             gameData.isGameEnd=false;
             StartPanel.gameObject.SetActive(false);
-            UICanvas.SetActive(true);
+            //UICanvas.SetActive(true);
             EventManager.Broadcast(GameEvent.OnGameStart);
 
         }));

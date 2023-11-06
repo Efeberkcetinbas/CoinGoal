@@ -9710,6 +9710,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2676909027713487344}
+  - component: {fileID: 4378728003284750086}
   m_Layer: 0
   m_Name: TeleporterBoss
   m_TagString: Untagged
@@ -9734,6 +9735,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4378728003284750086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2676909027713487345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a91d4216db44cc48806b50ee4877ed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossData: {fileID: 11400000, guid: 628c6086d9a02de4f92da6167e10cea6, type: 2}
+  bossImage: {fileID: 0}
+  bossText: {fileID: 0}
+  bossProgressBar: {fileID: 0}
+  BossUI: {fileID: 0}
+  y_axis: 750
+  bars:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &2676909027719837342
 GameObject:
   m_ObjectHideFlags: 0

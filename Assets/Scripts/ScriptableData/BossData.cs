@@ -9,6 +9,7 @@ public class BossData : ScriptableObject {
     public string Name;
     
     public int Health;
+    public int TempHealth;
 
 
 }

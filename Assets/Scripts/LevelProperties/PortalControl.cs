@@ -11,11 +11,13 @@ public class PortalControl : MonoBehaviour
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnBossDead,OnBossDead);
+        EventManager.AddHandler(GameEvent.OnPortalOpen,OnPortalOpen);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnBossDead,OnBossDead);
+        EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnPortalOpen);
     }
 
 
@@ -23,6 +25,11 @@ public class PortalControl : MonoBehaviour
     {
         portal.SetActive(true);
         EventManager.Broadcast(GameEvent.OnPortalOpen);
+    }
+
+    private void OnPortalOpen()
+    {
+        portal.SetActive(true);
     }
 
     

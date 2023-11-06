@@ -37,6 +37,7 @@ public class BossWithSpikes : MonoBehaviour,IBossMove
         for (int i = 0; i < tween.Count; i++)
         {
             tween[i].Kill();
+            Debug.Log("MOVE");
         }
         
     }

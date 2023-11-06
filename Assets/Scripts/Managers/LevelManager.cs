@@ -44,15 +44,26 @@ public class LevelManager : MonoBehaviour
         levels[levelIndex].SetActive(true);
     }
 
-    public void LoadNextLevel()
+    private void LoadNextLevel()
     {
         PlayerPrefs.SetInt("NumberOfLevel", levelIndex + 1);
         PlayerPrefs.SetInt("RealNumberLevel", PlayerPrefs.GetInt("RealNumberLevel", 0) + 1);
         gameData.LevelNumberIndex++;
         LoadLevel();
-        EventManager.Broadcast(GameEvent.OnNextLevel);
-    }
 
+
+        if(gameData.LevelNumberIndex%5!=0)
+        {        
+            EventManager.Broadcast(GameEvent.OnNextLevel);
+        }
+
+        else
+        {
+            EventManager.Broadcast(GameEvent.OnBossActive);
+            EventManager.Broadcast(GameEvent.OnBossBall);
+        }
+    }
+    
     public void RestartLevel()
     {
         LoadLevel();

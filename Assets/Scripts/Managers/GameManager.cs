@@ -32,9 +32,29 @@ public class GameManager : MonoBehaviour
     private void Awake() 
     {
         ClearData();
+        StarterPack();
+    }
+
+    private void Start() 
+    {
+
+        StarterPack();
     }
     
+    private void StarterPack()
+    {
+        if(gameData.LevelNumberIndex%4!=0)
+        {
+            OnNormalBalls();
+        }
 
+        else
+        {
+            OnBossBall();
+            EventManager.Broadcast(GameEvent.OnBossActive);
+            EventManager.Broadcast(GameEvent.OnBossBall);
+        }
+    }
     
 
     private void OnEnable()
@@ -75,27 +95,6 @@ public class GameManager : MonoBehaviour
         OpenClose(NormalBalls,true);
     }
     
-    //DENEME
-    public void KillBoss()
-    {
-        gameData.isGameEnd=true;
-        EventManager.Broadcast(GameEvent.OnBossDead);
-    }
-
-    public void BossActive()
-    {
-        EventManager.Broadcast(GameEvent.OnBossActive);
-    }
-
-    public void ChangeBoss()
-    {
-        EventManager.Broadcast(GameEvent.OnBossBall);
-    }
-
-    public void ChangeNormalBall()
-    {
-        EventManager.Broadcast(GameEvent.OnNormalBalls);
-    }
 
     private void OnRestartLevel()
     {
@@ -127,8 +126,11 @@ public class GameManager : MonoBehaviour
     //When Level Change Update Req Ball Pass Number
     private void UpdateRequirement()
     {
-        gameData.LevelRequirementNumber=FindObjectOfType<RequirementControl>().RequirementNumber;
-        EventManager.Broadcast(GameEvent.OnUIRequirementUpdate);
+        if(gameData.LevelNumberIndex%5!=0)
+        {
+            gameData.LevelRequirementNumber=FindObjectOfType<RequirementControl>().RequirementNumber;
+            EventManager.Broadcast(GameEvent.OnUIRequirementUpdate);
+        }
         //Update UI
     }
 
@@ -138,7 +140,19 @@ public class GameManager : MonoBehaviour
         float value=1/(float)gameData.LevelRequirementNumber;
         gameData.ProgressNumber+=value;
         EventManager.Broadcast(GameEvent.OnUIRequirementUpdate);
+        gameData.levelProgressNumber++;
+
+        if(gameData.LevelRequirementNumber==gameData.levelProgressNumber)
+            StartCoroutine(LevelFinish());
         //Update UI progress bar
+    }
+
+    private IEnumerator LevelFinish()
+    {
+        gameData.isGameEnd=true;
+        yield return new WaitForSeconds(2);
+        EventManager.Broadcast(GameEvent.OnPortalOpen);
+
     }
   
 
@@ -156,7 +170,9 @@ public class GameManager : MonoBehaviour
     private void OnNextLevel()
     {
         gameData.ProgressNumber=0;
+        gameData.levelProgressNumber=0;
         gameData.isGameEnd=true;
+        ballData.isItPassed=false;
         EventManager.Broadcast(GameEvent.OnUIRequirementUpdate);
     }
 
@@ -172,6 +188,7 @@ public class GameManager : MonoBehaviour
         ballData.isItPassed=false;
         gameData.isGameEnd=true;
         gameData.ProgressNumber=0;
+        gameData.levelProgressNumber=0;
     }
 
 

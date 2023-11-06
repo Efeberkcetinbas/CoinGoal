@@ -62,6 +62,8 @@ public class BallController : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
         EventManager.AddHandler(GameEvent.OnDamagePlayer,OnDamagePlayer);
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+
+        
         
     }
 
@@ -233,6 +235,8 @@ public class BallController : MonoBehaviour
     {
         StartCoroutine(MoveBallsJump());
     }
+
+    
 
     private IEnumerator MoveBallsJump()
     {
