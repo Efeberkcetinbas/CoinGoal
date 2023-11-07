@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
         EventManager.AddIdHandler(GameEvent.OnBordersDown,OnBordersDown);
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
         EventManager.AddHandler(GameEvent.OnPlayerDead,OnPlayerDead);
-        EventManager.AddHandler(GameEvent.OnGroundSound,OnGroundOpen);
+        EventManager.AddHandler(GameEvent.OnWindSound,OnGroundOpen);
         EventManager.AddHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.AddHandler(GameEvent.OnUpPortal,OnUpPortal);
         EventManager.AddHandler(GameEvent.OnUIBossUpdate,OnUIBossUpdate);
@@ -48,7 +48,7 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveIdHandler(GameEvent.OnBordersDown,OnBordersDown);
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
         EventManager.RemoveHandler(GameEvent.OnPlayerDead,OnPlayerDead);
-        EventManager.RemoveHandler(GameEvent.OnGroundSound,OnGroundOpen);
+        EventManager.RemoveHandler(GameEvent.OnWindSound,OnGroundOpen);
         EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.RemoveHandler(GameEvent.OnUpPortal,OnUpPortal);
         EventManager.RemoveHandler(GameEvent.OnUIBossUpdate,OnUIBossUpdate);

@@ -9,20 +9,25 @@ public class KillPlayer : Obstacleable
     private bool isOne=false;
     internal override void DoAction(Player player)
     {
-        if(player.ballData.isDestroyer)
+        if(player.isOrderMe)
         {
-            Instantiate(destroyEffect,transform.position,Quaternion.identity);
-            Destroy(gameObject);
-        }
-        else
-        {
-            if(!isOne)
+            if(player.ballData.isDestroyer)
             {
-                EventManager.Broadcast(GameEvent.OnTrapHitPlayer);
-                isOne=true;
+                Instantiate(destroyEffect,transform.position,Quaternion.identity);
+                Destroy(gameObject);
             }
-            
+            else
+            {
+                if(!isOne)
+                {
+                    isOne=true;
+                    EventManager.Broadcast(GameEvent.OnTrapHitPlayer);
+                    Debug.Log("KAC KEZ CAGIRILDI");
+                }
+                
+            }
         }
+        
         
     }
 }

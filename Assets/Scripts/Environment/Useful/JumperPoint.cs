@@ -9,7 +9,11 @@ public class JumperPoint : Obstacleable
     internal override void DoAction(Player player)
     {
         player.SetTempRigidbody();
-        player.tempRigidbody.AddForce(Vector3.up*jumpForce,ForceMode.Impulse);
-        EventManager.Broadcast(GameEvent.OnGroundSound);
+        if(player.isOrderMe)
+        {
+            player.tempRigidbody.AddForce(Vector3.up*jumpForce,ForceMode.Impulse);
+            EventManager.Broadcast(GameEvent.OnWindSound);
+        }
+        
     }
 }

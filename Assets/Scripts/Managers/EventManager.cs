@@ -12,7 +12,7 @@ public enum GameEvent
 
     //EndGame
     OnPortalOpen,
-    OnGroundSound,
+    OnWindSound,
     OnBossBall,
     OnNormalBalls,
     
