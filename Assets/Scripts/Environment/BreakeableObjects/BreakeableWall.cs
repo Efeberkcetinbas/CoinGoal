@@ -8,6 +8,17 @@ public class BreakeableWall : Obstacleable
 
     [SerializeField] private BallData ballData;
     private int index;
+    private int ID;
+
+    private WaitForSeconds waitForSeconds;
+
+    [SerializeField] private ParticleSystem damageParticle;
+
+    private void Start() 
+    {
+        waitForSeconds=new WaitForSeconds(1);
+        
+    }
     public BreakeableWall()
     {
         canStay=false;
@@ -22,25 +33,30 @@ public class BreakeableWall : Obstacleable
             if (index < wallList.Count)
             {
                 //Daha optimize count atayip sonra yazmak
+
+                ID=player.ID;
                 int children = wallList[index].transform.childCount;
+                damageParticle.Play();
+                EventManager.BroadcastId(GameEvent.OnHitWall,ID);
                 for (int i = 0; i < children; i++)
                 {
                     wallList[index].transform.GetChild(i).GetComponent<Rigidbody>().isKinematic = false;
-                    StartCoroutine(SetChildrenLost(1,children,index,wallList));
+                    StartCoroutine(SetChildrenLost(children,index,wallList));
                     //Sahnenin Altina kayip destroy islemi.
                 }
                 index++;
+                if(index==wallList.Count)
+                {
+                    Destroy(gameObject,5);
+                }
             }
-            else
-            {
-                Destroy(gameObject);
-            }
+            
         }
     }
 
-    private IEnumerator SetChildrenLost(float duration, int child,int index, List<GameObject> gameObjects)
+    private IEnumerator SetChildrenLost(int child,int index, List<GameObject> gameObjects)
     {
-        yield return new WaitForSeconds(duration);
+        yield return waitForSeconds;
         for (int i = 0; i < child; i++)
         {
             //Daha iyi bir sekilde goster bunu
@@ -49,6 +65,7 @@ public class BreakeableWall : Obstacleable
                 //Other Stuff if necessary (sorry for both turkish and english comment bilal emmi)
             });
         }
-
     }
+
+    
 }

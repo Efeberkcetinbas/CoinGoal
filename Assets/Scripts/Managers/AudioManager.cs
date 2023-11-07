@@ -5,7 +5,8 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
-    public AudioClip GameOverSound,PassBetweenSound,TouchStartSound,TouchEndSound,HitWallSound,ButtonSound,BorderDownSound,GameStartSound,PlayerDeadSound,BounceSound,PortalSound,OnUpPortalSound,BossDamageSound;
+    public AudioClip GameOverSound,PassBetweenSound,TouchStartSound,TouchEndSound,HitWallSound,ButtonSound,BorderDownSound,GameStartSound,PlayerDeadSound,BounceSound,PortalSound,OnUpPortalSound,BossDamageSound,
+    BridgeSound;
 
     AudioSource musicSource,effectSource;
 
@@ -34,6 +35,7 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.AddHandler(GameEvent.OnUpPortal,OnUpPortal);
         EventManager.AddHandler(GameEvent.OnUIBossUpdate,OnUIBossUpdate);
+        EventManager.AddHandler(GameEvent.OnBridgeOpen,OnBridgeOpen);
     }
     private void OnDisable() 
     {
@@ -50,6 +52,7 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.RemoveHandler(GameEvent.OnUpPortal,OnUpPortal);
         EventManager.RemoveHandler(GameEvent.OnUIBossUpdate,OnUIBossUpdate);
+        EventManager.RemoveHandler(GameEvent.OnBridgeOpen,OnBridgeOpen);
     }
 
 
@@ -89,9 +92,8 @@ public class AudioManager : MonoBehaviour
     }
     private void OnHitWall(int id)
     {
-        //Cok dikkat dagitiyor
-        /*SetVolume(0.1f);
-        effectSource.PlayOneShot(HitWallSound);*/
+        SetVolume(0.2f);
+        effectSource.PlayOneShot(HitWallSound);
     }
 
     private void OnOpenButton(int id)
@@ -123,6 +125,11 @@ public class AudioManager : MonoBehaviour
     private void OnUIBossUpdate()
     {
         effectSource.PlayOneShot(BossDamageSound);
+    }
+
+    private void OnBridgeOpen()
+    {
+        effectSource.PlayOneShot(BridgeSound);
     }
     private float SetVolume(float vol)
     {

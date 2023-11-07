@@ -260,9 +260,9 @@ public class BallController : MonoBehaviour
         {
             balls[i].GetComponent<SphereCollider>().isTrigger=true;
             balls[i].GetComponent<Rigidbody>().useGravity=false;
-            balls[i].transform.DOJump(FindObjectOfType<PortalControl>().PortalPosition,2,4,2);
+            balls[i].transform.DOJump(FindObjectOfType<PortalControl>().PortalPosition,2,4,3);
             EventManager.Broadcast(GameEvent.OnUpPortal);
-            yield return new WaitForSeconds(i+1);
+            yield return new WaitForSeconds(i+2);
         }
 
         EventManager.Broadcast(GameEvent.OnLoadNextLevel);

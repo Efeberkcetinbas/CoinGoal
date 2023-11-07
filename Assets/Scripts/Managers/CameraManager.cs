@@ -39,6 +39,7 @@ public class CameraManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnBossBall,OnBossBall);
         EventManager.AddHandler(GameEvent.OnBossDead,OnBossDead);
         EventManager.AddHandler(GameEvent.OnUIBossUpdate,OnUIBossUpdate);
+        EventManager.AddIdHandler(GameEvent.OnHitWall,OnHitWall);
     }
 
     private void OnDisable() 
@@ -52,6 +53,7 @@ public class CameraManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnBossBall,OnBossBall);
         EventManager.RemoveHandler(GameEvent.OnBossDead,OnBossDead);
         EventManager.RemoveHandler(GameEvent.OnUIBossUpdate,OnUIBossUpdate);
+        EventManager.RemoveIdHandler(GameEvent.OnHitWall,OnHitWall);
     }
 
 
@@ -66,6 +68,11 @@ public class CameraManager : MonoBehaviour
     private void OnBossBall()
     {
         ChangeFieldOfView(80,2);
+    }
+
+    private void OnHitWall(int id)
+    {
+        ChangeFieldOfViewHit(75,80,0.25f);
     }
 
 

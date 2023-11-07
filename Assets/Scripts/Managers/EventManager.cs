@@ -36,6 +36,8 @@ public enum GameEvent
     OnCloseButton,
     OnOpenTraps,
     OnCloseTraps,
+    OnBridgeOpen,
+    
     OnHitWall,
     OnUpPortal,
 
