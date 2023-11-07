@@ -50,15 +50,10 @@ public class LevelManager : MonoBehaviour
         PlayerPrefs.SetInt("RealNumberLevel", PlayerPrefs.GetInt("RealNumberLevel", 0) + 1);
         gameData.LevelNumberIndex++;
         LoadLevel();
+        EventManager.Broadcast(GameEvent.OnNextLevel);
 
-
-        if(gameData.LevelNumberIndex%5!=0)
+        if(gameData.LevelNumberIndex%5==0)
         {        
-            EventManager.Broadcast(GameEvent.OnNextLevel);
-        }
-
-        else
-        {
             EventManager.Broadcast(GameEvent.OnBossActive);
             EventManager.Broadcast(GameEvent.OnBossBall);
         }

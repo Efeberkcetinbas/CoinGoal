@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Ares
   Health: 5
-  TempHealth: 3
+  TempHealth: 5

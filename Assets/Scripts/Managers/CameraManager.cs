@@ -22,7 +22,6 @@ public class CameraManager : MonoBehaviour
     //Data
     public BallData ballData;
 
-    [SerializeField] private Transform BossBall,NormalBall;
 
     private Transform Portal;
 
@@ -38,8 +37,8 @@ public class CameraManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.AddHandler(GameEvent.OnTrapHitPlayer,OnTrapHitPlayer);
         EventManager.AddHandler(GameEvent.OnBossBall,OnBossBall);
-        EventManager.AddHandler(GameEvent.OnNormalBalls,OnNormalBalls);
         EventManager.AddHandler(GameEvent.OnBossDead,OnBossDead);
+        EventManager.AddHandler(GameEvent.OnUIBossUpdate,OnUIBossUpdate);
     }
 
     private void OnDisable() 
@@ -51,8 +50,8 @@ public class CameraManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.RemoveHandler(GameEvent.OnTrapHitPlayer,OnTrapHitPlayer);
         EventManager.RemoveHandler(GameEvent.OnBossBall,OnBossBall);
-        EventManager.RemoveHandler(GameEvent.OnNormalBalls,OnNormalBalls);
         EventManager.RemoveHandler(GameEvent.OnBossDead,OnBossDead);
+        EventManager.RemoveHandler(GameEvent.OnUIBossUpdate,OnUIBossUpdate);
     }
 
 
@@ -66,14 +65,9 @@ public class CameraManager : MonoBehaviour
 
     private void OnBossBall()
     {
-        ChangeFollow(BossBall);
         ChangeFieldOfView(80,2);
     }
 
-    private void OnNormalBalls()
-    {
-        ChangeFollow(NormalBall);
-    }
 
     private void OnSpawnWeapon()
     {
@@ -114,6 +108,10 @@ public class CameraManager : MonoBehaviour
         Noise(3,3,1f);
     }
 
+    private void OnUIBossUpdate()
+    {
+        Noise(4,4,0.5f);
+    }
     
 
     private void Start() 

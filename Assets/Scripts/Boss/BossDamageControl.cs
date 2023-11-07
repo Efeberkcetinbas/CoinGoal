@@ -9,26 +9,36 @@ public class BossDamageControl : Obstacleable
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private ParticleSystem bossParticle;
 
+    private bool isDead=false;
+
     private void Start() 
     {
         bossData.TempHealth=bossData.Health;
     }
     internal override void DoAction(Player player)
     {
-        bossData.Health--;
-        bossParticle.Play();
-        StartCoroutine(ChangeColor());
-        EventManager.Broadcast(GameEvent.OnUIBossUpdate);
-
-        if(bossData.Health<=0)
+        if(player.isOrderMe)
         {
+            bossData.Health--;
+            bossParticle.Play();
+            StartCoroutine(ChangeColor());
+            EventManager.Broadcast(GameEvent.OnUIBossUpdate);
 
-            EventManager.Broadcast(GameEvent.OnBossDead);
-            //Particle
-            //Camera Shake
-            //3 Balls gibi yap
-            
+            if(bossData.Health<=0 && !isDead)
+            {
+
+                EventManager.Broadcast(GameEvent.OnBossDead);
+                isDead=true;
+                //Particle
+                //Camera Shake
+                //3 Balls gibi yap
+                
+            }
+
         }
+        
+
+        
     }
 
     private IEnumerator ChangeColor()

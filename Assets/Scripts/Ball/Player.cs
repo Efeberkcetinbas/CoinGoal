@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject scoreXP;
 
+    public bool isOrderMe=false;
+
 
     
 
@@ -69,6 +71,8 @@ public class Player : MonoBehaviour
         }
     }
 
+    
+
     internal void XPEffect()
     {
         //BUNU 3UNDE DE YAPIYOR. ONA DIKKAT ETMEK LAZIM. BALL CONTROLLERDEN YAZ
@@ -83,10 +87,10 @@ public class Player : MonoBehaviour
     
     private void OnHitWall(int id)
     {
-        if(ID==id)
+        /*if(ID==id)
         {
             transform.DOScale(Vector3.one/1.3f,0.2f).OnComplete(()=>transform.DOScale(Vector3.one,0.2f));
-        }
+        }*/
             
     }
 

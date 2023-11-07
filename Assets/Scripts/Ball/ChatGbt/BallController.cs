@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 
@@ -111,6 +112,7 @@ public class BallController : MonoBehaviour
 
                             //Daha optimize hali var mi?
                             currentBallRigidbody = balls[ballData.currentBallIndex].GetComponent<Rigidbody>();
+                            
                             ballData.currentBallRigidbodyData=currentBallRigidbody;
                             currentBallRigidbody.isKinematic=true;
                             balls[ballData.currentBallIndex].transform.rotation=Quaternion.identity;
@@ -124,6 +126,9 @@ public class BallController : MonoBehaviour
                             
                             ballData.isItPassed=false;
                         }
+
+                        UpdateOrder();
+
                         break;
 
                     case TouchPhase.Moved:
@@ -166,7 +171,6 @@ public class BallController : MonoBehaviour
         #endregion
 
         ballData.BallSpeed=currentBallRigidbody.velocity.magnitude;
-    
 
     }
 
@@ -174,7 +178,19 @@ public class BallController : MonoBehaviour
     {
         currentBallRigidbody.isKinematic=true;
     }
-   
+    
+    private void UpdateOrder()
+    {
+        for (int i = 0; i < balls.Length; i++)
+        {
+            balls[i].GetComponent<Player>().isOrderMe=false;    
+        }
+
+        balls[ballData.currentBallIndex].GetComponent<Player>().isOrderMe=true;
+
+
+        
+    }
 
     void UpdatePowerIndicator()
     {
@@ -244,9 +260,9 @@ public class BallController : MonoBehaviour
         {
             balls[i].GetComponent<SphereCollider>().isTrigger=true;
             balls[i].GetComponent<Rigidbody>().useGravity=false;
-            balls[i].transform.DOJump(FindObjectOfType<PortalControl>().PortalPosition,2,4,3);
-
-            yield return new WaitForSeconds(i+2);
+            balls[i].transform.DOJump(FindObjectOfType<PortalControl>().PortalPosition,2,4,2);
+            EventManager.Broadcast(GameEvent.OnUpPortal);
+            yield return new WaitForSeconds(i+1);
         }
 
         EventManager.Broadcast(GameEvent.OnLoadNextLevel);

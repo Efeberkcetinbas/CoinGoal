@@ -37,6 +37,7 @@ public enum GameEvent
     OnOpenTraps,
     OnCloseTraps,
     OnHitWall,
+    OnUpPortal,
 
     //Boss
     OnBossDead,

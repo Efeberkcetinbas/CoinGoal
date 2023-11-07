@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     private void Awake() 
     {
         ClearData();
-        StarterPack();
+        //StarterPack();
     }
 
     private void Start() 
@@ -43,13 +43,16 @@ public class GameManager : MonoBehaviour
     
     private void StarterPack()
     {
-        if(gameData.LevelNumberIndex%4!=0)
+        if(gameData.LevelNumberIndex%5!=0)
         {
             OnNormalBalls();
+            Debug.Log("BURAYA MI GIRIR USTA");
         }
 
         else
         {
+
+            Debug.Log("IS WORK");
             OnBossBall();
             EventManager.Broadcast(GameEvent.OnBossActive);
             EventManager.Broadcast(GameEvent.OnBossBall);
@@ -174,6 +177,7 @@ public class GameManager : MonoBehaviour
         gameData.isGameEnd=true;
         ballData.isItPassed=false;
         EventManager.Broadcast(GameEvent.OnUIRequirementUpdate);
+        StarterPack();
     }
 
     private void OnGameStart()
