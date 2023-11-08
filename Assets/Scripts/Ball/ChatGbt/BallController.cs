@@ -32,7 +32,6 @@ public class BallController : MonoBehaviour
     private Camera cam;
     
     
-    
 
     void Start()
     {
@@ -143,7 +142,7 @@ public class BallController : MonoBehaviour
                         {
                             Vector3 dragDirection = touchEndPos - touchStartPos;
                             float dragDistance = dragDirection.magnitude;
-                            Debug.Log("DRAG DISTANCE: " + dragDistance);
+                            //Debug.Log("DRAG DISTANCE: " + dragDistance);
                             //0.05f
                             float forceMagnitude = Mathf.Clamp(dragDistance * 0.02f, minPower, ballData.MaxBallSpeed);
                             Vector3 force = new Vector3(dragDirection.x, 0f, dragDirection.y).normalized*forceMagnitude;
@@ -152,7 +151,7 @@ public class BallController : MonoBehaviour
                             isDragging = false;
                             powerIndicator.startColor = Color.green;
                             powerIndicator.endColor = Color.green;
-                            Debug.Log("FORCE MAG " + (int)forceMagnitude);
+                            //Debug.Log("FORCE MAG " + (int)forceMagnitude);
                             currentBallRigidbody.transform.DOScale(new Vector3(1.3f,1.3f,1),0.15f).OnComplete(()=> currentBallRigidbody.transform.DOScale(Vector3.one,0.15f));
                             
                             //Ball is Change when I touch to start
@@ -260,9 +259,9 @@ public class BallController : MonoBehaviour
         {
             balls[i].GetComponent<SphereCollider>().isTrigger=true;
             balls[i].GetComponent<Rigidbody>().useGravity=false;
-            balls[i].transform.DOJump(FindObjectOfType<PortalControl>().PortalPosition,2,4,3);
+            balls[i].transform.DOJump(FindObjectOfType<PortalControl>().PortalPosition,2,4,2);
             EventManager.Broadcast(GameEvent.OnUpPortal);
-            yield return new WaitForSeconds(i+2);
+            yield return new WaitForSeconds(i+1);
         }
 
         EventManager.Broadcast(GameEvent.OnLoadNextLevel);

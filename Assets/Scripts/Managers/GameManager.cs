@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] BossBalls;
     //Boss Ball
 
+    private WaitForSeconds waitForSeconds;
 
 
     private void Awake() 
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     private void Start() 
     {
-
+        waitForSeconds=new WaitForSeconds(2);
         StarterPack();
     }
     
@@ -90,12 +91,14 @@ public class GameManager : MonoBehaviour
     {
         OpenClose(BossBalls,true);
         OpenClose(NormalBalls,false);
+        gameData.isBossLevel=true;
     }
 
     private void OnNormalBalls()
     {
         OpenClose(BossBalls,false);
         OpenClose(NormalBalls,true);
+        gameData.isBossLevel=false;
     }
     
 
@@ -113,7 +116,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator OpenFailPanel()
     {
-        yield return new WaitForSeconds(2);
+        yield return waitForSeconds;
         OnGameOver();
     }
     //Her 5 Levelde 1
@@ -153,7 +156,9 @@ public class GameManager : MonoBehaviour
     private IEnumerator LevelFinish()
     {
         gameData.isGameEnd=true;
-        yield return new WaitForSeconds(2);
+        Debug.Log("Duration:");
+        yield return waitForSeconds;
+        Debug.Log("WAIT Duration:");
         EventManager.Broadcast(GameEvent.OnPortalOpen);
 
     }

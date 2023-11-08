@@ -11,6 +11,7 @@ public class BossControl : MonoBehaviour
 
     [SerializeField] private GameObject destroyParticle,Boss;
     
+    
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnBossActive,OnBossActive);

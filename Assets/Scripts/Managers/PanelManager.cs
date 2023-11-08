@@ -17,6 +17,8 @@ public class PanelManager : MonoBehaviour
 
     public GameObject UICanvas;
 
+    [SerializeField] private ParticleSystem skinParticle;
+
 
     //Insert Coin
     [SerializeField] private RectTransform coinImage;
@@ -26,6 +28,7 @@ public class PanelManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnBossActive,OnBossActive);
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.AddHandler(GameEvent.OnBallMeshChange,OnBallMeshChange);
     }
 
 
@@ -34,6 +37,7 @@ public class PanelManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnBossActive,OnBossActive);
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.RemoveHandler(GameEvent.OnBallMeshChange,OnBallMeshChange);
     }
 
     private void Start() 
@@ -102,6 +106,7 @@ public class PanelManager : MonoBehaviour
         StartPanel.DOAnchorPos(new Vector2(StartX,StartY),duration).OnComplete(()=>StartPanel.gameObject.SetActive(false));
         BallsPanel.gameObject.SetActive(true);
         BallsPanel.DOAnchorPos(Vector2.zero,duration);
+        EventManager.Broadcast(GameEvent.OnShopOpen);
     }
 
     public void BackToStart(bool isOnCharacter)
@@ -122,8 +127,16 @@ public class PanelManager : MonoBehaviour
             //.OnComplete(()=>WeaponPanel.gameObject.SetActive(false));
         }
 
+        EventManager.Broadcast(GameEvent.OnShopClose);
+
         //EventManager.Broadcast(GameEvent.OnButtonClicked);
 
+    }
+
+
+    private void OnBallMeshChange()
+    {
+        skinParticle.Play();
     }
 
 }

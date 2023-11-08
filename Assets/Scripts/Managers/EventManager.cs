@@ -9,6 +9,7 @@ public enum GameEvent
     OnTrapHitPlayer,
     OnDamagePlayer,
     OnPlayerDead,
+    OnSpecialTechnique,
 
     //EndGame
     OnPortalOpen,
@@ -45,6 +46,7 @@ public enum GameEvent
     OnBossDead,
     OnUIBossUpdate,
     OnBossActive,
+    OnBossDamage,
 
     //Levels
     OnBordersDown,
@@ -54,10 +56,12 @@ public enum GameEvent
     OnTouchEnd,
 
     //Panel
-    OnButtonClicked,
 
     //Shopping
-    OnBallSelected,
+    OnShopBallSelected,
+    OnBallMeshChange,
+    OnShopOpen,
+    OnShopClose,
 
 
     //Game Management

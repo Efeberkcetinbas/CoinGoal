@@ -51,7 +51,7 @@ public class LevelManager : MonoBehaviour
         gameData.LevelNumberIndex++;
         LoadLevel();
         EventManager.Broadcast(GameEvent.OnNextLevel);
-
+        
         if(gameData.LevelNumberIndex%5==0)
         {        
             EventManager.Broadcast(GameEvent.OnBossActive);

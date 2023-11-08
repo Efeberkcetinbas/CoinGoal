@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
 
     public bool isOrderMe=false;
 
+    [SerializeField] private GameObject weapon;
 
     
 
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnNormal,OnNormal);
         EventManager.AddHandler(GameEvent.OnSpeedUp,OnSpeedUp);
         EventManager.AddHandler(GameEvent.OnSpeedNormal,OnSpeedNormal);
+        EventManager.AddHandler(GameEvent.OnSpecialTechnique,OnSpecialTechnique);
 
     }
 
@@ -49,6 +51,7 @@ public class Player : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnNormal,OnNormal);
         EventManager.RemoveHandler(GameEvent.OnSpeedUp,OnSpeedUp);
         EventManager.RemoveHandler(GameEvent.OnSpeedNormal,OnSpeedNormal);
+        EventManager.RemoveHandler(GameEvent.OnSpecialTechnique,OnSpecialTechnique);
 
     }
     private void OnTrapHitPlayer()
@@ -71,8 +74,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnSpecialTechnique()
+    {
+        Instantiate(weapon,transform.position,Quaternion.identity);
+    }
+
     
 
+    //Bu methodu birkac defa tekrarliyorum. Daha efektif hale cevir
     internal void XPEffect()
     {
         //BUNU 3UNDE DE YAPIYOR. ONA DIKKAT ETMEK LAZIM. BALL CONTROLLERDEN YAZ

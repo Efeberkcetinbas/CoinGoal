@@ -57,6 +57,7 @@ public class UIManager : MonoBehaviour
     private void Start() 
     {
         OnNextLevel();
+        OnUIUpdate();
     }
     
     private void OnUIUpdate()

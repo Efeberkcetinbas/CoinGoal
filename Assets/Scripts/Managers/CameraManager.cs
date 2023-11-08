@@ -36,10 +36,12 @@ public class CameraManager : MonoBehaviour
         EventManager.AddIdHandler(GameEvent.OnBordersDown,OnBordersDown);
         EventManager.AddHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.AddHandler(GameEvent.OnTrapHitPlayer,OnTrapHitPlayer);
-        EventManager.AddHandler(GameEvent.OnBossBall,OnBossBall);
         EventManager.AddHandler(GameEvent.OnBossDead,OnBossDead);
         EventManager.AddHandler(GameEvent.OnUIBossUpdate,OnUIBossUpdate);
         EventManager.AddIdHandler(GameEvent.OnHitWall,OnHitWall);
+        EventManager.AddHandler(GameEvent.OnSpecialTechnique,OnSpecialTechnique);
+        EventManager.AddHandler(GameEvent.OnShopOpen,OnShopOpen);
+        EventManager.AddHandler(GameEvent.OnShopClose,OnShopClose);
     }
 
     private void OnDisable() 
@@ -50,10 +52,12 @@ public class CameraManager : MonoBehaviour
         EventManager.RemoveIdHandler(GameEvent.OnBordersDown,OnBordersDown);
         EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.RemoveHandler(GameEvent.OnTrapHitPlayer,OnTrapHitPlayer);
-        EventManager.RemoveHandler(GameEvent.OnBossBall,OnBossBall);
         EventManager.RemoveHandler(GameEvent.OnBossDead,OnBossDead);
         EventManager.RemoveHandler(GameEvent.OnUIBossUpdate,OnUIBossUpdate);
         EventManager.RemoveIdHandler(GameEvent.OnHitWall,OnHitWall);
+        EventManager.RemoveHandler(GameEvent.OnSpecialTechnique,OnSpecialTechnique);
+        EventManager.RemoveHandler(GameEvent.OnShopOpen,OnShopOpen);
+        EventManager.RemoveHandler(GameEvent.OnShopClose,OnShopClose);
     }
 
 
@@ -63,18 +67,25 @@ public class CameraManager : MonoBehaviour
         ChangeFieldOfViewHit(newFieldOfView,oldFieldOfView,shakeTime);
     }
 
-    
-
-    private void OnBossBall()
+    private void OnShopOpen()
     {
-        ChangeFieldOfView(80,2);
+        ChangePriority(8);
     }
 
+    private void OnShopClose()
+    {
+        ChangePriority(11);
+    }
+    
     private void OnHitWall(int id)
     {
         ChangeFieldOfViewHit(75,80,0.25f);
     }
 
+    private void OnSpecialTechnique()
+    {
+        Noise(5,5,1);
+    }
 
     private void OnSpawnWeapon()
     {
@@ -162,5 +173,10 @@ public class CameraManager : MonoBehaviour
     public void ChangeFollow(Transform Ball)
     {
         cm.m_Follow=Ball;
+    }
+
+    private void ChangePriority(int val)
+    {
+        cm.m_Priority=val;
     }
 }

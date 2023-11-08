@@ -7,6 +7,7 @@ using UnityEngine;
 public class BallData : ScriptableObject 
 {
     public int currentBallIndex;
+    public int damageAmount;
     public float BallSpeed;
 
     public int MaxBallSpeed=20;
@@ -19,4 +20,7 @@ public class BallData : ScriptableObject
 
 
     internal Rigidbody currentBallRigidbodyData;
+
+    //Shopping
+    public int selectedBallIndex;
 }

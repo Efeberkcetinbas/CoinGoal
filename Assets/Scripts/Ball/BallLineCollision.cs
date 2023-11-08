@@ -13,8 +13,11 @@ public class BallLineCollision : MonoBehaviour
     [SerializeField] private int ID1,ID2;
 
 
+
     public BallData ballData;
     public GameData gameData;
+
+    
 
     private void Start() 
     {
@@ -48,16 +51,26 @@ public class BallLineCollision : MonoBehaviour
                 if (hit.collider.CompareTag("Player") && hit.collider.GetComponent<BallIdentifier>().BallID != ID1 && hit.collider.GetComponent<BallIdentifier>().BallID != ID2) 
                 {
                 // A collision has occurred with an object that meets the criteria
-                    Debug.Log("Collision with " + hit.collider.gameObject.name);
-                    EventManager.Broadcast(GameEvent.OnPassBetween);
-                    hit.collider.GetComponent<Player>().XPEffect();
-                    ballData.isItPassed=true;
-                    StartCoroutine(LineEffect());
+                    if(!gameData.isBossLevel)
+                    {
+                        EventManager.Broadcast(GameEvent.OnPassBetween);
+                        hit.collider.GetComponent<Player>().XPEffect();
+                        ballData.isItPassed=true;
+                        StartCoroutine(LineEffect());
+                    }
+                    else
+                    {
+                        Debug.Log("SPECIAL TECHNIQUE HOLLOW PURPLE");
+                        ballData.isItPassed=true;
+                        EventManager.Broadcast(GameEvent.OnSpecialTechnique);
+                    }
                     
                 }
             }
         }
     }
+
+    
 
     private IEnumerator LineEffect()
     {

@@ -27,30 +27,34 @@ public class ShopBalls : MonoBehaviour
     {
         button=GetComponent<Button>();
         priceText.text=price.ToString();
+        CheckPurchase();
     }
 
     private void OnEnable() 
     {
-        EventManager.AddHandler(GameEvent.OnButtonClicked,OnButtonClicked);
-        EventManager.AddHandler(GameEvent.OnBallSelected,OnBallSelected);
+        EventManager.AddHandler(GameEvent.OnShopBallSelected,OnBallSelected);
+        EventManager.AddHandler(GameEvent.OnShopOpen,OnShopOpen);
     }
 
     private void OnDisable() 
     {
-        EventManager.RemoveHandler(GameEvent.OnButtonClicked,OnButtonClicked);
-        EventManager.RemoveHandler(GameEvent.OnBallSelected,OnBallSelected);
+        EventManager.RemoveHandler(GameEvent.OnShopBallSelected,OnBallSelected);
+        EventManager.RemoveHandler(GameEvent.OnShopOpen,OnShopOpen);
     }
 
 
-    private void OnButtonClicked()
-    {
-        CheckPurchase();
-    }
+    
 
     private void OnBallSelected()
     {
         CheckPurchase();
     }
+
+    private void OnShopOpen()
+    {
+        CheckPurchase();
+    }
+    
 
     private void CheckPurchase()
     {
@@ -64,21 +68,27 @@ public class ShopBalls : MonoBehaviour
 
             //button.image.color=Color.green;
             goldImage.SetActive(false);
-            tickImage.SetActive(true);
+            //tickImage.SetActive(true);
             priceText.gameObject.SetActive(false);
             isPurchased=true;
+
         }
 
-        if(gameData.coin>=price || shopBallData.isPurchased)
+        if(gameData.score>=price || shopBallData.isPurchased)
         {
             button.interactable=true;
             canBuy=true;
         }
 
-        else
+        if(!shopBallData.isPurchased)
         {
-            button.interactable=false;
-            canBuy=false;
+            if(gameData.score<price)
+            {
+                button.interactable=false;
+                canBuy=false;
+            }
         }
     }
+
+    
 }

@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14db6eb11dc14d4a9aadc380891c5fd, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  score: 650
+  score: 25
   coin: 0
   increaseScore: 10
   increaseCoinAmount: 1
   LevelNumberIndex: 1
   LevelRequirementNumber: 2
   BorderIndex: 0
-  levelProgressNumber: 1
+  levelProgressNumber: 0
   BackTime: 25
-  ProgressNumber: 0.5
+  ProgressNumber: 0
   isGameEnd: 1
+  isBossLevel: 0
