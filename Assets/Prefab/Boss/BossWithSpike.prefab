@@ -905,7 +905,6 @@ GameObject:
   - component: {fileID: 1004343976}
   - component: {fileID: 1004343978}
   - component: {fileID: 1004343977}
-  - component: {fileID: 7243517448593326952}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -980,19 +979,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7243517448593326952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004343975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad9e0a006f86bea4ea8b93536a5b8355, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetPos: {fileID: 1363782633}
 --- !u!1 &1057189313
 GameObject:
   m_ObjectHideFlags: 0
@@ -25235,8 +25221,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363782632}
   m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0112, z: 0}
-  m_LocalScale: {x: 0.0071428576, y: 0.0071428576, z: 0.0071428576}
+  m_LocalPosition: {x: 0, y: 0.00815, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1004343976}
@@ -26519,9 +26505,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossData: {fileID: 11400000, guid: 495b57e253e475d4088a7c7a0d5badeb, type: 2}
   ballData: {fileID: 11400000, guid: 6692e14ad7a601e4ca2edd6e74a2debb, type: 2}
+  weaponData: {fileID: 11400000, guid: da3054fa1f4968c42910b18cd20cc59b, type: 2}
   meshRenderer: {fileID: 1004343977}
   bossParticle: {fileID: 4334163031629995560}
-  thunderParticle: {fileID: 1043133603}
+  specialDamageParticles:
+  - {fileID: 1043133603}
+  character: {fileID: 1004343976}
+  scaleVal: 10
+  duration: 2
+  vibrato: 10
 --- !u!65 &665792150
 BoxCollider:
   m_ObjectHideFlags: 0

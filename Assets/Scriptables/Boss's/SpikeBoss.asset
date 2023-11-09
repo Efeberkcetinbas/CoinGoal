@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SpikeBoss
   m_EditorClassIdentifier: 
   Name: Ares
-  Health: 30
-  TempHealth: 6
+  Health: 200
+  TempHealth: 18

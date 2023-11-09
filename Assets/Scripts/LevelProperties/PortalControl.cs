@@ -7,6 +7,13 @@ public class PortalControl : MonoBehaviour
     [SerializeField] private GameObject portal;
     public Vector3 PortalPosition;
 
+    private WaitForSeconds waitForSeconds;
+
+    private void Start() 
+    {
+        waitForSeconds=new WaitForSeconds(3);
+        
+    }
 
     private void OnEnable() 
     {
@@ -24,8 +31,7 @@ public class PortalControl : MonoBehaviour
     private void OnBossDead()
     {
         //Hemen gitmiyoruz. Boss'un Patlamasini Gormemiz Lazim
-        portal.SetActive(true);
-        EventManager.Broadcast(GameEvent.OnPortalOpen);
+        StartCoroutine(OpenIt());
     }
 
     
@@ -33,6 +39,13 @@ public class PortalControl : MonoBehaviour
     private void OnPortalOpen()
     {
         portal.SetActive(true);
+    }
+
+    private IEnumerator OpenIt()
+    {
+        yield return waitForSeconds;
+        portal.SetActive(true);
+        EventManager.Broadcast(GameEvent.OnPortalOpen);
     }
 
     

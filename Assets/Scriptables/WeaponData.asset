@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2259b0943fff31745a2d73969982ccf1, type: 3}
   m_Name: WeaponData
   m_EditorClassIdentifier: 
-  index: 0
+  index: 1
+  weaponIndexParticle: 0

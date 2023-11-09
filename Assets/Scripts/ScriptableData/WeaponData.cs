@@ -6,4 +6,6 @@ using UnityEngine;
 public class WeaponData : ScriptableObject
 {
     public int index=0;
+
+    public int weaponIndexParticle;
 }

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentBallIndex: 1
   damageAmount: 1
-  BallSpeed: 0
+  BallSpeed: 0.30363566
   MaxBallSpeed: 20
-  isItPassed: 0
+  isItPassed: 1
   isInvulnerable: 0
   isDestroyer: 0
-  selectedBallIndex: 7
+  selectedBallIndex: 0

@@ -13,7 +13,7 @@ public class ShopBallSelection : MonoBehaviour
 
     private void Start() 
     {
-        shopBalls[ballData.selectedBallIndex].button.image.color=Color.green;
+        //shopBalls[ballData.selectedBallIndex].button.image.color=Color.green;
     }
 
     //Purchase

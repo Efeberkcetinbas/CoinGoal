@@ -7,10 +7,19 @@ public class BossDamageControl : Obstacleable
 {
     public BossData bossData;
     public BallData ballData;
+    public WeaponData weaponData;
     [SerializeField] private MeshRenderer meshRenderer;
-    [SerializeField] private ParticleSystem bossParticle,thunderParticle;
+    [SerializeField] private ParticleSystem bossParticle;
+
+    [SerializeField] private List<ParticleSystem> specialDamageParticles;
 
     private bool isDead=false;
+
+    [Header("Special Effect Values")]
+    [SerializeField] private Transform character;
+    [SerializeField] private float scaleVal;
+    [SerializeField] private float duration;
+    [SerializeField] private int vibrato;
 
 
     private void OnEnable() 
@@ -59,8 +68,6 @@ public class BossDamageControl : Obstacleable
     private IEnumerator ChangeColor(float time)
     {
         meshRenderer.material.color=Color.red;
-        //particle.Play();
-        //StartPointMove();
         transform.DOScale(Vector3.one/1.3f,time).OnComplete(()=>{
             transform.DOScale(Vector3.one,time);
         });
@@ -71,19 +78,9 @@ public class BossDamageControl : Obstacleable
 
     private void OnBossDamage()
     {
-        GetDamage(1,thunderParticle);
+        GetDamage(1,specialDamageParticles[weaponData.weaponIndexParticle]);
+        character.DOPunchScale(new Vector3(scaleVal,scaleVal,scaleVal),duration,vibrato,1);
         ballData.damageAmount=ballData.damageAmount/3;
     }
-    //Damage aldiginda kirmizi bir sekilde ciksin
-    /*
-    internal void XPEffect()
-    {
-        //BUNU 3UNDE DE YAPIYOR. ONA DIKKAT ETMEK LAZIM. BALL CONTROLLERDEN YAZ
 
-        GameObject XP=Instantiate(scoreXP,transform.position,Quaternion.identity);
-        XP.transform.DOLocalJump(XP.transform.localPosition,1,1,1,false);
-        XP.transform.GetChild(0).GetComponent<TextMeshPro>().text=" + " + gameData.increaseScore.ToString();
-        XP.transform.GetChild(0).GetComponent<TextMeshPro>().DOFade(0,1.5f).OnComplete(()=>XP.transform.GetChild(0).gameObject.SetActive(false));
-        Destroy(XP,2);
-    }*/
 }
