@@ -177,10 +177,7 @@ public class GameManager : MonoBehaviour
     }
     private void OnNextLevel()
     {
-        gameData.ProgressNumber=0;
-        gameData.levelProgressNumber=0;
-        gameData.isGameEnd=true;
-        ballData.isItPassed=false;
+        ClearData();
         EventManager.Broadcast(GameEvent.OnUIRequirementUpdate);
         StarterPack();
     }
