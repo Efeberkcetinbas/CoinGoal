@@ -16,11 +16,11 @@ MonoBehaviour:
   coin: 0
   increaseScore: 10
   increaseCoinAmount: 1
-  LevelNumberIndex: 4
+  LevelNumberIndex: 1
   LevelRequirementNumber: 10
   BorderIndex: 0
-  levelProgressNumber: 6
+  levelProgressNumber: 0
   BackTime: 25
-  ProgressNumber: 0.6
-  isGameEnd: 0
-  isBossLevel: 0
+  ProgressNumber: 0
+  isGameEnd: 1
+  isBossLevel: 1

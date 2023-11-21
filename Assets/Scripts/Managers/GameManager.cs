@@ -158,8 +158,11 @@ public class GameManager : MonoBehaviour
         gameData.isGameEnd=true;
         Debug.Log("Duration:");
         yield return waitForSeconds;
-        Debug.Log("WAIT Duration:");
-        EventManager.Broadcast(GameEvent.OnPortalOpen);
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //BOLUM SONU ATIS OYUNU
+        //SAHNEDE PUANLI HEDEFLER BELIRIYOR VE ONLARA SIRASIYLA UC ATIS YAPIYORUZ. DAHA SONRA PORTAL YERINE SUCCESS OLUYOR
+        /*Debug.Log("WAIT Duration:");
+        EventManager.Broadcast(GameEvent.OnPortalOpen);*/
 
     }
   
