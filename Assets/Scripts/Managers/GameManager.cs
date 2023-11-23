@@ -161,8 +161,8 @@ public class GameManager : MonoBehaviour
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //BOLUM SONU ATIS OYUNU
         //SAHNEDE PUANLI HEDEFLER BELIRIYOR VE ONLARA SIRASIYLA UC ATIS YAPIYORUZ. DAHA SONRA PORTAL YERINE SUCCESS OLUYOR
-        /*Debug.Log("WAIT Duration:");
-        EventManager.Broadcast(GameEvent.OnPortalOpen);*/
+        /*Debug.Log("WAIT Duration:"); */
+        EventManager.Broadcast(GameEvent.OnPortalOpen);
 
     }
   

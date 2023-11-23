@@ -52,7 +52,7 @@ public class LevelManager : MonoBehaviour
         LoadLevel();
         EventManager.Broadcast(GameEvent.OnNextLevel);
         
-        if(gameData.LevelNumberIndex%5==0)
+        if(gameData.LevelNumberIndex%10==0)
         {        
             EventManager.Broadcast(GameEvent.OnBossActive);
             EventManager.Broadcast(GameEvent.OnBossBall);
