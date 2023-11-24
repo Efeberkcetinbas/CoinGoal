@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PortalControl : MonoBehaviour
 {
     [SerializeField] private GameObject portal;
     public Vector3 PortalPosition;
+    [SerializeField] private float y,duration;
 
     private WaitForSeconds waitForSeconds;
 
@@ -39,6 +41,9 @@ public class PortalControl : MonoBehaviour
     private void OnPortalOpen()
     {
         portal.SetActive(true);
+        portal.transform.DOLocalMoveY(y,duration).OnComplete(()=>{
+
+        });
     }
 
     private IEnumerator OpenIt()

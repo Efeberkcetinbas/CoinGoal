@@ -7,6 +7,9 @@ public class BorderSpecification : MonoBehaviour
     [SerializeField] private ParticleSystem dustParticle;
     
     [SerializeField] private int ID;
+    [SerializeField] private MeshRenderer meshRenderer;
+
+    [SerializeField] private Material GreenMat;
 
     public GameData gameData;
 
@@ -28,6 +31,7 @@ public class BorderSpecification : MonoBehaviour
         if(gameData.BorderIndex==id)
         {
             dustParticle.Play();
+            meshRenderer.material=GreenMat;
         }
         
     }

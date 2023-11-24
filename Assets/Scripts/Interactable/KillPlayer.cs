@@ -6,28 +6,31 @@ public class KillPlayer : Obstacleable
 {
     [SerializeField] private GameObject destroyEffect;
 
+    [SerializeField] private GameData gameData;
+
     private bool isOne=false;
     internal override void DoAction(Player player)
     {
-        if(player.isOrderMe)
+        if(!gameData.isGameEnd)
         {
-            if(player.ballData.isDestroyer)
+            if(player.isOrderMe)
             {
-                Instantiate(destroyEffect,transform.position,Quaternion.identity);
-                Destroy(gameObject);
-            }
-            else
-            {
-                if(!isOne)
+                if(player.ballData.isDestroyer)
                 {
-                    isOne=true;
-                    EventManager.Broadcast(GameEvent.OnTrapHitPlayer);
-                    Debug.Log("KAC KEZ CAGIRILDI");
+                    Instantiate(destroyEffect,transform.position,Quaternion.identity);
+                    Destroy(gameObject);
                 }
-                
+                else
+                {
+                    if(!isOne)
+                    {
+                        isOne=true;
+                        EventManager.Broadcast(GameEvent.OnTrapHitPlayer);
+                        Debug.Log("KAC KEZ CAGIRILDI");
+                    }
+                    
+                }
             }
-        }
-        
-        
+        }           
     }
 }

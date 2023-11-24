@@ -248,7 +248,8 @@ public class BallController : MonoBehaviour
 
     private void OnPortalOpen()
     {
-        StartCoroutine(MoveBallsJump());
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
+        //StartCoroutine(MoveBallsJump());
     }
 
     
