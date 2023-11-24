@@ -116,9 +116,9 @@ public class CameraManager : MonoBehaviour
 
     private void OnPortalOpen()
     {
-        /*Portal=FindObjectOfType<PortalControl>().transform;
+        Portal=FindObjectOfType<PortalControl>().transform;
         ChangeFieldOfView(40,5);
-        ChangeFollow(Portal);*/
+        ChangeFollow(Portal);
     }
 
     private void OnBordersDown(int id)

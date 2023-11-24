@@ -42,7 +42,7 @@ public class PortalControl : MonoBehaviour
     {
         portal.SetActive(true);
         portal.transform.DOLocalMoveY(y,duration).OnComplete(()=>{
-
+            
         });
     }
 
