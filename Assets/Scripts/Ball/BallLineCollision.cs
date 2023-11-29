@@ -53,10 +53,14 @@ public class BallLineCollision : MonoBehaviour
                 // A collision has occurred with an object that meets the criteria
                     if(!gameData.isBossLevel)
                     {
-                        EventManager.Broadcast(GameEvent.OnPassBetween);
-                        hit.collider.GetComponent<Player>().XPEffect();
-                        ballData.isItPassed=true;
-                        StartCoroutine(LineEffect());
+                        if(gameData.canChangeIndex && gameData.canIntersect)
+                        {
+                            EventManager.Broadcast(GameEvent.OnPassBetween);
+                            hit.collider.GetComponent<Player>().XPEffect();
+                            ballData.isItPassed=true;
+                            StartCoroutine(LineEffect());
+                        }
+                        
                     }
                     else
                     {

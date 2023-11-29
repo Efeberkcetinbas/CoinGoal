@@ -68,6 +68,8 @@ public class BorderListControl : MonoBehaviour
             if (index < borderReq.Count)
             {
                 // Only calculate temp and proceed if there are more borders
+                Debug.Log("BALLS UNITED");
+                EventManager.Broadcast(GameEvent.OnBallsUnited);
                 CalculateTemp();
             }
             else

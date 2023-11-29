@@ -63,7 +63,8 @@ public class BallController : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnDamagePlayer,OnDamagePlayer);
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
 
-        
+        EventManager.AddHandler(GameEvent.OnBallsUnited,OnBallsUnited);
+        EventManager.AddHandler(GameEvent.OnBallsDivided,OnBallsDivided);
         
     }
 
@@ -74,6 +75,10 @@ public class BallController : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
         EventManager.RemoveHandler(GameEvent.OnDamagePlayer,OnDamagePlayer);
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+
+        EventManager.RemoveHandler(GameEvent.OnBallsUnited,OnBallsUnited);
+        EventManager.RemoveHandler(GameEvent.OnBallsDivided,OnBallsDivided);
+
     }
 
     private void Update() 
@@ -102,7 +107,11 @@ public class BallController : MonoBehaviour
                         currentBallRigidbody.transform.DOScale(Vector3.one/1.15f,0.3f);
                         if(isTurn)
                         {
-                            ballData.currentBallIndex++;
+                            if(gameData.canChangeIndex)
+                            {
+                                ballData.currentBallIndex++;
+                            }
+                                
                             
                             if (ballData.currentBallIndex >= balls.Length)
                             {
@@ -156,7 +165,7 @@ public class BallController : MonoBehaviour
                             
                             //Ball is Change when I touch to start
                             isTurn=true;
-
+                            gameData.canIntersect=true;
                             powerIndicator.SetPosition(0, Vector3.zero);
                             powerIndicator.SetPosition(1, Vector3.zero);
                             //powerIndicate.localScale=new Vector3(1,1,1);
@@ -219,6 +228,35 @@ public class BallController : MonoBehaviour
 
     }
 
+    private void OnBallsUnited()
+    {
+        for (int i = 0; i < balls.Length; i++)
+        {
+            //Bunu Divided da kullanirsin. Dividen da diger balller aktif olan indexin yerine gelir
+            //balls[i].transform.position=balls[0].transform.position;
+            balls[i].tag="Untagged";
+            balls[i].gameObject.SetActive(false);
+        }
+
+        balls[ballData.currentBallIndex].gameObject.SetActive(true);
+        balls[ballData.currentBallIndex].tag="Player";
+        gameData.canChangeIndex=false;
+
+    }
+
+    private void OnBallsDivided()
+    {
+        for (int i = 0; i < balls.Length; i++)
+        {
+            balls[i].gameObject.SetActive(true);
+            balls[i].transform.position=balls[ballData.currentBallIndex].transform.position;
+            balls[i].tag="Player";
+        }
+        gameData.canIntersect=false;
+        gameData.canChangeIndex=true;
+        currentBallRigidbody.isKinematic=true;
+    }
+
     private void OnNextLevel()
     {
         for (int i = 0; i < balls.Length; i++)
@@ -229,6 +267,7 @@ public class BallController : MonoBehaviour
             balls[i].transform.position=FindObjectOfType<BallPositions>().PositionsOfBall[i];
         }
         currentBallRigidbody.isKinematic=false;
+        gameData.canIntersect=false;
     }
 
     private void OnRestartLevel()

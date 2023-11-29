@@ -196,6 +196,7 @@ public class GameManager : MonoBehaviour
     {
         ballData.isItPassed=false;
         gameData.isGameEnd=true;
+        gameData.canChangeIndex=true;
         gameData.ProgressNumber=0;
         gameData.levelProgressNumber=0;
     }

@@ -10,6 +10,9 @@ public enum GameEvent
     OnDamagePlayer,
     OnPlayerDead,
     OnSpecialTechnique,
+    OnBallsUnited,
+    OnBallsDivided,
+
 
     //EndGame
     OnPortalOpen,

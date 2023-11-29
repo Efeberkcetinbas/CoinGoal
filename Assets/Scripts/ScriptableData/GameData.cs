@@ -31,4 +31,7 @@ public class GameData : ScriptableObject
     //Game Management
     public bool isGameEnd=false;
     public bool isBossLevel=false;
+    public bool canChangeIndex=true;
+    public bool canIntersect=true;
+
 }
