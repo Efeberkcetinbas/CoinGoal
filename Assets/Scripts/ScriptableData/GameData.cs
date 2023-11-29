@@ -9,7 +9,7 @@ public class GameData : ScriptableObject
 
     //Level Score and Coin
     public int score;
-    public int coin;
+    public int diamond;
     public int increaseScore;
     public int increaseCoinAmount;
     

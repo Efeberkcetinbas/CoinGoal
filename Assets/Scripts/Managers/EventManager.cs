@@ -23,6 +23,7 @@ public enum GameEvent
 
 
     //Buffs
+    OnOpenBuffPanel,
     OnUpdateBuff,
     OnInvulnerable,
     OnVulnerable,
@@ -69,6 +70,7 @@ public enum GameEvent
 
     //Game Management
     OnIncreaseScore,
+    OnIncreaseGold,
     OnUIUpdate,
     OnUIRequirementUpdate,
     OnUIGameOver,

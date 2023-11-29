@@ -21,7 +21,7 @@ public class GoldTrigger : Obstacleable
     
     internal override void DoAction(Player player)
     {
-        //EventManager.Broadcast(GameEvent.OnIncreaseGold);
+        EventManager.Broadcast(GameEvent.OnIncreaseGold);
         StartCoinMove();
     }   
 

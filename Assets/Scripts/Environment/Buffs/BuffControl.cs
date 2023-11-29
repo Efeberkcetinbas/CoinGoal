@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class BuffControl : MonoBehaviour
 {
@@ -10,9 +12,25 @@ public class BuffControl : MonoBehaviour
     public GameData gameData;
     public BallData ballData;
 
-    private bool isBuffused=false;
+    [SerializeField] private bool isBuffused=false;
 
-    [SerializeField] private bool isSpeedUp,isDestroyer,isInvulnerable=false;
+    [Header("Buff Values / Boolean")]
+    [SerializeField] private bool isSpeedUp;
+    [SerializeField] private bool isDestroyer;
+    [SerializeField] private bool isInvulnerable;
+
+    [Header("Buff Values / Buttons")]
+    [SerializeField] private Button speedUpButton;
+    [SerializeField] private Button destroyerButton;
+    [SerializeField] private Button invulnerableButton;
+
+    
+
+    [Header("Buff Values / Texts")]
+    [SerializeField] private TextMeshProUGUI speedUpText;
+    [SerializeField] private TextMeshProUGUI destroyerText;
+    [SerializeField] private TextMeshProUGUI invulnerableText;
+
 
 
     [SerializeField] private GameObject buffBar;
@@ -21,12 +39,14 @@ public class BuffControl : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.AddHandler(GameEvent.OnOpenBuffPanel,OnOpenBuffPanel);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.RemoveHandler(GameEvent.OnOpenBuffPanel,OnOpenBuffPanel);
     }
 
     private void OnNextLevel()
@@ -34,22 +54,77 @@ public class BuffControl : MonoBehaviour
         isBuffused=false;
     }
 
+    private void OnOpenBuffPanel()
+    {
+        SetPriceTexts(speedUpText,ballData.PriceValSpeed);
+        SetPriceTexts(destroyerText,ballData.PriceValDestroyer);
+        SetPriceTexts(invulnerableText,ballData.PriceValInvulnerability);
+
+        CheckButtons(ballData.PriceValSpeed,speedUpButton);
+        CheckButtons(ballData.PriceValDestroyer,destroyerButton);
+        CheckButtons(ballData.PriceValInvulnerability,invulnerableButton);
+    }
+
+    #region BuffUIControl
+    private void SetPriceTexts(TextMeshProUGUI textMeshProUGUI,int val)
+    {
+        textMeshProUGUI.SetText(val.ToString());
+    }
+
+    private void CheckButtons(int val,Button button)
+    {
+        if(val<=gameData.diamond)
+        {
+            button.interactable=true;
+        }
+        else
+        {
+
+            button.interactable=false;
+        }
+    }
+
+    private void BuyBuff(bool val,int priceVal,Button button,TextMeshProUGUI textMeshProUGUI)
+    {
+        if(gameData.diamond>=priceVal)
+        {
+            val=true;
+            isBuffused=true;
+            gameData.diamond-=priceVal;
+        }
+
+        else
+        {
+            return;
+        }
+    }
+
+    #endregion
+
     #region Buffs Panel
 
     public void SetDestroyer()
     {
+        BuyBuff(isDestroyer,ballData.PriceValDestroyer,destroyerButton,destroyerText);
         isDestroyer=true;
-        isBuffused=true;
+        ballData.PriceValDestroyer*=2;
+        OnOpenBuffPanel();
     }
     public void SetSpeedUp()
     {
+        BuyBuff(isSpeedUp,ballData.PriceValSpeed,speedUpButton,speedUpText);
         isSpeedUp=true;
-        isBuffused=true;
+        ballData.PriceValSpeed*=2;
+        SetPriceTexts(speedUpText, ballData.PriceValSpeed);
+        OnOpenBuffPanel();
     }
     public void SetInvulnerable()
     {
+        BuyBuff(isInvulnerable,ballData.PriceValInvulnerability,invulnerableButton,invulnerableText);
         isInvulnerable=true;
-        isBuffused=true;
+        ballData.PriceValInvulnerability*=2;
+        SetPriceTexts(invulnerableText, ballData.PriceValInvulnerability);
+        OnOpenBuffPanel();
     }
 
     

@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ac34ccd1a225b4d9cf2e187a4a2478, type: 3}
   m_Name: BallData
   m_EditorClassIdentifier: 
-  currentBallIndex: 1
+  currentBallIndex: 2
   damageAmount: 1
-  BallSpeed: 0.30363566
+  BallSpeed: 0.032557175
   MaxBallSpeed: 20
+  PriceValSpeed: 20
+  PriceValDestroyer: 10
+  PriceValInvulnerability: 20
   isItPassed: 1
   isInvulnerable: 0
   isDestroyer: 0

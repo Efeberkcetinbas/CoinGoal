@@ -11,6 +11,9 @@ public class BallData : ScriptableObject
     public float BallSpeed;
 
     public int MaxBallSpeed=20;
+    public int PriceValSpeed;
+    public int PriceValDestroyer;
+    public int PriceValInvulnerability;
 
     public bool isItPassed=false;
 

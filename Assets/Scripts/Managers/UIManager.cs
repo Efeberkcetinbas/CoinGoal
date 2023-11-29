@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private TextMeshProUGUI fromLevelText;
     [SerializeField] private TextMeshProUGUI toLevelText;
+    [SerializeField] private TextMeshProUGUI diamondText;
 
     [Header("Image's")]
     [SerializeField] private Image progressBar;
@@ -43,6 +44,7 @@ public class UIManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnUpdateBuff,OnUpdateBuff);
         EventManager.AddHandler(GameEvent.OnBossActive,OnBossActive);
         EventManager.AddHandler(GameEvent.OnUIBossUpdate,OnUpdateUIBoss);
+        EventManager.AddHandler(GameEvent.OnIncreaseGold,OnIncreaseGold);
     }
     private void OnDisable()
     {
@@ -52,6 +54,7 @@ public class UIManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnUpdateBuff,OnUpdateBuff);
         EventManager.RemoveHandler(GameEvent.OnBossActive,OnBossActive);
         EventManager.RemoveHandler(GameEvent.OnUIBossUpdate,OnUpdateUIBoss);
+        EventManager.RemoveHandler(GameEvent.OnIncreaseGold,OnIncreaseGold);
     }
 
     private void Start() 
@@ -64,6 +67,11 @@ public class UIManager : MonoBehaviour
     {
         score.SetText(gameData.score.ToString());
         score.transform.DOScale(new Vector3(1.5f,1.5f,1.5f),0.2f).OnComplete(()=>score.transform.DOScale(new Vector3(1,1f,1f),0.2f));
+    }
+
+    private void OnIncreaseGold()
+    {
+        diamondText.SetText(gameData.diamond.ToString());
     }
 
     private void OnNextLevel()
