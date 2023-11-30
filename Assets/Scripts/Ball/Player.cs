@@ -23,8 +23,9 @@ public class Player : MonoBehaviour
 
     public bool isOrderMe=false;
 
-    [SerializeField] private GameObject weapon;
+    private int ballsPassTime=0;
 
+    private int ReqPass=3;
     
 
     private void OnEnable() 
@@ -38,6 +39,8 @@ public class Player : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnSpeedUp,OnSpeedUp);
         EventManager.AddHandler(GameEvent.OnSpeedNormal,OnSpeedNormal);
         EventManager.AddHandler(GameEvent.OnSpecialTechnique,OnSpecialTechnique);
+        EventManager.AddHandler(GameEvent.OnBossBall,OnBossBall);
+        EventManager.AddHandler(GameEvent.OnBossDead,OnBossDead);
 
     }
 
@@ -52,6 +55,8 @@ public class Player : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnSpeedUp,OnSpeedUp);
         EventManager.RemoveHandler(GameEvent.OnSpeedNormal,OnSpeedNormal);
         EventManager.RemoveHandler(GameEvent.OnSpecialTechnique,OnSpecialTechnique);
+        EventManager.RemoveHandler(GameEvent.OnBossBall,OnBossBall);
+        EventManager.RemoveHandler(GameEvent.OnBossDead,OnBossDead);
 
     }
     private void OnTrapHitPlayer()
@@ -74,10 +79,35 @@ public class Player : MonoBehaviour
         }
     }
 
+    #region Boss Level
+    private void OnBossBall()
+    {
+        ballsPassTime=0;
+    }
+
     private void OnSpecialTechnique()
     {
-        Instantiate(weapon,transform.position,Quaternion.identity);
+        ballsPassTime++;
+        CheckPassTime();
     }
+
+    private void CheckPassTime()
+    {
+        if(ballsPassTime==ReqPass)
+        {
+            ballData.damageAmount*=3;
+            EventManager.Broadcast(GameEvent.OnBallsUnited);
+            
+        }
+            
+    }
+
+    private void OnBossDead()
+    {
+        EventManager.Broadcast(GameEvent.OnBallsDivided);
+    }
+
+    #endregion
 
     
 

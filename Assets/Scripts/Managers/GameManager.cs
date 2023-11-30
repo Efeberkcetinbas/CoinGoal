@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     
     private void StarterPack()
     {
-        if(gameData.LevelNumberIndex%5!=0)
+        if(gameData.LevelNumberIndex%2!=0)
         {
             OnNormalBalls();
             Debug.Log("BURAYA MI GIRIR USTA");
@@ -187,7 +187,8 @@ public class GameManager : MonoBehaviour
 
     private void OnGameStart()
     {
-        UpdateRequirement();
+        if(gameData.LevelNumberIndex%2!=0)
+            UpdateRequirement();
     }
 
     

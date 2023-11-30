@@ -10,6 +10,7 @@ public class BossData : ScriptableObject {
     
     public int Health;
     public int TempHealth;
+    public int ReqPass;
 
 
 }

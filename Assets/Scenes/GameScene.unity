@@ -11165,15 +11165,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: 714e86a42ad2e4443a9a9db6ac3f3bff, type: 2}
   ballData: {fileID: 11400000, guid: 6692e14ad7a601e4ca2edd6e74a2debb, type: 2}
+  isBuffused: 0
   isSpeedUp: 0
   isDestroyer: 0
   isInvulnerable: 0
   speedUpButton: {fileID: 1695673270}
   destroyerButton: {fileID: 1319283952}
   invulnerableButton: {fileID: 1958894671}
-  speedUpPrice: 50
-  destroyerPrice: 50
-  InvulnerablePrice: 50
   speedUpText: {fileID: 1535216220}
   destroyerText: {fileID: 1391929458}
   invulnerableText: {fileID: 80498579}
@@ -12697,6 +12695,68 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1490346116900087467, guid: 7fb097be9486dc646bd4dc15db43e942, type: 3}
   m_PrefabInstance: {fileID: 164203276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &170509191
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1965771094}
+    m_Modifications:
+    - target: {fileID: 1423752465986543243, guid: 15c860abecbee3e4fa0ddb9a6fe90b87, type: 3}
+      propertyPath: m_Name
+      value: BreakeableObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768225801909994545, guid: 15c860abecbee3e4fa0ddb9a6fe90b87, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768225801909994545, guid: 15c860abecbee3e4fa0ddb9a6fe90b87, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768225801909994545, guid: 15c860abecbee3e4fa0ddb9a6fe90b87, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768225801909994545, guid: 15c860abecbee3e4fa0ddb9a6fe90b87, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768225801909994545, guid: 15c860abecbee3e4fa0ddb9a6fe90b87, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768225801909994545, guid: 15c860abecbee3e4fa0ddb9a6fe90b87, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768225801909994545, guid: 15c860abecbee3e4fa0ddb9a6fe90b87, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768225801909994545, guid: 15c860abecbee3e4fa0ddb9a6fe90b87, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768225801909994545, guid: 15c860abecbee3e4fa0ddb9a6fe90b87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768225801909994545, guid: 15c860abecbee3e4fa0ddb9a6fe90b87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768225801909994545, guid: 15c860abecbee3e4fa0ddb9a6fe90b87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 15c860abecbee3e4fa0ddb9a6fe90b87, type: 3}
+--- !u!4 &170509192 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1768225801909994545, guid: 15c860abecbee3e4fa0ddb9a6fe90b87, type: 3}
+  m_PrefabInstance: {fileID: 170509191}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &171843956
 GameObject:
@@ -106351,7 +106411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1631823975
 Transform:
   m_ObjectHideFlags: 0
@@ -106691,8 +106751,8 @@ MonoBehaviour:
   gameData: {fileID: 11400000, guid: 714e86a42ad2e4443a9a9db6ac3f3bff, type: 2}
   levels:
   - {fileID: 1631823974}
+  - {fileID: 1965771093}
   - {fileID: 57746066}
-  - {fileID: 372390835}
 --- !u!1001 &1653102507
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -117645,6 +117705,7 @@ Transform:
   - {fileID: 903541513}
   - {fileID: 8699679643616116857}
   - {fileID: 665792143}
+  - {fileID: 170509192}
   m_Father: {fileID: 210050978}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -121579,7 +121640,7 @@ MonoBehaviour:
   score: {fileID: 829824186}
   fromLevelText: {fileID: 299187752}
   toLevelText: {fileID: 1736227952}
-  diamondText: {fileID: 0}
+  diamondText: {fileID: 2138225705}
   progressBar: {fileID: 2040967428}
   buffProgressBar: {fileID: 1132330822}
   bossImage: {fileID: 901121622}
@@ -121605,7 +121666,7 @@ GameObject:
   - component: {fileID: 2138225706}
   - component: {fileID: 2138225705}
   m_Layer: 5
-  m_Name: ScoreText
+  m_Name: DiamondText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
