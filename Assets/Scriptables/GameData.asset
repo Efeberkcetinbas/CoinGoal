@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14db6eb11dc14d4a9aadc380891c5fd, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  score: 770
+  score: 850
   diamond: 30
   increaseScore: 10
   increaseCoinAmount: 1
@@ -23,6 +23,6 @@ MonoBehaviour:
   BackTime: 25
   ProgressNumber: 0
   isGameEnd: 1
-  isMiniGame: 1
+  isMiniGame: 0
   canChangeIndex: 1
   canIntersect: 0

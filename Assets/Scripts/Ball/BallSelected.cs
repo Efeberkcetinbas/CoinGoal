@@ -16,7 +16,7 @@ public class BallSelected : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnBallIndexIncrease,OnBallIndexIncrease);
         EventManager.AddHandler(GameEvent.OnTouchEnd,OnTouchEnd);
-        EventManager.AddHandler(GameEvent.OnMiniGameFinish,OnMiniGameFinish);
+        EventManager.AddHandler(GameEvent.OnGoal,OnGoal);
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
     }
 
@@ -24,7 +24,7 @@ public class BallSelected : MonoBehaviour
     {
         EventManager.RemoveHandler(GameEvent.OnBallIndexIncrease,OnBallIndexIncrease);
         EventManager.RemoveHandler(GameEvent.OnTouchEnd,OnTouchEnd);
-        EventManager.RemoveHandler(GameEvent.OnMiniGameFinish,OnMiniGameFinish);
+        EventManager.RemoveHandler(GameEvent.OnGoal,OnGoal);
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
     }
 
@@ -50,7 +50,7 @@ public class BallSelected : MonoBehaviour
 
     
 
-    private void OnMiniGameFinish()
+    private void OnGoal()
     {
         particle.gameObject.SetActive(false);
     }

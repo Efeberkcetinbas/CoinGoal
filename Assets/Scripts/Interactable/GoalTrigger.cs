@@ -38,7 +38,8 @@ public class GoalTrigger : Obstacleable
                 Debug.Log("GOALLLLLL");
                 isGoal=true;
                 goalParticle.Play();
-                EventManager.Broadcast(GameEvent.OnMiniGameFinish);
+                //EventManager.Broadcast(GameEvent.OnMiniGameFinish);
+                EventManager.Broadcast(GameEvent.OnGoal);
             }
 
             else

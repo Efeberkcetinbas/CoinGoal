@@ -36,7 +36,7 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnUpPortal,OnUpPortal);
         EventManager.AddHandler(GameEvent.OnBridgeOpen,OnBridgeOpen);
         EventManager.AddHandler(GameEvent.OnMiniGamePasses,OnMiniGamePasses);
-        EventManager.AddHandler(GameEvent.OnMiniGameFinish,OnMiniGameFinish);
+        EventManager.AddHandler(GameEvent.OnGoal,OnGoal);
     }
     private void OnDisable() 
     {
@@ -54,7 +54,7 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnUpPortal,OnUpPortal);
         EventManager.RemoveHandler(GameEvent.OnBridgeOpen,OnBridgeOpen);
         EventManager.RemoveHandler(GameEvent.OnMiniGamePasses,OnMiniGamePasses);
-        EventManager.RemoveHandler(GameEvent.OnMiniGameFinish,OnMiniGameFinish);
+        EventManager.RemoveHandler(GameEvent.OnGoal,OnGoal);
     }
 
 
@@ -136,7 +136,7 @@ public class AudioManager : MonoBehaviour
         effectSource.PlayOneShot(MiniPassSound);
     }
 
-    private void OnMiniGameFinish()
+    private void OnGoal()
     {
         effectSource.PlayOneShot(GoalSound);
     }

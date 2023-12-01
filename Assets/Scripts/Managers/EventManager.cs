@@ -54,6 +54,7 @@ public enum GameEvent
     OnMiniGameUIUpdate,
     OnMiniGamePasses,
     OnMiniGameActive,
+    OnGoal,
 
     //Levels
     OnBordersDown,
