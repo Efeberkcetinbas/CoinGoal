@@ -69,7 +69,6 @@ public class GameManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnDamagePlayer,OnDamagePlayer);
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.AddHandler(GameEvent.OnPlayerDead,OnPlayerDead);
-        EventManager.AddHandler(GameEvent.OnNormalBalls,OnNormalBalls);
         EventManager.AddHandler(GameEvent.OnMiniGameBall,OnMiniGameBall);
     }
 
@@ -81,12 +80,10 @@ public class GameManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnDamagePlayer,OnDamagePlayer);
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.RemoveHandler(GameEvent.OnPlayerDead,OnPlayerDead);
-        EventManager.RemoveHandler(GameEvent.OnNormalBalls,OnNormalBalls);
         EventManager.RemoveHandler(GameEvent.OnMiniGameBall,OnMiniGameBall);
     }
 
-    //Boss Ball and Normal Ball Activity Settings.
-    //Boss Ball Canvas Open and the others false
+    
     private void OnMiniGameBall()
     {
         OpenClose(MiniGameBalls,true);

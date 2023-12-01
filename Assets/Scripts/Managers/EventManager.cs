@@ -9,16 +9,15 @@ public enum GameEvent
     OnTrapHitPlayer,
     OnDamagePlayer,
     OnPlayerDead,
-    OnSpecialTechnique,
     OnBallsUnited,
     OnBallsDivided,
 
 
     //EndGame
     OnPortalOpen,
-    OnWindSound,
+    
+
     OnMiniGameBall,
-    OnNormalBalls,
     
 
 
@@ -43,6 +42,8 @@ public enum GameEvent
     OnOpenTraps,
     OnCloseTraps,
     OnBridgeOpen,
+    OnWindSound,
+
     
     OnHitWall,
     OnUpPortal,
@@ -50,6 +51,7 @@ public enum GameEvent
     //Mini Game
     OnMiniGameFinish,
     OnMiniGameUIUpdate,
+    OnMiniGamePasses,
     OnMiniGameActive,
 
     //Levels

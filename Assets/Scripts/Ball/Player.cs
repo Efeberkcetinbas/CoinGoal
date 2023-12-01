@@ -38,9 +38,8 @@ public class Player : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnNormal,OnNormal);
         EventManager.AddHandler(GameEvent.OnSpeedUp,OnSpeedUp);
         EventManager.AddHandler(GameEvent.OnSpeedNormal,OnSpeedNormal);
-        EventManager.AddHandler(GameEvent.OnSpecialTechnique,OnSpecialTechnique);
+        EventManager.AddHandler(GameEvent.OnMiniGamePasses,OnSpecialTechnique);
         EventManager.AddHandler(GameEvent.OnMiniGameBall,OnMiniGameBall);
-        EventManager.AddHandler(GameEvent.OnMiniGameFinish,OnMiniGameFinish);
 
     }
 
@@ -54,9 +53,8 @@ public class Player : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnNormal,OnNormal);
         EventManager.RemoveHandler(GameEvent.OnSpeedUp,OnSpeedUp);
         EventManager.RemoveHandler(GameEvent.OnSpeedNormal,OnSpeedNormal);
-        EventManager.RemoveHandler(GameEvent.OnSpecialTechnique,OnSpecialTechnique);
+        EventManager.RemoveHandler(GameEvent.OnMiniGamePasses,OnSpecialTechnique);
         EventManager.RemoveHandler(GameEvent.OnMiniGameBall,OnMiniGameBall);
-        EventManager.RemoveHandler(GameEvent.OnMiniGameFinish,OnMiniGameFinish);
 
     }
     private void OnTrapHitPlayer()
@@ -88,24 +86,11 @@ public class Player : MonoBehaviour
     private void OnSpecialTechnique()
     {
         ballsPassTime++;
-        CheckPassTime();
     }
 
-    private void CheckPassTime()
-    {
-        if(ballsPassTime==ReqPass)
-        {
-            ballData.damageAmount*=3;
-            EventManager.Broadcast(GameEvent.OnBallsUnited);
-            
-        }
-            
-    }
+    
 
-    private void OnMiniGameFinish()
-    {
-        EventManager.Broadcast(GameEvent.OnBallsDivided);
-    }
+    
 
     #endregion
 

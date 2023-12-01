@@ -28,7 +28,7 @@ public class PanelManager : MonoBehaviour
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
-        EventManager.AddHandler(GameEvent.OnMiniGameActive,OnBossActive);
+        EventManager.AddHandler(GameEvent.OnMiniGameActive,OnMiniGameActive);
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.AddHandler(GameEvent.OnBallMeshChange,OnBallMeshChange);
         EventManager.AddHandler(GameEvent.OnIncreaseScore,OnIncreaseScore);
@@ -39,7 +39,7 @@ public class PanelManager : MonoBehaviour
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
-        EventManager.RemoveHandler(GameEvent.OnMiniGameActive,OnBossActive);
+        EventManager.RemoveHandler(GameEvent.OnMiniGameActive,OnMiniGameActive);
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.RemoveHandler(GameEvent.OnBallMeshChange,OnBallMeshChange);
         EventManager.RemoveHandler(GameEvent.OnIncreaseScore,OnIncreaseScore);
@@ -69,7 +69,7 @@ public class PanelManager : MonoBehaviour
         }));
     }
 
-    private void OnBossActive()
+    private void OnMiniGameActive()
     {
         UICanvas.SetActive(false);
     }

@@ -24,7 +24,6 @@ public class UIManager : MonoBehaviour
     [Header("Data's")]
     public GameData gameData;
     public PlayerData playerData;
-    public BossData bossData;
 
     private void OnEnable()
     {

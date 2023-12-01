@@ -68,7 +68,7 @@ public class BallLineCollision : MonoBehaviour
                         {
                             Debug.Log("SPECIAL TECHNIQUE HOLLOW PURPLE");
                             ballData.isItPassed=true;
-                            EventManager.Broadcast(GameEvent.OnSpecialTechnique);
+                            EventManager.Broadcast(GameEvent.OnMiniGamePasses);
                         }
                         
                     }

@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
     public AudioClip GameOverSound,PassBetweenSound,TouchStartSound,TouchEndSound,HitWallSound,ButtonSound,BorderDownSound,GameStartSound,PlayerDeadSound,BounceSound,PortalSound,OnUpPortalSound,
-    BridgeSound,SpecialTechniqueSound;
+    BridgeSound;
 
     AudioSource musicSource,effectSource;
 
@@ -35,7 +35,6 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.AddHandler(GameEvent.OnUpPortal,OnUpPortal);
         EventManager.AddHandler(GameEvent.OnBridgeOpen,OnBridgeOpen);
-        EventManager.AddHandler(GameEvent.OnSpecialTechnique,OnSpecialTechnique);
     }
     private void OnDisable() 
     {
@@ -52,7 +51,6 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.RemoveHandler(GameEvent.OnUpPortal,OnUpPortal);
         EventManager.RemoveHandler(GameEvent.OnBridgeOpen,OnBridgeOpen);
-        EventManager.RemoveHandler(GameEvent.OnSpecialTechnique,OnSpecialTechnique);
     }
 
 
@@ -129,10 +127,7 @@ public class AudioManager : MonoBehaviour
         effectSource.PlayOneShot(BridgeSound);
     }
 
-    private void OnSpecialTechnique()
-    {
-        effectSource.PlayOneShot(SpecialTechniqueSound);
-    }
+    
     private float SetVolume(float vol)
     {
         return effectSource.volume=vol;
