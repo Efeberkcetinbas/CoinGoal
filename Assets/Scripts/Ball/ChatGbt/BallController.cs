@@ -16,9 +16,14 @@ public class BallController : MonoBehaviour
 
     public BallData ballData;
     public GameData gameData;
-    private Rigidbody currentBallRigidbody;
 
+
+    private Rigidbody currentBallRigidbody;
+    private Camera cam;
+    
+    
     [SerializeField] private LineRenderer powerIndicator;
+
     public Material lineMaterial;
 
 
@@ -29,7 +34,10 @@ public class BallController : MonoBehaviour
 
     public float maxLineLength=2f;
 
-    private Camera cam;
+
+    
+
+    
     
     
 
@@ -65,6 +73,10 @@ public class BallController : MonoBehaviour
 
         EventManager.AddHandler(GameEvent.OnBallsUnited,OnBallsUnited);
         EventManager.AddHandler(GameEvent.OnBallsDivided,OnBallsDivided);
+
+        EventManager.AddHandler(GameEvent.OnMiniGameBall,OnMiniGameBall);
+        EventManager.AddHandler(GameEvent.OnMiniGamePasses,OnMiniGamePasses);
+        EventManager.AddHandler(GameEvent.OnResetBallsPosition,OnResetBallsPosition);
         
     }
 
@@ -79,12 +91,19 @@ public class BallController : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnBallsUnited,OnBallsUnited);
         EventManager.RemoveHandler(GameEvent.OnBallsDivided,OnBallsDivided);
 
+        EventManager.RemoveHandler(GameEvent.OnMiniGameBall,OnMiniGameBall);
+        EventManager.RemoveHandler(GameEvent.OnMiniGamePasses,OnMiniGamePasses);
+        EventManager.RemoveHandler(GameEvent.OnResetBallsPosition,OnResetBallsPosition);
+
     }
 
     private void Update() 
     {
         if(!gameData.isGameEnd)
             MoveBalls();
+
+        
+        
     }
     private void MoveBalls()
     {
@@ -185,6 +204,34 @@ public class BallController : MonoBehaviour
     private void OnDamagePlayer()
     {
         currentBallRigidbody.isKinematic=true;
+    }
+
+    private void OnMiniGameBall()
+    {
+        ballData.ballsPassTime=0;
+        EventManager.Broadcast(GameEvent.OnMiniGameUIUpdate);
+    }
+
+    private void OnMiniGamePasses()
+    {
+        ballData.ballsPassTime++;
+        if(ballData.ballsPassTime>=4)
+            ballData.ballsPassTime=0;
+            
+        EventManager.Broadcast(GameEvent.OnMiniGameUIUpdate);
+    }
+
+    private void OnResetBallsPosition()
+    {
+        for (int i = 0; i < balls.Length; i++)
+        {
+            //Daha optimize hali var mi?
+            balls[i].GetComponent<SphereCollider>().isTrigger=false;
+            balls[i].GetComponent<Rigidbody>().useGravity=true;
+            balls[i].transform.position=FindObjectOfType<BallPositions>().PositionsOfBall[i];
+        }
+        currentBallRigidbody.isKinematic=false;
+        gameData.canIntersect=false;
     }
     
     private void UpdateOrder()

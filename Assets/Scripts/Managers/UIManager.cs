@@ -17,13 +17,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image progressBar;
     [SerializeField] private Image buffProgressBar;
 
-    
+    [Header("Mini Game")]
+    [SerializeField] private TextMeshProUGUI counterText;
+    [SerializeField] private Image counterProgressBar;
 
     
     
     [Header("Data's")]
     public GameData gameData;
     public PlayerData playerData;
+    public BallData ballData;
+
 
     private void OnEnable()
     {
@@ -32,6 +36,7 @@ public class UIManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnUIRequirementUpdate,OnUIRequirementUpdate);
         EventManager.AddHandler(GameEvent.OnUpdateBuff,OnUpdateBuff);
         EventManager.AddHandler(GameEvent.OnIncreaseGold,OnIncreaseGold);
+        EventManager.AddHandler(GameEvent.OnMiniGameUIUpdate,OnMiniGameUIUpdate);
     }
     private void OnDisable()
     {
@@ -40,6 +45,7 @@ public class UIManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnUIRequirementUpdate,OnUIRequirementUpdate);
         EventManager.RemoveHandler(GameEvent.OnUpdateBuff,OnUpdateBuff);
         EventManager.RemoveHandler(GameEvent.OnIncreaseGold,OnIncreaseGold);
+        EventManager.RemoveHandler(GameEvent.OnMiniGameUIUpdate,OnMiniGameUIUpdate);
     }
 
     private void Start() 
@@ -73,6 +79,15 @@ public class UIManager : MonoBehaviour
     private void OnUpdateBuff()
     {
         buffProgressBar.DOFillAmount(0,gameData.BackTime+1).OnComplete(()=>buffProgressBar.gameObject.SetActive(false));
+    }
+
+    private void OnMiniGameUIUpdate()
+    {
+        counterText.SetText(ballData.ballsPassTime.ToString());
+        counterText.transform.localScale=Vector3.zero;
+        counterText.transform.DOScale(Vector3.one*1.5f,0.5f).OnComplete(()=>counterText.transform.DOScale(Vector3.zero,0.5f));
+        float val=ballData.ballsPassTime/3;
+        counterProgressBar.DOFillAmount(val,0.25f);
     }
 
     

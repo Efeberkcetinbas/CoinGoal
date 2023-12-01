@@ -23,9 +23,7 @@ public class Player : MonoBehaviour
 
     public bool isOrderMe=false;
 
-    private int ballsPassTime=0;
 
-    private int ReqPass=3;
     
 
     private void OnEnable() 
@@ -38,8 +36,6 @@ public class Player : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnNormal,OnNormal);
         EventManager.AddHandler(GameEvent.OnSpeedUp,OnSpeedUp);
         EventManager.AddHandler(GameEvent.OnSpeedNormal,OnSpeedNormal);
-        EventManager.AddHandler(GameEvent.OnMiniGamePasses,OnSpecialTechnique);
-        EventManager.AddHandler(GameEvent.OnMiniGameBall,OnMiniGameBall);
 
     }
 
@@ -53,8 +49,6 @@ public class Player : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnNormal,OnNormal);
         EventManager.RemoveHandler(GameEvent.OnSpeedUp,OnSpeedUp);
         EventManager.RemoveHandler(GameEvent.OnSpeedNormal,OnSpeedNormal);
-        EventManager.RemoveHandler(GameEvent.OnMiniGamePasses,OnSpecialTechnique);
-        EventManager.RemoveHandler(GameEvent.OnMiniGameBall,OnMiniGameBall);
 
     }
     private void OnTrapHitPlayer()
@@ -77,22 +71,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    #region Boss Level
-    private void OnMiniGameBall()
-    {
-        ballsPassTime=0;
-    }
-
-    private void OnSpecialTechnique()
-    {
-        ballsPassTime++;
-    }
-
     
-
-    
-
-    #endregion
 
     
 

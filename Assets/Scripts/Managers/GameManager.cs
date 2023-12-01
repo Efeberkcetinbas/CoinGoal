@@ -88,14 +88,14 @@ public class GameManager : MonoBehaviour
     {
         OpenClose(MiniGameBalls,true);
         OpenClose(NormalBalls,false);
-        gameData.isBossLevel=true;
+        gameData.isMiniGame=true;
     }
 
     private void OnNormalBalls()
     {
         OpenClose(MiniGameBalls,false);
         OpenClose(NormalBalls,true);
-        gameData.isBossLevel=false;
+        gameData.isMiniGame=false;
     }
     
 

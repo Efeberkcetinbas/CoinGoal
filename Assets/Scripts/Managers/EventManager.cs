@@ -11,6 +11,7 @@ public enum GameEvent
     OnPlayerDead,
     OnBallsUnited,
     OnBallsDivided,
+    OnResetBallsPosition,
 
 
     //EndGame

@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
     public AudioClip GameOverSound,PassBetweenSound,TouchStartSound,TouchEndSound,HitWallSound,ButtonSound,BorderDownSound,GameStartSound,PlayerDeadSound,BounceSound,PortalSound,OnUpPortalSound,
-    BridgeSound;
+    BridgeSound, GoalSound,MiniPassSound;
 
     AudioSource musicSource,effectSource;
 
@@ -35,6 +35,8 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.AddHandler(GameEvent.OnUpPortal,OnUpPortal);
         EventManager.AddHandler(GameEvent.OnBridgeOpen,OnBridgeOpen);
+        EventManager.AddHandler(GameEvent.OnMiniGamePasses,OnMiniGamePasses);
+        EventManager.AddHandler(GameEvent.OnMiniGameFinish,OnMiniGameFinish);
     }
     private void OnDisable() 
     {
@@ -51,6 +53,8 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.RemoveHandler(GameEvent.OnUpPortal,OnUpPortal);
         EventManager.RemoveHandler(GameEvent.OnBridgeOpen,OnBridgeOpen);
+        EventManager.RemoveHandler(GameEvent.OnMiniGamePasses,OnMiniGamePasses);
+        EventManager.RemoveHandler(GameEvent.OnMiniGameFinish,OnMiniGameFinish);
     }
 
 
@@ -126,6 +130,17 @@ public class AudioManager : MonoBehaviour
     {
         effectSource.PlayOneShot(BridgeSound);
     }
+
+    private void OnMiniGamePasses()
+    {
+        effectSource.PlayOneShot(MiniPassSound);
+    }
+
+    private void OnMiniGameFinish()
+    {
+        effectSource.PlayOneShot(GoalSound);
+    }
+
 
     
     private float SetVolume(float vol)

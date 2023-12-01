@@ -9,11 +9,13 @@ public class BallData : ScriptableObject
     public int currentBallIndex;
     public int damageAmount;
     public float BallSpeed;
+    public float ballsPassTime;
 
     public int MaxBallSpeed=20;
     public int PriceValSpeed;
     public int PriceValDestroyer;
     public int PriceValInvulnerability;
+
 
     public bool isItPassed=false;
 

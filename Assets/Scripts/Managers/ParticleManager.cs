@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ParticleManager : MonoBehaviour
 {
-    [SerializeField] private List<ParticleSystem> pointParticles=new List<ParticleSystem>();
+    [SerializeField] private List<ParticleSystem> goalExplosion=new List<ParticleSystem>();
 
     [SerializeField] private List<ParticleSystem> successExplosion=new List<ParticleSystem>();
+
 
 
     
@@ -23,14 +24,6 @@ public class ParticleManager : MonoBehaviour
     }
 
 
-    private void PlayPointParticles()
-    {
-        for (int i = 0; i < pointParticles.Count; i++)
-        {
-            pointParticles[i].Play();
-        }
-    }
-
     private void OnSuccess()
     {
         for (int i = 0; i < successExplosion.Count; i++)
@@ -38,6 +31,8 @@ public class ParticleManager : MonoBehaviour
             successExplosion[i].Play();
         }
     }
+
+    
 
     
 }

@@ -39,6 +39,7 @@ public class CameraManager : MonoBehaviour
         EventManager.AddIdHandler(GameEvent.OnHitWall,OnHitWall);
         EventManager.AddHandler(GameEvent.OnShopOpen,OnShopOpen);
         EventManager.AddHandler(GameEvent.OnShopClose,OnShopClose);
+        EventManager.AddHandler(GameEvent.OnMiniGamePasses,OnMiniGamePasses);
     }
 
     private void OnDisable() 
@@ -52,6 +53,7 @@ public class CameraManager : MonoBehaviour
         EventManager.RemoveIdHandler(GameEvent.OnHitWall,OnHitWall);
         EventManager.RemoveHandler(GameEvent.OnShopOpen,OnShopOpen);
         EventManager.RemoveHandler(GameEvent.OnShopClose,OnShopClose);
+        EventManager.RemoveHandler(GameEvent.OnMiniGamePasses,OnMiniGamePasses);
     }
 
 
@@ -109,6 +111,10 @@ public class CameraManager : MonoBehaviour
         Noise(3,3,1f);
     }
 
+    private void OnMiniGamePasses()
+    {
+        Noise(3,3,0.5f);
+    }
     
 
     private void Start() 

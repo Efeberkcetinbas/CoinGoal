@@ -51,7 +51,7 @@ public class BallLineCollision : MonoBehaviour
                 if (hit.collider.CompareTag("Player") && hit.collider.GetComponent<BallIdentifier>().BallID != ID1 && hit.collider.GetComponent<BallIdentifier>().BallID != ID2) 
                 {
                 // A collision has occurred with an object that meets the criteria
-                    if(!gameData.isBossLevel)
+                    if(!gameData.isMiniGame)
                     {
                         if(gameData.canChangeIndex && gameData.canIntersect)
                         {
@@ -64,11 +64,12 @@ public class BallLineCollision : MonoBehaviour
                     }
                     else
                     {
-                        if(gameData.canChangeIndex)
+                        if(gameData.canChangeIndex && gameData.canIntersect)
                         {
-                            Debug.Log("SPECIAL TECHNIQUE HOLLOW PURPLE");
+                            Debug.Log("PASS");
                             ballData.isItPassed=true;
                             EventManager.Broadcast(GameEvent.OnMiniGamePasses);
+                            StartCoroutine(LineEffect());
                         }
                         
                     }
