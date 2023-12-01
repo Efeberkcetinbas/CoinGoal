@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
-    public AudioClip GameOverSound,PassBetweenSound,TouchStartSound,TouchEndSound,HitWallSound,ButtonSound,BorderDownSound,GameStartSound,PlayerDeadSound,BounceSound,PortalSound,OnUpPortalSound,BossDamageSound,
+    public AudioClip GameOverSound,PassBetweenSound,TouchStartSound,TouchEndSound,HitWallSound,ButtonSound,BorderDownSound,GameStartSound,PlayerDeadSound,BounceSound,PortalSound,OnUpPortalSound,
     BridgeSound,SpecialTechniqueSound;
 
     AudioSource musicSource,effectSource;
@@ -34,7 +34,6 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnWindSound,OnGroundOpen);
         EventManager.AddHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.AddHandler(GameEvent.OnUpPortal,OnUpPortal);
-        EventManager.AddHandler(GameEvent.OnUIBossUpdate,OnUIBossUpdate);
         EventManager.AddHandler(GameEvent.OnBridgeOpen,OnBridgeOpen);
         EventManager.AddHandler(GameEvent.OnSpecialTechnique,OnSpecialTechnique);
     }
@@ -52,7 +51,6 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnWindSound,OnGroundOpen);
         EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.RemoveHandler(GameEvent.OnUpPortal,OnUpPortal);
-        EventManager.RemoveHandler(GameEvent.OnUIBossUpdate,OnUIBossUpdate);
         EventManager.RemoveHandler(GameEvent.OnBridgeOpen,OnBridgeOpen);
         EventManager.RemoveHandler(GameEvent.OnSpecialTechnique,OnSpecialTechnique);
     }
@@ -124,10 +122,7 @@ public class AudioManager : MonoBehaviour
     {
         effectSource.PlayOneShot(OnUpPortalSound);
     }
-    private void OnUIBossUpdate()
-    {
-        effectSource.PlayOneShot(BossDamageSound);
-    }
+    
 
     private void OnBridgeOpen()
     {

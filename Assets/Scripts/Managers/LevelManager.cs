@@ -54,8 +54,8 @@ public class LevelManager : MonoBehaviour
         
         if(gameData.LevelNumberIndex%2==0)
         {        
-            EventManager.Broadcast(GameEvent.OnBossActive);
-            EventManager.Broadcast(GameEvent.OnBossBall);
+            EventManager.Broadcast(GameEvent.OnMiniGameActive);
+            EventManager.Broadcast(GameEvent.OnMiniGameBall);
         }
     }
     

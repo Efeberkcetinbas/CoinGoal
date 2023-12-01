@@ -17,7 +17,7 @@ public enum GameEvent
     //EndGame
     OnPortalOpen,
     OnWindSound,
-    OnBossBall,
+    OnMiniGameBall,
     OnNormalBalls,
     
 
@@ -47,11 +47,10 @@ public enum GameEvent
     OnHitWall,
     OnUpPortal,
 
-    //Boss
-    OnBossDead,
-    OnUIBossUpdate,
-    OnBossActive,
-    OnBossDamage,
+    //Mini Game
+    OnMiniGameFinish,
+    OnMiniGameUIUpdate,
+    OnMiniGameActive,
 
     //Levels
     OnBordersDown,

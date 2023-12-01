@@ -19,20 +19,21 @@ public class PortalControl : MonoBehaviour
 
     private void OnEnable() 
     {
-        EventManager.AddHandler(GameEvent.OnBossDead,OnBossDead);
+        EventManager.AddHandler(GameEvent.OnMiniGameFinish,OnMiniGameFinish);
         EventManager.AddHandler(GameEvent.OnPortalOpen,OnPortalOpen);
     }
 
     private void OnDisable() 
     {
-        EventManager.RemoveHandler(GameEvent.OnBossDead,OnBossDead);
+        EventManager.RemoveHandler(GameEvent.OnMiniGameFinish,OnMiniGameFinish);
         EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnPortalOpen);
     }
 
 
-    private void OnBossDead()
+    private void OnMiniGameFinish()
     {
         //Hemen gitmiyoruz. Boss'un Patlamasini Gormemiz Lazim
+        //Gol Olunca Burasi Olsun
         StartCoroutine(OpenIt());
     }
 
@@ -51,6 +52,10 @@ public class PortalControl : MonoBehaviour
         yield return waitForSeconds;
         portal.SetActive(true);
         EventManager.Broadcast(GameEvent.OnPortalOpen);
+
+        /*
+        EventManager.Broadcast(GameEvent.OnNormalBalls);
+        EventManager.Broadcast(GameEvent.OnLoadNextLevel);*/
     }
 
     

@@ -39,8 +39,8 @@ public class Player : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnSpeedUp,OnSpeedUp);
         EventManager.AddHandler(GameEvent.OnSpeedNormal,OnSpeedNormal);
         EventManager.AddHandler(GameEvent.OnSpecialTechnique,OnSpecialTechnique);
-        EventManager.AddHandler(GameEvent.OnBossBall,OnBossBall);
-        EventManager.AddHandler(GameEvent.OnBossDead,OnBossDead);
+        EventManager.AddHandler(GameEvent.OnMiniGameBall,OnMiniGameBall);
+        EventManager.AddHandler(GameEvent.OnMiniGameFinish,OnMiniGameFinish);
 
     }
 
@@ -55,8 +55,8 @@ public class Player : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnSpeedUp,OnSpeedUp);
         EventManager.RemoveHandler(GameEvent.OnSpeedNormal,OnSpeedNormal);
         EventManager.RemoveHandler(GameEvent.OnSpecialTechnique,OnSpecialTechnique);
-        EventManager.RemoveHandler(GameEvent.OnBossBall,OnBossBall);
-        EventManager.RemoveHandler(GameEvent.OnBossDead,OnBossDead);
+        EventManager.RemoveHandler(GameEvent.OnMiniGameBall,OnMiniGameBall);
+        EventManager.RemoveHandler(GameEvent.OnMiniGameFinish,OnMiniGameFinish);
 
     }
     private void OnTrapHitPlayer()
@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
     }
 
     #region Boss Level
-    private void OnBossBall()
+    private void OnMiniGameBall()
     {
         ballsPassTime=0;
     }
@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
             
     }
 
-    private void OnBossDead()
+    private void OnMiniGameFinish()
     {
         EventManager.Broadcast(GameEvent.OnBallsDivided);
     }

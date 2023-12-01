@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     [Header("Open/Close")]
     [SerializeField] private GameObject[] open_close;
     [SerializeField] private GameObject[] NormalBalls;
-    [SerializeField] private GameObject[] BossBalls;
+    [SerializeField] private GameObject[] MiniGameBalls;
     //Boss Ball
 
     private WaitForSeconds waitForSeconds;
@@ -54,9 +54,9 @@ public class GameManager : MonoBehaviour
         {
 
             Debug.Log("IS WORK");
-            OnBossBall();
-            EventManager.Broadcast(GameEvent.OnBossActive);
-            EventManager.Broadcast(GameEvent.OnBossBall);
+            OnMiniGameBall();
+            EventManager.Broadcast(GameEvent.OnMiniGameActive);
+            EventManager.Broadcast(GameEvent.OnMiniGameBall);
         }
     }
     
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.AddHandler(GameEvent.OnPlayerDead,OnPlayerDead);
         EventManager.AddHandler(GameEvent.OnNormalBalls,OnNormalBalls);
-        EventManager.AddHandler(GameEvent.OnBossBall,OnBossBall);
+        EventManager.AddHandler(GameEvent.OnMiniGameBall,OnMiniGameBall);
     }
 
     private void OnDisable()
@@ -82,21 +82,21 @@ public class GameManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.RemoveHandler(GameEvent.OnPlayerDead,OnPlayerDead);
         EventManager.RemoveHandler(GameEvent.OnNormalBalls,OnNormalBalls);
-        EventManager.RemoveHandler(GameEvent.OnBossBall,OnBossBall);
+        EventManager.RemoveHandler(GameEvent.OnMiniGameBall,OnMiniGameBall);
     }
 
     //Boss Ball and Normal Ball Activity Settings.
     //Boss Ball Canvas Open and the others false
-    private void OnBossBall()
+    private void OnMiniGameBall()
     {
-        OpenClose(BossBalls,true);
+        OpenClose(MiniGameBalls,true);
         OpenClose(NormalBalls,false);
         gameData.isBossLevel=true;
     }
 
     private void OnNormalBalls()
     {
-        OpenClose(BossBalls,false);
+        OpenClose(MiniGameBalls,false);
         OpenClose(NormalBalls,true);
         gameData.isBossLevel=false;
     }

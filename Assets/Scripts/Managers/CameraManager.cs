@@ -36,8 +36,6 @@ public class CameraManager : MonoBehaviour
         EventManager.AddIdHandler(GameEvent.OnBordersDown,OnBordersDown);
         EventManager.AddHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.AddHandler(GameEvent.OnTrapHitPlayer,OnTrapHitPlayer);
-        EventManager.AddHandler(GameEvent.OnBossDead,OnBossDead);
-        EventManager.AddHandler(GameEvent.OnUIBossUpdate,OnUIBossUpdate);
         EventManager.AddIdHandler(GameEvent.OnHitWall,OnHitWall);
         EventManager.AddHandler(GameEvent.OnSpecialTechnique,OnSpecialTechnique);
         EventManager.AddHandler(GameEvent.OnShopOpen,OnShopOpen);
@@ -52,8 +50,6 @@ public class CameraManager : MonoBehaviour
         EventManager.RemoveIdHandler(GameEvent.OnBordersDown,OnBordersDown);
         EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnPortalOpen);
         EventManager.RemoveHandler(GameEvent.OnTrapHitPlayer,OnTrapHitPlayer);
-        EventManager.RemoveHandler(GameEvent.OnBossDead,OnBossDead);
-        EventManager.RemoveHandler(GameEvent.OnUIBossUpdate,OnUIBossUpdate);
         EventManager.RemoveIdHandler(GameEvent.OnHitWall,OnHitWall);
         EventManager.RemoveHandler(GameEvent.OnSpecialTechnique,OnSpecialTechnique);
         EventManager.RemoveHandler(GameEvent.OnShopOpen,OnShopOpen);
@@ -87,10 +83,7 @@ public class CameraManager : MonoBehaviour
         Noise(5,5,1);
     }
 
-    private void OnSpawnWeapon()
-    {
-        Noise(1,1,0.1f);
-    }
+    
 
     private void OnTrapHitPlayer()
     {
@@ -109,11 +102,7 @@ public class CameraManager : MonoBehaviour
         ChangeFollow(balls[ballData.currentBallIndex].transform);
     }
 
-    private void OnBossDead()
-    {
-        Noise(5,5,1.75f);
-    }
-
+    
     private void OnPortalOpen()
     {
         Portal=FindObjectOfType<PortalControl>().transform;
@@ -126,10 +115,6 @@ public class CameraManager : MonoBehaviour
         Noise(3,3,1f);
     }
 
-    private void OnUIBossUpdate()
-    {
-        Noise(4,4,0.5f);
-    }
     
 
     private void Start() 
