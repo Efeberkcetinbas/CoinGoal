@@ -9,6 +9,8 @@ public class GoalTrigger : Obstacleable
     [SerializeField] private ParticleSystem goalParticle;
 
     [SerializeField] private float y,oldy;
+    [SerializeField] private GameObject Chest;
+
 
     private bool isGoal=false;
     public GoalTrigger()
@@ -39,7 +41,9 @@ public class GoalTrigger : Obstacleable
                 isGoal=true;
                 goalParticle.Play();
                 //EventManager.Broadcast(GameEvent.OnMiniGameFinish);
-                EventManager.Broadcast(GameEvent.OnGoal);
+
+                Chest.SetActive(true);
+                Chest.transform.DOPunchScale(Vector3.one,0.5f).OnComplete(()=>EventManager.Broadcast(GameEvent.OnGoal));
             }
 
             else

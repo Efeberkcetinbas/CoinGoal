@@ -24,6 +24,7 @@ public class CameraManager : MonoBehaviour
 
 
     private Transform Portal;
+    private Transform Chest;
 
     
     
@@ -40,6 +41,8 @@ public class CameraManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnShopOpen,OnShopOpen);
         EventManager.AddHandler(GameEvent.OnShopClose,OnShopClose);
         EventManager.AddHandler(GameEvent.OnMiniGamePasses,OnMiniGamePasses);
+        EventManager.AddHandler(GameEvent.OnGoal,OnGoal);
+        
     }
 
     private void OnDisable() 
@@ -54,6 +57,8 @@ public class CameraManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnShopOpen,OnShopOpen);
         EventManager.RemoveHandler(GameEvent.OnShopClose,OnShopClose);
         EventManager.RemoveHandler(GameEvent.OnMiniGamePasses,OnMiniGamePasses);
+        EventManager.RemoveHandler(GameEvent.OnGoal,OnGoal);
+
     }
 
 
@@ -104,6 +109,13 @@ public class CameraManager : MonoBehaviour
         Portal=FindObjectOfType<PortalControl>().transform;
         ChangeFieldOfView(40,5);
         ChangeFollow(Portal);
+    }
+
+    private void OnGoal()
+    {
+        Chest=FindObjectOfType<ChestControl>().transform;
+        ChangeFieldOfView(40,5);
+        ChangeFollow(Chest);
     }
 
     private void OnBordersDown(int id)

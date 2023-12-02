@@ -16,13 +16,13 @@ MonoBehaviour:
   diamond: 30
   increaseScore: 10
   increaseCoinAmount: 1
-  LevelNumberIndex: 1
+  LevelNumberIndex: 2
   LevelRequirementNumber: 8
   BorderIndex: 1
   levelProgressNumber: 0
   BackTime: 25
   ProgressNumber: 0
-  isGameEnd: 1
+  isGameEnd: 0
   isMiniGame: 0
   canChangeIndex: 1
   canIntersect: 0
