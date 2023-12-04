@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d17d1fb7779fa34081bccf229f3d5ae, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  isPurchased: 0
+  isPurchased: 1

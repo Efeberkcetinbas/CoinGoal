@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour
     {
         OnNextLevel();
         OnUIUpdate();
+        OnUIDiamondUpdate();
     }
     
     private void OnUIUpdate()

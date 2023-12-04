@@ -21,7 +21,7 @@ public class ScoreManager : MonoBehaviour
     private void OnIncreaseScore()
     {
         //gameData.score += 50;
-        DOTween.To(GetScore,ChangeScore,gameData.score+gameData.increaseScore,.25f).OnUpdate(UpdateUI);
+        DOTween.To(GetScore,ChangeScore,gameData.score+gameData.increaseScore,.5f).OnUpdate(UpdateUI);
     }
 
     private int GetScore()
@@ -44,7 +44,7 @@ public class ScoreManager : MonoBehaviour
     private void OnIncreaseGold()
     {
         //gameData.score += 50;
-        DOTween.To(GetDiamond,ChangeDiamond,gameData.diamond+gameData.increaseCoinAmount,.25f).OnUpdate(UpdateUIDiamond);
+        DOTween.To(GetDiamond,ChangeDiamond,gameData.diamond+gameData.increaseCoinAmount,.5f).OnUpdate(UpdateUIDiamond);
     }
 
     private int GetDiamond()

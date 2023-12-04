@@ -27,7 +27,8 @@ public class GoldTrigger : Obstacleable
             EventManager.Broadcast(GameEvent.OnIncreaseScore);
         else
             EventManager.Broadcast(GameEvent.OnIncreaseGold);
-            
+        
+        EventManager.Broadcast(GameEvent.OnCollect);
         StartCoinMove();
     }   
 

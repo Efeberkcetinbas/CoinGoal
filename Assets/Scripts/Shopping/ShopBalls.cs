@@ -13,7 +13,7 @@ public class ShopBalls : MonoBehaviour
 
     public Image ballImage;
 
-    public GameObject lockImage,goldImage,tickImage;
+    public GameObject lockImage,goldImage;
 
     internal Button button;
 

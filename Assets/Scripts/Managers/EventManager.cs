@@ -45,6 +45,7 @@ public enum GameEvent
     OnBridgeOpen,
     OnBarrel,
     OnWindSound,
+    OnCollect,
 
     
     OnHitWall,
