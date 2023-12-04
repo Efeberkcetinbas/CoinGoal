@@ -122,7 +122,7 @@ public class PanelManager : MonoBehaviour
 
     public void OpenBuffsPanel()
     {
-        
+        EventManager.Broadcast(GameEvent.OnButtonClicked);
         StartPanel.DOAnchorPos(new Vector2(StartX,StartY),duration).OnComplete(()=>StartPanel.gameObject.SetActive(false));
         BuffPanel.gameObject.SetActive(true);
         BuffPanel.DOAnchorPos(Vector2.zero,duration);
@@ -131,7 +131,7 @@ public class PanelManager : MonoBehaviour
 
     public void OpenBallsPanel()
     {
-        //EventManager.Broadcast(GameEvent.OnButtonClicked);
+        EventManager.Broadcast(GameEvent.OnButtonClicked);
         StartPanel.DOAnchorPos(new Vector2(StartX,StartY),duration).OnComplete(()=>StartPanel.gameObject.SetActive(false));
         BallsPanel.gameObject.SetActive(true);
         BallsPanel.DOAnchorPos(Vector2.zero,duration);
@@ -158,7 +158,7 @@ public class PanelManager : MonoBehaviour
 
         EventManager.Broadcast(GameEvent.OnShopClose);
 
-        //EventManager.Broadcast(GameEvent.OnButtonClicked);
+        EventManager.Broadcast(GameEvent.OnButtonClicked);
 
     }
 

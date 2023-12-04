@@ -76,6 +76,7 @@ public enum GameEvent
 
     //Game Management
     OnIncreaseScore,
+    OnButtonClicked,
     OnIncreaseGold,
     OnUIUpdate,
     OnUIDiamondUpdate,

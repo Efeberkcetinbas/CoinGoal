@@ -42289,7 +42289,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689466054}
-  m_LocalRotation: {x: 0.34042525, y: -0.000000022880096, z: 0.000000008283737, w: 0.9402717}
+  m_LocalRotation: {x: 0.34042525, y: 0.00000002288009, z: -0.0000000082837355, w: 0.9402717}
   m_LocalPosition: {x: 0, y: 13.21, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -43126,21 +43126,24 @@ MonoBehaviour:
   BuffMusic: {fileID: 0}
   GameOverSound: {fileID: 0}
   PassBetweenSound: {fileID: 8300000, guid: 948517fb342da0e4282e549525591281, type: 3}
-  TouchStartSound: {fileID: 8300000, guid: 46cbc9351b11aa2408a86bea924d0976, type: 3}
-  TouchEndSound: {fileID: 8300000, guid: 98fab4394d2980546998c0479a1bb3bf, type: 3}
+  TouchStartSound: {fileID: 8300000, guid: 137fcca51682b46338da6e7c39f987fa, type: 3}
+  TouchEndSound: {fileID: 8300000, guid: d48dde2aa24a8484db252009d3a2d05f, type: 3}
   HitWallSound: {fileID: 8300000, guid: 4169e8591eb4b3848a3e192fa953a079, type: 3}
-  ButtonSound: {fileID: 8300000, guid: 9aeb56682df76874fa06a58c6e5dd731, type: 3}
-  BorderDownSound: {fileID: 8300000, guid: 32374942e97df5a4894dd8f4ec55d559, type: 3}
+  ButtonSound: {fileID: 8300000, guid: 7d32d408d94874bebbaf2e0ab55350a6, type: 3}
+  BorderDownSound: {fileID: 8300000, guid: 0c621901caf7443bb9dae7bb788aff88, type: 3}
   GameStartSound: {fileID: 8300000, guid: 2bfbb967b1ec5564b93ebab4fe39009b, type: 3}
-  PlayerDeadSound: {fileID: 8300000, guid: b4750b98232cc424bb4723e1c2ef15fe, type: 3}
+  PlayerDeadSound: {fileID: 8300000, guid: 19b6db7ce7a924b6493eac4bf8acf69d, type: 3}
   BounceSound: {fileID: 8300000, guid: 026d0f8185114c140ba0f8880af4cf09, type: 3}
   PortalSound: {fileID: 8300000, guid: 0031863f6f8ab7a45ba137e91fd23fc0, type: 3}
   OnUpPortalSound: {fileID: 8300000, guid: 0031863f6f8ab7a45ba137e91fd23fc0, type: 3}
   BridgeSound: {fileID: 8300000, guid: 026d0f8185114c140ba0f8880af4cf09, type: 3}
   GoalSound: {fileID: 0}
-  MiniPassSound: {fileID: 0}
-  BarrelSound: {fileID: 0}
-  CollectSound: {fileID: 0}
+  MiniPassSound: {fileID: 8300000, guid: 76976d72ae39748878e5a2f279d360ef, type: 3}
+  BarrelSound: {fileID: 8300000, guid: 72cd3e9bc29af4c57a62e91883166b7b, type: 3}
+  CollectSound: {fileID: 8300000, guid: 3aa3ab3c3d5f24f4da6be38fa605a5e2, type: 3}
+  UIClickSound: {fileID: 8300000, guid: e57bcf815b18547a7a8b44a99e4d9c99, type: 3}
+  NextLevelSound: {fileID: 8300000, guid: b8ef85913fa7d43ac81d6ffc464fc738, type: 3}
+  MeshChangeSound: {fileID: 8300000, guid: 126a7914023294e2faf8108acc1e9a71, type: 3}
 --- !u!1 &729539604
 GameObject:
   m_ObjectHideFlags: 0

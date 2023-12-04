@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
     public AudioClip GameOverSound,PassBetweenSound,TouchStartSound,TouchEndSound,HitWallSound,ButtonSound,BorderDownSound,GameStartSound,PlayerDeadSound,BounceSound,PortalSound,OnUpPortalSound,
-    BridgeSound, GoalSound,MiniPassSound,BarrelSound,CollectSound;
+    BridgeSound, GoalSound,MiniPassSound,BarrelSound,CollectSound,UIClickSound,NextLevelSound,MeshChangeSound;
 
     AudioSource musicSource,effectSource;
 
@@ -39,6 +39,9 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnGoal,OnGoal);
         EventManager.AddHandler(GameEvent.OnBarrel,OnBarrel);
         EventManager.AddHandler(GameEvent.OnCollect,OnCollect);
+        EventManager.AddHandler(GameEvent.OnButtonClicked,OnButtonClicked);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.AddHandler(GameEvent.OnBallMeshChange,OnBallMeshChange);
         
     }
     private void OnDisable() 
@@ -60,6 +63,10 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnGoal,OnGoal);
         EventManager.RemoveHandler(GameEvent.OnBarrel,OnBarrel);
         EventManager.RemoveHandler(GameEvent.OnCollect,OnCollect);
+        EventManager.RemoveHandler(GameEvent.OnButtonClicked,OnButtonClicked);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.RemoveHandler(GameEvent.OnBallMeshChange,OnBallMeshChange);
+
     }
 
 
@@ -152,9 +159,24 @@ public class AudioManager : MonoBehaviour
         effectSource.PlayOneShot(GoalSound);
     }
 
+    private void OnButtonClicked()
+    {
+        effectSource.PlayOneShot(UIClickSound);
+    }
+
     private void OnCollect()
     {
         effectSource.PlayOneShot(CollectSound);
+    }
+
+    private void OnNextLevel()
+    {
+        effectSource.PlayOneShot(NextLevelSound);
+    }
+
+    private void OnBallMeshChange()
+    {
+        effectSource.PlayOneShot(MeshChangeSound);
     }
 
     
