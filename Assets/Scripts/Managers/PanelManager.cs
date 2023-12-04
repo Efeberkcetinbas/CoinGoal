@@ -71,7 +71,7 @@ public class PanelManager : MonoBehaviour
 
     private void OnMiniGameActive()
     {
-        UICanvas.SetActive(false);
+        //UICanvas.SetActive(false);
     }
 
     private void OnRestartLevel()

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5932604700702938335}
   - component: {fileID: 8480330612503666711}
   - component: {fileID: 8480330612503666708}
+  - component: {fileID: 411266132}
+  - component: {fileID: 411266131}
   m_Layer: 0
   m_Name: barrel
   m_TagString: Untagged
@@ -113,5 +115,32 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.54999995, y: 0.79999995, z: 0.54999995}
+  m_Size: {x: 0.5, y: 0.79999995, z: 0.5}
+  m_Center: {x: 0, y: 0.39999998, z: 0}
+--- !u!114 &411266132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283888924150314250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f0f0d19a3b443f4e98f36c1ae9854d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionEffect: {fileID: 1892078723244562, guid: ba9e7b32f255088429289949eebec23c, type: 3}
+  ballData: {fileID: 11400000, guid: 6692e14ad7a601e4ca2edd6e74a2debb, type: 2}
+--- !u!65 &411266131
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283888924150314250}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.79999995, z: 0.5}
   m_Center: {x: 0, y: 0.39999998, z: 0}

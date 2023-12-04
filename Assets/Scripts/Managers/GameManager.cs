@@ -193,6 +193,7 @@ public class GameManager : MonoBehaviour
     void ClearData()
     {
         ballData.isItPassed=false;
+        ballData.hitBarrel=0;
         gameData.isGameEnd=true;
         gameData.canChangeIndex=true;
         gameData.ProgressNumber=0;

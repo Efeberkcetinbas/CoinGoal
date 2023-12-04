@@ -5,16 +5,18 @@ using DG.Tweening;
 
 public class CoinDoor : DoorButtonControl
 {
-    //Coinlerle dolu oda. İceri girdigimizde kasayi acariz. Kapi kapanir. Diger top ile kapiyi tekrar acariz.
     [SerializeField] private int ID;
 
-    [SerializeField] private float y,old_y,duration;
+    [SerializeField] private float door1X,door2X,olddoor1X,olddoor2X,duration;
+
+    [SerializeField] private Transform door1,door2;
 
     internal override void OnOpenButton(int id)
     {
         if(id==this.ID)
         {
-            transform.DOLocalMoveY(y,duration);
+            door1.DOLocalMoveX(door1X,duration);
+            door2.DOLocalMoveX(door2X,duration);
         }
     }
 
@@ -22,7 +24,8 @@ public class CoinDoor : DoorButtonControl
     {
         if(id==this.ID)
         {
-            transform.DOLocalMoveY(old_y,duration);
+            door1.DOLocalMoveX(olddoor1X,duration);
+            door2.DOLocalMoveX(olddoor2X,duration);
         }
     }
 }

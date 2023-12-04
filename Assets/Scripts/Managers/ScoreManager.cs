@@ -10,16 +10,18 @@ public class ScoreManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnIncreaseScore, OnIncreaseScore);
+        EventManager.AddHandler(GameEvent.OnIncreaseGold,OnIncreaseGold);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnIncreaseScore, OnIncreaseScore);
+        EventManager.RemoveHandler(GameEvent.OnIncreaseGold,OnIncreaseGold);
     }
     private void OnIncreaseScore()
     {
         //gameData.score += 50;
-        DOTween.To(GetScore,ChangeScore,gameData.score+gameData.increaseScore,1f).OnUpdate(UpdateUI);
+        DOTween.To(GetScore,ChangeScore,gameData.score+gameData.increaseScore,.25f).OnUpdate(UpdateUI);
     }
 
     private int GetScore()
@@ -35,5 +37,28 @@ public class ScoreManager : MonoBehaviour
     private void UpdateUI()
     {
         EventManager.Broadcast(GameEvent.OnUIUpdate);
+    }
+
+    //-----------------------------------------------------------------------------//
+
+    private void OnIncreaseGold()
+    {
+        //gameData.score += 50;
+        DOTween.To(GetDiamond,ChangeDiamond,gameData.diamond+gameData.increaseCoinAmount,.25f).OnUpdate(UpdateUIDiamond);
+    }
+
+    private int GetDiamond()
+    {
+        return gameData.diamond;
+    }
+
+    private void ChangeDiamond(int value)
+    {
+        gameData.diamond=value;
+    }
+
+    private void UpdateUIDiamond()
+    {
+        EventManager.Broadcast(GameEvent.OnUIDiamondUpdate);
     }
 }

@@ -43,6 +43,7 @@ public enum GameEvent
     OnOpenTraps,
     OnCloseTraps,
     OnBridgeOpen,
+    OnBarrel,
     OnWindSound,
 
     
@@ -76,6 +77,7 @@ public enum GameEvent
     OnIncreaseScore,
     OnIncreaseGold,
     OnUIUpdate,
+    OnUIDiamondUpdate,
     OnUIRequirementUpdate,
     OnUIGameOver,
     OnNextLevel,

@@ -14,6 +14,8 @@ public class GoldTrigger : Obstacleable
     //<T>    
     private SphereCollider sphereCollider;
 
+    [SerializeField] private bool isDiamond;
+
     private void Start() 
     {
         sphereCollider=GetComponent<SphereCollider>();
@@ -21,7 +23,11 @@ public class GoldTrigger : Obstacleable
     
     internal override void DoAction(Player player)
     {
-        EventManager.Broadcast(GameEvent.OnIncreaseGold);
+        if(!isDiamond)
+            EventManager.Broadcast(GameEvent.OnIncreaseScore);
+        else
+            EventManager.Broadcast(GameEvent.OnIncreaseGold);
+            
         StartCoinMove();
     }   
 

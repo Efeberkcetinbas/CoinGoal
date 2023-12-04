@@ -42,6 +42,7 @@ public class CameraManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnShopClose,OnShopClose);
         EventManager.AddHandler(GameEvent.OnMiniGamePasses,OnMiniGamePasses);
         EventManager.AddHandler(GameEvent.OnGoal,OnGoal);
+        EventManager.AddHandler(GameEvent.OnBarrel,OnBarrel);
         
     }
 
@@ -58,6 +59,7 @@ public class CameraManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnShopClose,OnShopClose);
         EventManager.RemoveHandler(GameEvent.OnMiniGamePasses,OnMiniGamePasses);
         EventManager.RemoveHandler(GameEvent.OnGoal,OnGoal);
+        EventManager.RemoveHandler(GameEvent.OnBarrel,OnBarrel);
 
     }
 
@@ -83,7 +85,10 @@ public class CameraManager : MonoBehaviour
         ChangeFieldOfViewHit(75,80,0.25f);
     }
 
-    
+    private void OnBarrel()
+    {
+        Noise(5,5,0.5f);
+    }
     
 
     private void OnTrapHitPlayer()

@@ -34,7 +34,7 @@ public class BallController : MonoBehaviour
 
     public float maxLineLength=2f;
 
-
+    private WaitForSeconds waitForSeconds;
     
 
     
@@ -44,6 +44,7 @@ public class BallController : MonoBehaviour
     void Start()
     {
         currentBallRigidbody=balls[ballData.currentBallIndex].GetComponent<Rigidbody>();
+        waitForSeconds=new WaitForSeconds(1);
         ballData.currentBallRigidbodyData=currentBallRigidbody;
         for (int i = 0; i < BallLines.Count; i++)
         {
@@ -346,11 +347,11 @@ public class BallController : MonoBehaviour
         {
             balls[i].GetComponent<SphereCollider>().isTrigger=true;
             balls[i].GetComponent<Rigidbody>().useGravity=false;
-            balls[i].transform.DOJump(FindObjectOfType<PortalControl>().PortalPosition,2,4,2);
+            balls[i].transform.DOJump(FindObjectOfType<PortalControl>().PortalPosition,2,4,1);
             EventManager.Broadcast(GameEvent.OnUpPortal);
-            yield return new WaitForSeconds(i+1);
+            yield return waitForSeconds;
         }
-
+        yield return waitForSeconds;
         EventManager.Broadcast(GameEvent.OnLoadNextLevel);
     }
 

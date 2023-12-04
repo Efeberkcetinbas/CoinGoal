@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnUIRequirementUpdate,OnUIRequirementUpdate);
         EventManager.AddHandler(GameEvent.OnUpdateBuff,OnUpdateBuff);
-        EventManager.AddHandler(GameEvent.OnIncreaseGold,OnIncreaseGold);
+        EventManager.AddHandler(GameEvent.OnUIDiamondUpdate,OnUIDiamondUpdate);
         EventManager.AddHandler(GameEvent.OnMiniGameUIUpdate,OnMiniGameUIUpdate);
     }
     private void OnDisable()
@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnUIRequirementUpdate,OnUIRequirementUpdate);
         EventManager.RemoveHandler(GameEvent.OnUpdateBuff,OnUpdateBuff);
-        EventManager.RemoveHandler(GameEvent.OnIncreaseGold,OnIncreaseGold);
+        EventManager.RemoveHandler(GameEvent.OnUIDiamondUpdate,OnUIDiamondUpdate);
         EventManager.RemoveHandler(GameEvent.OnMiniGameUIUpdate,OnMiniGameUIUpdate);
     }
 
@@ -60,10 +60,11 @@ public class UIManager : MonoBehaviour
         score.transform.DOScale(new Vector3(1.5f,1.5f,1.5f),0.2f).OnComplete(()=>score.transform.DOScale(new Vector3(1,1f,1f),0.2f));
     }
 
-    private void OnIncreaseGold()
+    private void OnUIDiamondUpdate()
     {
         diamondText.SetText(gameData.diamond.ToString());
     }
+
 
     private void OnNextLevel()
     {
