@@ -15,6 +15,8 @@ public class TileDoor : DoorButtonControl
 
     private WaitForSeconds waitForSeconds;
 
+    [SerializeField] private Transform parent;
+
     private void Start() 
     {
         waitForSeconds=new WaitForSeconds(duration);
@@ -34,7 +36,7 @@ public class TileDoor : DoorButtonControl
         {
             for (int j = 0; j < size_y; j++)
             {
-                Instantiate(tile,new Vector3(i+increaseX,y,j+increaseZ),Quaternion.identity);
+                Instantiate(tile,new Vector3(parent.localPosition.x + i+increaseX,y,parent.localPosition.z + j+increaseZ),Quaternion.identity,parent);
                 EventManager.Broadcast(GameEvent.OnBridgeOpen);
                 yield return waitForSeconds;
             }

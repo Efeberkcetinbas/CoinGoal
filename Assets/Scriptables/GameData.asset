@@ -17,12 +17,12 @@ MonoBehaviour:
   increaseScore: 10
   increaseCoinAmount: 10
   LevelNumberIndex: 1
-  LevelRequirementNumber: 10
+  LevelRequirementNumber: 15
   BorderIndex: 1
-  levelProgressNumber: 10
+  levelProgressNumber: 13
   BackTime: 25
-  ProgressNumber: 1.0000001
-  isGameEnd: 1
+  ProgressNumber: 0.8666667
+  isGameEnd: 0
   isMiniGame: 0
   canChangeIndex: 1
   canIntersect: 1

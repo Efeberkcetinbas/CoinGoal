@@ -124,7 +124,7 @@ public class BallController : MonoBehaviour
                         touchEndPos=touch.position;
                         
                         EventManager.Broadcast(GameEvent.OnTouchStart);
-                        currentBallRigidbody.transform.DOScale(Vector3.one/1.15f,0.3f);
+                        //currentBallRigidbody.transform.DOScale(Vector3.one/1.15f,0.3f);
                         if(isTurn)
                         {
                             if(gameData.canChangeIndex)
@@ -181,7 +181,7 @@ public class BallController : MonoBehaviour
                             powerIndicator.startColor = Color.green;
                             powerIndicator.endColor = Color.green;
                             //Debug.Log("FORCE MAG " + (int)forceMagnitude);
-                            currentBallRigidbody.transform.DOScale(new Vector3(1.3f,1.3f,1),0.15f).OnComplete(()=> currentBallRigidbody.transform.DOScale(Vector3.one,0.15f));
+                            //currentBallRigidbody.transform.DOScale(new Vector3(1.3f,1.3f,1),0.15f).OnComplete(()=> currentBallRigidbody.transform.DOScale(Vector3.one,0.15f));
                             
                             //Ball is Change when I touch to start
                             isTurn=true;
