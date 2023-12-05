@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     public GameData gameData;
     public List<GameObject> levels;
 
+
     private void Awake() 
     {
         LoadLevel();
@@ -52,7 +53,7 @@ public class LevelManager : MonoBehaviour
         LoadLevel();
         EventManager.Broadcast(GameEvent.OnNextLevel);
         
-        if(gameData.LevelNumberIndex%2==0)
+        if(gameData.LevelNumberIndex%10==0)
         {        
             EventManager.Broadcast(GameEvent.OnMiniGameActive);
             EventManager.Broadcast(GameEvent.OnMiniGameBall);
