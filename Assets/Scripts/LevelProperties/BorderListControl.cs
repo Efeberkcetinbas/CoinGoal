@@ -14,16 +14,16 @@ public class BorderListControl : MonoBehaviour
     private int tempReq=0;
     [SerializeField] private int y;
 
-    [SerializeField] private List<TextMeshPro> borderReqTexts=new List<TextMeshPro>();
+    //[SerializeField] private List<TextMeshPro> borderReqTexts=new List<TextMeshPro>();
 
     public GameData gameData;
 
     private void Start() 
     {
-        for (int i = 0; i < borderReq.Count; i++)
+        /*for (int i = 0; i < borderReq.Count; i++)
         {
             borderReqTexts[i].SetText("Open : "  + borderReq[i].ToString());
-        }
+        }*/
 
         CalculateTemp();
     }
@@ -55,7 +55,7 @@ public class BorderListControl : MonoBehaviour
 
         tempReq--;
 
-        borderReqTexts[index].SetText("Open : " + tempReq.ToString());
+        //borderReqTexts[index].SetText("Open : " + tempReq.ToString());
 
         if (tempReq <= 0)
         {

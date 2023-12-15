@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     internal Rigidbody tempRigidbody;
 
-    private Rigidbody ballsRigidbody;
+    internal Rigidbody ballsRigidbody;
 
     [SerializeField] private GameObject scoreXP;
 

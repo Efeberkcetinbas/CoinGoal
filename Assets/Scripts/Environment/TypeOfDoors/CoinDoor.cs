@@ -7,7 +7,7 @@ public class CoinDoor : DoorButtonControl
 {
     [SerializeField] private int ID;
 
-    [SerializeField] private float door1X,door2X,olddoor1X,olddoor2X,duration;
+    [SerializeField] private float door1Y,door2Y,olddoor1Y,olddoor2Y,duration;
 
     [SerializeField] private Transform door1,door2;
 
@@ -15,8 +15,8 @@ public class CoinDoor : DoorButtonControl
     {
         if(id==this.ID)
         {
-            door1.DOLocalMoveX(door1X,duration);
-            door2.DOLocalMoveX(door2X,duration);
+            door1.DOLocalMoveY(door1Y,duration);
+            door2.DOLocalMoveY(door2Y,duration);
         }
     }
 
@@ -24,8 +24,8 @@ public class CoinDoor : DoorButtonControl
     {
         if(id==this.ID)
         {
-            door1.DOLocalMoveX(olddoor1X,duration);
-            door2.DOLocalMoveX(olddoor2X,duration);
+            door1.DOLocalMoveY(olddoor1Y,duration);
+            door2.DOLocalMoveY(olddoor2Y,duration);
         }
     }
 }
