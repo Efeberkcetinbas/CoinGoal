@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
     public AudioClip GameOverSound,PassBetweenSound,TouchStartSound,TouchEndSound,HitWallSound,ButtonSound,BorderDownSound,GameStartSound,PlayerDeadSound,BounceSound,PortalSound,OnUpPortalSound,
-    BridgeSound, GoalSound,MiniPassSound,BarrelSound,CollectSound,UIClickSound,NextLevelSound,MeshChangeSound;
+    BridgeSound, GoalSound,MiniPassSound,BarrelSound,CollectSound,UIClickSound,NextLevelSound,MeshChangeSound,StickySound;
 
     AudioSource musicSource,effectSource;
 
@@ -42,6 +42,7 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnButtonClicked,OnButtonClicked);
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnBallMeshChange,OnBallMeshChange);
+        EventManager.AddHandler(GameEvent.OnSticky,OnSticky);
         
     }
     private void OnDisable() 
@@ -66,6 +67,7 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnButtonClicked,OnButtonClicked);
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnBallMeshChange,OnBallMeshChange);
+        EventManager.RemoveHandler(GameEvent.OnSticky,OnSticky);
 
     }
 
@@ -143,6 +145,10 @@ public class AudioManager : MonoBehaviour
         effectSource.PlayOneShot(OnUpPortalSound);
     }
     
+    private void OnSticky()
+    {
+        effectSource.PlayOneShot(StickySound);
+    }
 
     private void OnBridgeOpen()
     {

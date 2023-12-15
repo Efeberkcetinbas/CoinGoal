@@ -47,13 +47,11 @@ public class GameManager : MonoBehaviour
         if(gameData.LevelNumberIndex%10!=0)
         {
             OnNormalBalls();
-            Debug.Log("BURAYA MI GIRIR USTA");
         }
 
         else
         {
 
-            Debug.Log("IS WORK");
             OnMiniGameBall();
             EventManager.Broadcast(GameEvent.OnMiniGameActive);
             EventManager.Broadcast(GameEvent.OnMiniGameBall);
@@ -153,7 +151,6 @@ public class GameManager : MonoBehaviour
     private IEnumerator LevelFinish()
     {
         gameData.isGameEnd=true;
-        Debug.Log("Duration:");
         yield return waitForSeconds;
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //BOLUM SONU ATIS OYUNU

@@ -9,8 +9,9 @@ public class UIManager : MonoBehaviour
 {
     [Header("Text's")]
     [SerializeField] private TextMeshProUGUI score;
-    [SerializeField] private TextMeshProUGUI fromLevelText;
-    [SerializeField] private TextMeshProUGUI toLevelText;
+    [SerializeField] private TextMeshProUGUI fromZeroText;
+    [SerializeField] private TextMeshProUGUI toTargetText;
+    [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI diamondText;
 
     [Header("Image's")]
@@ -69,13 +70,16 @@ public class UIManager : MonoBehaviour
 
     private void OnNextLevel()
     {
-        fromLevelText.SetText((gameData.LevelNumberIndex).ToString());
-        toLevelText.SetText((gameData.LevelNumberIndex+1).ToString());
+        levelText.SetText("LEVEL " + (gameData.LevelNumberIndex).ToString());
+        fromZeroText.SetText(0.ToString());
+        toTargetText.SetText("?");
     }
 
     private void OnUIRequirementUpdate()
     {
         progressBar.DOFillAmount(gameData.ProgressNumber,0.25f);
+        fromZeroText.SetText(0.ToString());
+        toTargetText.SetText((gameData.LevelRequirementNumber).ToString());
     }
 
     private void OnUpdateBuff()

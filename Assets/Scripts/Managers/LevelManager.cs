@@ -41,7 +41,6 @@ public class LevelManager : MonoBehaviour
         {
             levels[i].SetActive(false);
         }
-        Debug.Log(levelIndex);
         levels[levelIndex].SetActive(true);
     }
 
@@ -63,7 +62,6 @@ public class LevelManager : MonoBehaviour
     public void RestartLevel()
     {
         LoadLevel();
-        Debug.Log("RESTART LEVEL");
         EventManager.Broadcast(GameEvent.OnRestartLevel);
     }
 

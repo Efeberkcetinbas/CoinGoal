@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
 
     internal Rigidbody tempRigidbody;
 
+    private Rigidbody ballsRigidbody;
+
     [SerializeField] private GameObject scoreXP;
 
     public bool isOrderMe=false;
@@ -50,6 +52,12 @@ public class Player : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnSpeedUp,OnSpeedUp);
         EventManager.RemoveHandler(GameEvent.OnSpeedNormal,OnSpeedNormal);
 
+    }
+
+    private void Start() 
+    {
+        ballsRigidbody=GetComponent<Rigidbody>();
+        
     }
     private void OnTrapHitPlayer()
     {
@@ -101,6 +109,15 @@ public class Player : MonoBehaviour
     {
         tempRigidbody=ballData.currentBallRigidbodyData;
     }
+
+    internal void SetZeroBallsRigidbody()
+    {
+        ballsRigidbody.velocity=Vector3.zero;
+        ballsRigidbody.isKinematic=true;
+    }
+    
+
+    
 
    
 
