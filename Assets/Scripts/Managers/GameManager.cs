@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     
     private void StarterPack()
     {
-        if(gameData.LevelNumberIndex!=1)
+        if(gameData.LevelNumberIndex%5!=0)
         {
             OnNormalBalls();
         }
@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
     //When Level Change Update Req Ball Pass Number
     private void UpdateRequirement()
     {
-        if(gameData.LevelNumberIndex!=1)
+        if(gameData.LevelNumberIndex%5!=0)
         {
             gameData.LevelRequirementNumber=FindObjectOfType<RequirementControl>().RequirementNumber;
             EventManager.Broadcast(GameEvent.OnUIRequirementUpdate);

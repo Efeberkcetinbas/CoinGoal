@@ -50,7 +50,7 @@ public class BallLineCollision : MonoBehaviour
                 //GetComponent Yerine Daha Optimize bir cozum var mi?
                 if (hit.collider.CompareTag("Player") && hit.collider.GetComponent<BallIdentifier>().BallID != ID1 && hit.collider.GetComponent<BallIdentifier>().BallID != ID2) 
                 {
-                    Debug.Log("HIT COLLIDE : " + hit.collider.name);
+                    //Debug.Log("HIT COLLIDE : " + hit.collider.name);
                 // A collision has occurred with an object that meets the criteria
                     if(!gameData.isMiniGame)
                     {
@@ -67,7 +67,7 @@ public class BallLineCollision : MonoBehaviour
                     {
                         if(gameData.canChangeIndex && gameData.canIntersect)
                         {
-                            Debug.Log("PASS");
+                            //Debug.Log("PASS");
                             ballData.isItPassed=true;
                             EventManager.Broadcast(GameEvent.OnMiniGamePasses);
                             StartCoroutine(LineEffect());
