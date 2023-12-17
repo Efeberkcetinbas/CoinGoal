@@ -346,3 +346,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyEffect: {fileID: 0}
+  gameData: {fileID: 11400000, guid: 714e86a42ad2e4443a9a9db6ac3f3bff, type: 2}

@@ -16,17 +16,18 @@ public class Barrel : Obstacleable
 
     internal override void DoAction(Player player)
     {
-        if(ballData.BallSpeed>5)
+        if(ballData.BallSpeed>10)
         {
-            ballData.hitBarrel++;
+            //ballData.hitBarrel++;
             EventManager.Broadcast(GameEvent.OnBarrel);
             Instantiate(explosionEffect,transform.position,Quaternion.identity);
             //Restart olursa o leveldekiler level property kisminda acilir. O yuzden destroy yerine setActive            
             gameObject.SetActive(false);
+            EventManager.Broadcast(GameEvent.OnTrapHitPlayer);
         }
 
         
-        if(ballData.hitBarrel>=3)
-            EventManager.Broadcast(GameEvent.OnTrapHitPlayer);
+        /*if(ballData.hitBarrel>=3)
+            EventManager.Broadcast(GameEvent.OnTrapHitPlayer);*/
     }
 }
