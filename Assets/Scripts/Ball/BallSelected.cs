@@ -7,9 +7,8 @@ public class BallSelected : MonoBehaviour
 {
     [SerializeField] private BallData ballData;
 
-    [SerializeField] private List<Transform> ballsTransform=new List<Transform>();
+    [SerializeField] private List<Player> ballsTransform=new List<Player>();
 
-    [SerializeField] private ParticleSystem particle;
 
     
     private void OnEnable() 
@@ -30,10 +29,7 @@ public class BallSelected : MonoBehaviour
 
     private void OnBallIndexIncrease()
     {
-        particle.gameObject.SetActive(true);
-        particle.transform.position=ballsTransform[ballData.currentBallIndex].position;
-        //particle.transform.rotation=quaternion.identity;
-        particle.Play();
+        OpenClose(true);
     }
 
     private void OnGameStart()
@@ -43,8 +39,7 @@ public class BallSelected : MonoBehaviour
 
     private void OnTouchEnd()
     {
-        particle.Stop();
-        particle.gameObject.SetActive(false);
+        OpenClose(false);
         
     }
 
@@ -52,7 +47,12 @@ public class BallSelected : MonoBehaviour
 
     private void OnGoal()
     {
-        particle.gameObject.SetActive(false);
+        OpenClose(false);
+    }
+
+    private void OpenClose(bool val)
+    {
+        ballsTransform[ballData.currentBallIndex].selectedParticle.gameObject.SetActive(val);
     }
 
     

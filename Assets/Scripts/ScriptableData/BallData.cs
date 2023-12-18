@@ -30,4 +30,14 @@ public class BallData : ScriptableObject
 
     //Shopping
     public int selectedBallIndex;
+
+    public void SaveData()
+    {
+        PlayerPrefs.SetInt("SelectedBallIndex",selectedBallIndex);
+    }
+
+    public void LoadData()
+    {
+        selectedBallIndex=PlayerPrefs.GetInt("SelectedBallIndex");
+    }
 }

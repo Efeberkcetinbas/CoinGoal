@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 public class BallLineCollision : MonoBehaviour
 {
     public Transform gapStart; // The transform of the starting point of the gap
@@ -48,34 +49,39 @@ public class BallLineCollision : MonoBehaviour
             if (Physics.Raycast(startPoint, direction, out hit, distance))
             {
                 //GetComponent Yerine Daha Optimize bir cozum var mi?
-                if (hit.collider.CompareTag("Player") && hit.collider.GetComponent<BallIdentifier>().BallID != ID1 && hit.collider.GetComponent<BallIdentifier>().BallID != ID2) 
+                if(hit.collider.CompareTag("Player"))
                 {
-                    //Debug.Log("HIT COLLIDE : " + hit.collider.name);
-                // A collision has occurred with an object that meets the criteria
-                    if(!gameData.isMiniGame)
+                    if (hit.collider.GetComponent<BallIdentifier>().BallID != ID1 && hit.collider.GetComponent<BallIdentifier>().BallID != ID2) 
                     {
-                        if(gameData.canChangeIndex && gameData.canIntersect)
+                        //Debug.Log("HIT COLLIDE : " + hit.collider.name);
+                    // A collision has occurred with an object that meets the criteria
+                        if(!gameData.isMiniGame)
                         {
-                            EventManager.Broadcast(GameEvent.OnPassBetween);
-                            hit.collider.GetComponent<Player>().XPEffect();
-                            ballData.isItPassed=true;
-                            StartCoroutine(LineEffect());
+                            
+                            if(gameData.canChangeIndex && gameData.canIntersect)
+                            {
+                                EventManager.Broadcast(GameEvent.OnPassBetween);
+                                hit.collider.GetComponent<Player>().XPEffect();
+                                ballData.isItPassed=true;
+                                //StartCoroutine(LineEffect());
+                            }
+                            
+                        }
+                        else
+                        {
+                            if(gameData.canChangeIndex && gameData.canIntersect)
+                            {
+                                //Debug.Log("PASS");
+                                ballData.isItPassed=true;
+                                EventManager.Broadcast(GameEvent.OnMiniGamePasses);
+                                //StartCoroutine(LineEffect());
+                            }
+                            
                         }
                         
                     }
-                    else
-                    {
-                        if(gameData.canChangeIndex && gameData.canIntersect)
-                        {
-                            //Debug.Log("PASS");
-                            ballData.isItPassed=true;
-                            EventManager.Broadcast(GameEvent.OnMiniGamePasses);
-                            StartCoroutine(LineEffect());
-                        }
-                        
-                    }
-                    
                 }
+               
             }
         }
     }

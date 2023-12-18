@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject scoreXP;
 
+    public GameObject selectedParticle;
+
+
     public bool isOrderMe=false;
 
 
@@ -116,7 +119,7 @@ public class Player : MonoBehaviour
         ballsRigidbody.isKinematic=true;
     }
     
-
+    
     
 
    

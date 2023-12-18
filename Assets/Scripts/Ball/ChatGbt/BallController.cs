@@ -27,7 +27,6 @@ public class BallController : MonoBehaviour
 
 
 
-
     public float minPower=1f;
     
 
@@ -268,8 +267,9 @@ public class BallController : MonoBehaviour
         powerIndicator.SetPosition(1, currentBallRigidbody.transform.localPosition+dragDirection);
 
         // Update the Line Renderer color based on the normalized distance.
-        Color color = Color.Lerp(Color.green, Color.red, normalizedDistance);
-        lineMaterial.color = color; 
+        /*Color color = Color.Lerp(Color.green, Color.red, normalizedDistance);
+        lineMaterial.color = color; */
+
 
         
 

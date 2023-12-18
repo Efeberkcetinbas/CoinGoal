@@ -60,6 +60,7 @@ public class UIManager : MonoBehaviour
     {
         score.SetText(gameData.score.ToString());
         score.transform.DOScale(new Vector3(1.5f,1.5f,1.5f),0.2f).OnComplete(()=>score.transform.DOScale(new Vector3(1,1f,1f),0.2f));
+        
     }
 
     private void OnUIDiamondUpdate()

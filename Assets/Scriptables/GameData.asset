@@ -19,10 +19,10 @@ MonoBehaviour:
   LevelNumberIndex: 1
   LevelRequirementNumber: 2
   BorderIndex: 1
-  levelProgressNumber: 2
+  levelProgressNumber: 0
   BackTime: 25
-  ProgressNumber: 1
-  isGameEnd: 1
-  isMiniGame: 0
+  ProgressNumber: 0
+  isGameEnd: 0
+  isMiniGame: 1
   canChangeIndex: 1
-  canIntersect: 1
+  canIntersect: 0

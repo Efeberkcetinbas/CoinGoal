@@ -14,6 +14,7 @@ public class ShopBallSelection : MonoBehaviour
     private void Start() 
     {
         //shopBalls[ballData.selectedBallIndex].button.image.color=Color.green;
+        ballData.LoadData();
     }
 
     //Purchase
@@ -42,7 +43,9 @@ public class ShopBallSelection : MonoBehaviour
             shopBalls[selectedIndex].button.image.color=Color.green;
             shopBalls[selectedIndex].transform.DOScale(Vector3.one*1.2f,0.2f);
             ballData.selectedBallIndex=selectedIndex;
+            ballData.SaveData();
             EventManager.Broadcast(GameEvent.OnBallMeshChange);
+            
         }
     }
 }

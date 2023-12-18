@@ -14,7 +14,7 @@ public class GameData : ScriptableObject
     public int increaseCoinAmount;
     
     //Level Property
-    public int LevelNumberIndex;
+    public int LevelNumberIndex=1;
     public int LevelRequirementNumber;
     public int BorderIndex;
     public int levelProgressNumber;
@@ -33,5 +33,19 @@ public class GameData : ScriptableObject
     public bool isMiniGame=false;
     public bool canChangeIndex=true;
     public bool canIntersect=true;
+
+    public void SaveData()
+    {
+        PlayerPrefs.SetInt("Score",score);
+        PlayerPrefs.SetInt("Diamond",diamond);
+        PlayerPrefs.SetInt("LevelNumberIndex",LevelNumberIndex);
+    }
+
+    public void LoadData()
+    {
+        score=PlayerPrefs.GetInt("Score");
+        diamond=PlayerPrefs.GetInt("Diamond");
+        //LevelNumberIndex=PlayerPrefs.GetInt("LevelNumberIndex",1);
+    }
 
 }

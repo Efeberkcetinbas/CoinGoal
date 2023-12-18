@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake() 
     {
+        gameData.LoadData();
         LoadLevel();
     }
     
@@ -51,6 +52,7 @@ public class LevelManager : MonoBehaviour
         gameData.LevelNumberIndex++;
         LoadLevel();
         EventManager.Broadcast(GameEvent.OnNextLevel);
+        gameData.SaveData();
         
         if(gameData.LevelNumberIndex%5==0)
         {        
@@ -65,6 +67,9 @@ public class LevelManager : MonoBehaviour
         EventManager.Broadcast(GameEvent.OnRestartLevel);
     }
 
-    
+    private void OnApplicationQuit() 
+    {
+        gameData.SaveData();
+    } 
     
 }
