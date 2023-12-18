@@ -33,6 +33,5 @@ public class BorderSpecification : MonoBehaviour
             dustParticle.Play();
             meshRenderer.material=GreenMat;
         }
-        
     }
 }

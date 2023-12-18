@@ -18,6 +18,7 @@ public class BallLineCollision : MonoBehaviour
     public BallData ballData;
     public GameData gameData;
 
+    [SerializeField] private LayerMask layerMask;
     
 
     private void Start() 
@@ -46,7 +47,7 @@ public class BallLineCollision : MonoBehaviour
 
             // Cast a ray along the line segment
             RaycastHit hit;
-            if (Physics.Raycast(startPoint, direction, out hit, distance))
+            if (Physics.Raycast(startPoint, direction, out hit, distance, layerMask))
             {
                 //GetComponent Yerine Daha Optimize bir cozum var mi?
                 if(hit.collider.CompareTag("Player"))

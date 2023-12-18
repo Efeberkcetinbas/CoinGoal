@@ -54,6 +54,7 @@ public class BallController : MonoBehaviour
         powerIndicator.positionCount = 2;
         powerIndicator.useWorldSpace = true;
         powerIndicator.material = lineMaterial;
+        powerIndicator.gameObject.SetActive(false);
 
         cam=Camera.main;
 
@@ -122,6 +123,7 @@ public class BallController : MonoBehaviour
                         touchEndPos=touch.position;
                         
                         EventManager.Broadcast(GameEvent.OnTouchStart);
+                        powerIndicator.gameObject.SetActive(true);
                         //currentBallRigidbody.transform.DOScale(Vector3.one/1.15f,0.3f);
                         if(isTurn)
                         {
@@ -176,8 +178,8 @@ public class BallController : MonoBehaviour
                             //Inverse Drag Not Swipe You Must do -force                            
                             currentBallRigidbody.AddForce(-force, ForceMode.Impulse);
                             isDragging = false;
-                            powerIndicator.startColor = Color.green;
-                            powerIndicator.endColor = Color.green;
+                            /*powerIndicator.startColor = Color.green;
+                            powerIndicator.endColor = Color.green;*/
                             //Debug.Log("FORCE MAG " + (int)forceMagnitude);
                             //currentBallRigidbody.transform.DOScale(new Vector3(1.3f,1.3f,1),0.15f).OnComplete(()=> currentBallRigidbody.transform.DOScale(Vector3.one,0.15f));
                             
@@ -186,6 +188,7 @@ public class BallController : MonoBehaviour
                             gameData.canIntersect=true;
                             powerIndicator.SetPosition(0, Vector3.zero);
                             powerIndicator.SetPosition(1, Vector3.zero);
+                            powerIndicator.gameObject.SetActive(false);
                             //powerIndicate.localScale=new Vector3(1,1,1);
                             EventManager.Broadcast(GameEvent.OnTouchEnd);
                         }
@@ -281,12 +284,12 @@ public class BallController : MonoBehaviour
         {
             //Bunu Divided da kullanirsin. Dividen da diger balller aktif olan indexin yerine gelir
             //balls[i].transform.position=balls[0].transform.position;
-            balls[i].tag="Untagged";
+            //balls[i].tag="Untagged";
             balls[i].gameObject.SetActive(false);
         }
 
         balls[ballData.currentBallIndex].gameObject.SetActive(true);
-        balls[ballData.currentBallIndex].tag="Player";
+        //balls[ballData.currentBallIndex].tag="Player";
         gameData.canChangeIndex=false;
 
     }
@@ -297,11 +300,13 @@ public class BallController : MonoBehaviour
         {
             balls[i].gameObject.SetActive(true);
             balls[i].transform.position=balls[ballData.currentBallIndex].transform.position;
-            balls[i].tag="Player";
+            balls[i].GetComponent<Rigidbody>().isKinematic=true;
+            
+            //balls[i].tag="Player";
         }
         gameData.canIntersect=false;
         gameData.canChangeIndex=true;
-        currentBallRigidbody.isKinematic=true;
+        //currentBallRigidbody.isKinematic=true;
     }
 
     private void OnNextLevel()
@@ -315,6 +320,7 @@ public class BallController : MonoBehaviour
         }
         currentBallRigidbody.isKinematic=false;
         gameData.canIntersect=false;
+        powerIndicator.gameObject.SetActive(false);
     }
 
     private void OnRestartLevel()
@@ -346,7 +352,7 @@ public class BallController : MonoBehaviour
         {
             balls[i].GetComponent<SphereCollider>().isTrigger=true;
             balls[i].GetComponent<Rigidbody>().useGravity=false;
-            balls[i].transform.DOJump(FindObjectOfType<PortalControl>().PortalPosition,2,4,1);
+            balls[i].transform.DOJump(FindObjectOfType<PortalControl>().PortalPosition.position,2,4,1);
             EventManager.Broadcast(GameEvent.OnUpPortal);
             yield return waitForSeconds;
         }

@@ -9,6 +9,20 @@ public class KillPlayer : Obstacleable
     [SerializeField] private GameData gameData;
 
     private bool isOne=false;
+
+    private void OnEnable() 
+    {
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        
+    }
+
+    private void OnDisable() 
+    {
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        
+    }
+
+
     internal override void DoAction(Player player)
     {
         if(!gameData.isGameEnd)
@@ -32,5 +46,11 @@ public class KillPlayer : Obstacleable
                 }
             }
         }           
+    }
+
+
+    private void OnRestartLevel()
+    {
+        isOne=false;
     }
 }

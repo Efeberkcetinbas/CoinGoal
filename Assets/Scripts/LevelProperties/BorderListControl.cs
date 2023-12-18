@@ -31,12 +31,14 @@ public class BorderListControl : MonoBehaviour
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnPassBetween,OnPassBetween);
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnPassBetween,OnPassBetween);
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
     }
 
     private void CalculateTemp()
@@ -79,5 +81,19 @@ public class BorderListControl : MonoBehaviour
             }
         }
 
+    }
+
+
+    private void OnRestartLevel()
+    {
+        for (int i = 0; i < borders.Count; i++)
+        {
+            borders[i].gameObject.SetActive(false);
+        }
+
+        index=0;
+        borders[0].gameObject.SetActive(true);
+        borders[0].transform.DOMoveY(2.12f,0.2f);
+        CalculateTemp();
     }
 }
