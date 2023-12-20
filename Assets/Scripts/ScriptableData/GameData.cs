@@ -18,6 +18,7 @@ public class GameData : ScriptableObject
     public int LevelRequirementNumber;
     public int BorderIndex;
     public int levelProgressNumber;
+    public int skyboxIndex;
 
     
 
@@ -39,12 +40,14 @@ public class GameData : ScriptableObject
         PlayerPrefs.SetInt("Score",score);
         PlayerPrefs.SetInt("Diamond",diamond);
         PlayerPrefs.SetInt("LevelNumberIndex",LevelNumberIndex);
+        PlayerPrefs.SetInt("skyboxIndex",skyboxIndex);
     }
 
     public void LoadData()
     {
         score=PlayerPrefs.GetInt("Score");
         diamond=PlayerPrefs.GetInt("Diamond");
+        skyboxIndex=PlayerPrefs.GetInt("skyboxIndex");
         //LevelNumberIndex=PlayerPrefs.GetInt("LevelNumberIndex",1);
     }
 
