@@ -71,7 +71,7 @@ public class UIManager : MonoBehaviour
 
     private void OnNextLevel()
     {
-        levelText.SetText("LEVEL " + (gameData.LevelNumberIndex).ToString());
+        levelText.SetText("LEVEL " + (gameData.LevelNumberIndex + 1).ToString());
         fromZeroText.SetText(0.ToString());
         toTargetText.SetText("?");
     }

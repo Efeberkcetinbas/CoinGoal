@@ -11,6 +11,8 @@ public class LevelManager : MonoBehaviour
     public GameData gameData;
     public List<GameObject> levels;
 
+    private MiniGameControl miniGameControl;
+
 
     private void Awake() 
     {
@@ -53,8 +55,8 @@ public class LevelManager : MonoBehaviour
         LoadLevel();
         EventManager.Broadcast(GameEvent.OnNextLevel);
         gameData.SaveData();
-        
-        if(gameData.LevelNumberIndex%5==0)
+        miniGameControl=FindObjectOfType<MiniGameControl>();
+        if(miniGameControl.isMiniGame)
         {        
             EventManager.Broadcast(GameEvent.OnMiniGameActive);
             EventManager.Broadcast(GameEvent.OnMiniGameBall);

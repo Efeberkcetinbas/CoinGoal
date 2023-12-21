@@ -35,7 +35,7 @@ public class SkyboxGenerator : MonoBehaviour
 
     private void OnNextLevel()
     {
-        if(gameData.LevelNumberIndex % 2 == 0)
+        if(gameData.LevelNumberIndex>0 && gameData.LevelNumberIndex % 5 == 0)
         {
             //Generate();
             ChangeSkybox();

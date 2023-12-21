@@ -29,7 +29,9 @@ public class GameManager : MonoBehaviour
 
     private WaitForSeconds waitForSeconds;
 
+    private MiniGameControl miniGameControl;
 
+    //
     private void Awake() 
     {
         ClearData();
@@ -44,7 +46,9 @@ public class GameManager : MonoBehaviour
     
     private void StarterPack()
     {
-        if(gameData.LevelNumberIndex%5!=0)
+        miniGameControl=FindObjectOfType<MiniGameControl>();
+
+        if(!miniGameControl.isMiniGame)
         {
             OnNormalBalls();
         }
@@ -127,7 +131,9 @@ public class GameManager : MonoBehaviour
     //When Level Change Update Req Ball Pass Number
     private void UpdateRequirement()
     {
-        if(gameData.LevelNumberIndex%5!=0)
+        miniGameControl=FindObjectOfType<MiniGameControl>();
+
+        if(!miniGameControl.isMiniGame)
         {
             gameData.LevelRequirementNumber=FindObjectOfType<RequirementControl>().RequirementNumber;
             EventManager.Broadcast(GameEvent.OnUIRequirementUpdate);
@@ -181,7 +187,9 @@ public class GameManager : MonoBehaviour
 
     private void OnGameStart()
     {
-        if(gameData.LevelNumberIndex%10!=0)
+        miniGameControl=FindObjectOfType<MiniGameControl>();
+
+        if(!miniGameControl.isMiniGame)
             UpdateRequirement();
     }
 
