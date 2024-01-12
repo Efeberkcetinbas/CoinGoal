@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 
     public bool isOrderMe=false;
 
-
+    private Camera mainCamera;
     
 
     private void OnEnable() 
@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
     private void Start() 
     {
         ballsRigidbody=GetComponent<Rigidbody>();
+        mainCamera=Camera.main;
         
     }
     private void OnTrapHitPlayer()
@@ -92,6 +93,7 @@ public class Player : MonoBehaviour
         //BUNU 3UNDE DE YAPIYOR. ONA DIKKAT ETMEK LAZIM. BALL CONTROLLERDEN YAZ
 
         GameObject XP=Instantiate(scoreXP,transform.position,Quaternion.identity);
+        XP.transform.LookAt(mainCamera.transform.position);
         XP.transform.DOLocalJump(XP.transform.localPosition,1,1,1,false);
         XP.transform.GetChild(0).GetComponent<TextMeshPro>().text=" + " + gameData.increaseScore.ToString();
         XP.transform.GetChild(0).GetComponent<TextMeshPro>().DOFade(0,1.5f).OnComplete(()=>XP.transform.GetChild(0).gameObject.SetActive(false));

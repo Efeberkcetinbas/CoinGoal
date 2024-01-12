@@ -354,12 +354,13 @@ public class BallController : MonoBehaviour
 
     private IEnumerator MoveBallsJump()
     {
+        Vector3 portalPosition=FindObjectOfType<PortalControl>().PortalPosition.position;
         
         for (int i = 0; i < balls.Length; i++)
         {
             balls[i].GetComponent<SphereCollider>().isTrigger=true;
             balls[i].GetComponent<Rigidbody>().useGravity=false;
-            balls[i].transform.DOJump(FindObjectOfType<PortalControl>().PortalPosition.position,2,4,1);
+            balls[i].transform.DOJump(new Vector3(portalPosition.x,portalPosition.y+i,portalPosition.z),2,4,1);
             
             EventManager.Broadcast(GameEvent.OnUpPortal);
             yield return waitForSeconds;
