@@ -53,6 +53,7 @@ public class BallSelected : MonoBehaviour
     private void OpenClose(bool val)
     {
         ballsTransform[ballData.currentBallIndex].selectedParticle.gameObject.SetActive(val);
+        //ballsTransform[ballData.currentBallIndex].selectedParticle.transform.position=ballsTransform[ballData.currentBallIndex].transform.position;
     }
 
     

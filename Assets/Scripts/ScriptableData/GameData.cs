@@ -48,7 +48,7 @@ public class GameData : ScriptableObject
         score=PlayerPrefs.GetInt("Score");
         diamond=PlayerPrefs.GetInt("Diamond");
         skyboxIndex=PlayerPrefs.GetInt("skyboxIndex");
-        //LevelNumberIndex=PlayerPrefs.GetInt("LevelNumberIndex",1);
+        LevelNumberIndex=PlayerPrefs.GetInt("LevelNumberIndex");
     }
 
 }
