@@ -7,7 +7,6 @@ public class ShopBallSelection : MonoBehaviour
 {
     public List<ShopBalls> shopBalls=new List<ShopBalls>();
     
-    public Color color;
     public GameData gameData;
     public BallData ballData;
 
@@ -27,7 +26,7 @@ public class ShopBallSelection : MonoBehaviour
             if(!shopBalls[selectedIndex].isPurchased)
             {
                 gameData.score-=shopBalls[selectedIndex].price;
-                shopBalls[selectedIndex].shopBallData.isPurchased=true;
+                shopBalls[selectedIndex].shopCharacterData.isPurchased=true;
                 EventManager.Broadcast(GameEvent.OnShopBallSelected);
                 EventManager.Broadcast(GameEvent.OnUIUpdate);
             }
@@ -42,7 +41,7 @@ public class ShopBallSelection : MonoBehaviour
 
             shopBalls[selectedIndex].button.image.color=Color.green;
             shopBalls[selectedIndex].transform.DOScale(Vector3.one*1.2f,0.2f);
-            ballData.selectedBallIndex=selectedIndex;
+            ballData.selectedBallIndex=shopBalls[selectedIndex].dataIndex;
             ballData.SaveData();
             EventManager.Broadcast(GameEvent.OnBallMeshChange);
             

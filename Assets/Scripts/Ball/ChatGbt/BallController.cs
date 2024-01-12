@@ -16,6 +16,10 @@ public class BallController : MonoBehaviour
     public BallData ballData;
     public GameData gameData;
 
+    
+    
+    
+
 
     private Rigidbody currentBallRigidbody;
     private Camera cam;
@@ -34,7 +38,7 @@ public class BallController : MonoBehaviour
 
     private WaitForSeconds waitForSeconds;
     
-
+    
     
     
     
@@ -331,6 +335,7 @@ public class BallController : MonoBehaviour
             balls[i].transform.localScale=Vector3.one;
         }
         OnNextLevel();
+        
     }
 
     private void OnGameStart()
@@ -345,17 +350,22 @@ public class BallController : MonoBehaviour
     }
 
     
+    
 
     private IEnumerator MoveBallsJump()
     {
+        
         for (int i = 0; i < balls.Length; i++)
         {
             balls[i].GetComponent<SphereCollider>().isTrigger=true;
             balls[i].GetComponent<Rigidbody>().useGravity=false;
             balls[i].transform.DOJump(FindObjectOfType<PortalControl>().PortalPosition.position,2,4,1);
+            
             EventManager.Broadcast(GameEvent.OnUpPortal);
             yield return waitForSeconds;
+            
         }
+
         yield return waitForSeconds;
         EventManager.Broadcast(GameEvent.OnLoadNextLevel);
     }

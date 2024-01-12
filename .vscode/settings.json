@@ -1,4 +1,6 @@
 {
+    
+
     "files.exclude":
     {
         "**/.DS_Store":true,
@@ -42,6 +44,7 @@
         "**/*.meta":true,
         "**/*.prefab":true,
         "**/*.unity":true,
+        
         "build/":true,
         "Build/":true,
         "Library/":true,
@@ -54,3 +57,4 @@
     },
     "dotnet.defaultSolution": "CoinGoal.sln"
 }
+

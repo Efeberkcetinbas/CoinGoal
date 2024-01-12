@@ -7,11 +7,10 @@ public class BallMeshList : MonoBehaviour
     //Degisebilir
     public BallData ballData;
 
-    [SerializeField] private List<Mesh> ballMeshs=new List<Mesh>();
-    [SerializeField] private List<GameObject> balls=new List<GameObject>();
+    [SerializeField] private List<Texture> balls=new List<Texture>();
 
 
-    [SerializeField] private MeshFilter meshFilter;
+    [SerializeField] private MeshRenderer meshRenderer;
 
 
     private void OnEnable() 
@@ -33,14 +32,6 @@ public class BallMeshList : MonoBehaviour
 
     private void OnBallMeshChange()
     {
-        //-!!!!!!!!!!!!! MATERYAL ATLASI OLAN MODELLER OLDUGU ZAMAN BUNU KULLAN. HAZIR MODEL YUZUNDEN MESH FILTER MATERYAL DEGISMIYOR
-        //meshFilter.mesh=ballMeshs[ballData.selectedBallIndex];
-        
-        for (int i = 0; i < balls.Count; i++)
-        {
-            balls[i].SetActive(false);   
-        }
-
-        balls[ballData.selectedBallIndex].SetActive(true);
+        meshRenderer.material.mainTexture=balls[ballData.selectedBallIndex];
     }
 }

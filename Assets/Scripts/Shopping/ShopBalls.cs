@@ -7,11 +7,11 @@ using TMPro;
 public class ShopBalls : MonoBehaviour
 {
     public int price;
+    public int dataIndex;
 
     public bool isPurchased=false;
     public bool canBuy=false;
 
-    public Image ballImage;
 
     public GameObject lockImage,goldImage;
 
@@ -19,9 +19,8 @@ public class ShopBalls : MonoBehaviour
 
     public TextMeshProUGUI priceText;
 
-    public Color color;
-
-    public ShopBallData shopBallData;
+    
+    public ShopBallData shopCharacterData;
     public GameData gameData;
     private void Start() 
     {
@@ -58,7 +57,7 @@ public class ShopBalls : MonoBehaviour
 
     private void CheckPurchase()
     {
-        if(shopBallData.isPurchased)
+        if(shopCharacterData.isPurchased)
         {
             //priceText.text="B";
             
@@ -74,13 +73,13 @@ public class ShopBalls : MonoBehaviour
 
         }
 
-        if(gameData.score>=price || shopBallData.isPurchased)
+        if(gameData.score>=price || shopCharacterData.isPurchased)
         {
             button.interactable=true;
             canBuy=true;
         }
 
-        if(!shopBallData.isPurchased)
+        if(!shopCharacterData.isPurchased)
         {
             if(gameData.score<price)
             {
@@ -89,6 +88,5 @@ public class ShopBalls : MonoBehaviour
             }
         }
     }
-
     
 }

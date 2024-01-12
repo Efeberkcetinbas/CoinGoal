@@ -26,7 +26,10 @@ public class BorderListControl : MonoBehaviour
         }*/
 
         CalculateTemp();
+        
     }
+
+    
 
     private void OnEnable() 
     {
