@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
     public AudioClip GameOverSound,PassBetweenSound,TouchStartSound,TouchEndSound,HitWallSound,ButtonSound,BorderDownSound,GameStartSound,PlayerDeadSound,BounceSound,PortalSound,OnUpPortalSound,
-    BridgeSound, GoalSound,MiniPassSound,BarrelSound,CollectSound,UIClickSound,NextLevelSound,MeshChangeSound,StickySound;
+    BridgeSound, GoalSound,MiniPassSound,BarrelSound,CollectSound,UIClickSound,NextLevelSound,MeshChangeSound,StickySound,BallDividedSound,BallUnitedSound;
 
     AudioSource musicSource,effectSource;
 
@@ -43,6 +43,8 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnBallMeshChange,OnBallMeshChange);
         EventManager.AddHandler(GameEvent.OnSticky,OnSticky);
+        EventManager.AddHandler(GameEvent.OnBallsUnited,OnBallsUnited);
+        EventManager.AddHandler(GameEvent.OnBallsDivided,OnBallsDivided);
         
     }
     private void OnDisable() 
@@ -68,6 +70,8 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnBallMeshChange,OnBallMeshChange);
         EventManager.RemoveHandler(GameEvent.OnSticky,OnSticky);
+        EventManager.RemoveHandler(GameEvent.OnBallsUnited,OnBallsUnited);
+        EventManager.RemoveHandler(GameEvent.OnBallsDivided,OnBallsDivided);
 
     }
 
@@ -185,6 +189,15 @@ public class AudioManager : MonoBehaviour
         effectSource.PlayOneShot(MeshChangeSound);
     }
 
+    private void OnBallsUnited()
+    {
+        effectSource.PlayOneShot(BallUnitedSound);
+    }
+
+    private void OnBallsDivided()
+    {
+        effectSource.PlayOneShot(BallDividedSound);
+    }
     
     
     private float SetVolume(float vol)

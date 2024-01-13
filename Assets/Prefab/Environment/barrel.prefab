@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 5283888924150314250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.55, y: 1.07, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionEffect: {fileID: 1892078723244562, guid: ba9e7b32f255088429289949eebec23c, type: 3}
   ballData: {fileID: 11400000, guid: 6692e14ad7a601e4ca2edd6e74a2debb, type: 2}
+  gameData: {fileID: 11400000, guid: 714e86a42ad2e4443a9a9db6ac3f3bff, type: 2}
 --- !u!65 &411266131
 BoxCollider:
   m_ObjectHideFlags: 0

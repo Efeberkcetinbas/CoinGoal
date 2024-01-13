@@ -12,6 +12,8 @@ public class BlockMove : MonoBehaviour
 
     [SerializeField] private Transform block;
 
+    private bool isWorking=false;
+
     
 
     private void OnEnable() 
@@ -26,12 +28,14 @@ public class BlockMove : MonoBehaviour
         
     }
 
-
     private void Move()
     {
-        
-        if(isLeftRight) block.DOLocalMoveX(x,duration).OnComplete(()=>block.DOLocalMoveX(oldx,duration)).SetLoops(-1,LoopType.Yoyo).SetEase(ease);
-        if(isJumper) block.DOLocalMoveY(y,duration).OnComplete(()=>block.DOLocalMoveY(oldy,duration)).SetLoops(-1,LoopType.Yoyo).SetEase(ease);
-        if(isUpDown) block.DOLocalMoveZ(z,duration).OnComplete(()=>block.DOLocalMoveZ(oldz,duration)).SetLoops(-1,LoopType.Yoyo).SetEase(ease);
+        if(!isWorking)
+        {
+            if(isLeftRight) block.DOLocalMoveX(x,duration).OnComplete(()=>block.DOLocalMoveX(oldx,duration)).SetLoops(-1,LoopType.Yoyo).SetEase(ease);
+            if(isJumper) block.DOLocalMoveY(y,duration).OnComplete(()=>block.DOLocalMoveY(oldy,duration)).SetLoops(-1,LoopType.Yoyo).SetEase(ease);
+            if(isUpDown) block.DOLocalMoveZ(z,duration).OnComplete(()=>block.DOLocalMoveZ(oldz,duration)).SetLoops(-1,LoopType.Yoyo).SetEase(ease);
+            isWorking=true;
+        }
     }
 }

@@ -320,6 +320,7 @@ public class BallController : MonoBehaviour
             //Daha optimize hali var mi?
             balls[i].GetComponent<SphereCollider>().isTrigger=false;
             balls[i].GetComponent<Rigidbody>().useGravity=true;
+            balls[i].GetComponent<Rigidbody>().isKinematic=false;
             balls[i].transform.position=FindObjectOfType<BallPositions>().PositionsOfBall[i];
         }
         currentBallRigidbody.isKinematic=false;

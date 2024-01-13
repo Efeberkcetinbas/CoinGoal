@@ -17,6 +17,7 @@ public class BallSelected : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnTouchEnd,OnTouchEnd);
         EventManager.AddHandler(GameEvent.OnGoal,OnGoal);
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.AddHandler(GameEvent.OnPortalOpen,OnPortalOpen);
     }
 
     private void OnDisable() 
@@ -25,6 +26,7 @@ public class BallSelected : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnTouchEnd,OnTouchEnd);
         EventManager.RemoveHandler(GameEvent.OnGoal,OnGoal);
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.RemoveHandler(GameEvent.OnPortalOpen,OnPortalOpen);
     }
 
     private void OnBallIndexIncrease()
@@ -41,6 +43,11 @@ public class BallSelected : MonoBehaviour
     {
         OpenClose(false);
         
+    }
+
+    private void OnPortalOpen()
+    {
+        OpenClose(false);
     }
 
     

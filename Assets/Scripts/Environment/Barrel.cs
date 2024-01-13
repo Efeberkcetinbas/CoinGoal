@@ -8,6 +8,7 @@ public class Barrel : Obstacleable
     [SerializeField] private GameObject explosionEffect;
 
     [SerializeField] private BallData ballData;
+    [SerializeField] private GameData gameData;
 
     public Barrel()
     {
@@ -16,18 +17,16 @@ public class Barrel : Obstacleable
 
     internal override void DoAction(Player player)
     {
-        if(ballData.BallSpeed>10)
+        if(!gameData.isGameEnd)
         {
-            //ballData.hitBarrel++;
-            EventManager.Broadcast(GameEvent.OnBarrel);
-            Instantiate(explosionEffect,transform.position,Quaternion.identity);
-            //Restart olursa o leveldekiler level property kisminda acilir. O yuzden destroy yerine setActive            
-            gameObject.SetActive(false);
-            EventManager.Broadcast(GameEvent.OnTrapHitPlayer);
+            if(ballData.BallSpeed>10)
+            {
+                EventManager.Broadcast(GameEvent.OnBarrel);
+                Instantiate(explosionEffect,transform.position,Quaternion.identity);
+                //Restart olursa o leveldekiler level property kisminda acilir. O yuzden destroy yerine setActive            
+                gameObject.SetActive(false);
+                EventManager.Broadcast(GameEvent.OnTrapHitPlayer);
+            }
         }
-
-        
-        /*if(ballData.hitBarrel>=3)
-            EventManager.Broadcast(GameEvent.OnTrapHitPlayer);*/
     }
 }

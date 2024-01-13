@@ -32,13 +32,15 @@ public class GoalTrigger : Obstacleable
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnMiniGamePasses,OnMiniGamePasses);
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnMiniGamePasses,OnMiniGamePasses);
-        
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+
     }
     
 
@@ -80,6 +82,12 @@ public class GoalTrigger : Obstacleable
         else
             wall.transform.DOLocalMoveY(oldy,0.1f);
 
+    }
+
+    private void OnRestartLevel()
+    {
+        ballData.ballsPassTime=0;
+        wall.transform.DOLocalMoveY(oldy,0.1f);
     }
 
     

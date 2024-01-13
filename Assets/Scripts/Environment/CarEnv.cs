@@ -63,13 +63,13 @@ public class CarEnv : MonoBehaviour
 
     private void NextCar()
     {
-        if(canWork)
+        if (canWork)
         {
-            if(index>=cars.Count)
+            index++; // Increment before checking
+            if (index >= cars.Count)
             {
-                index=0;
+                index = 0;
             }
-            index++;
             CheckWork();
         }
     }

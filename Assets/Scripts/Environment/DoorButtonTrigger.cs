@@ -14,7 +14,7 @@ public class DoorButtonTrigger : Obstacleable
     [SerializeField] private bool isUp=false;
     [SerializeField] private ParticleSystem particle;
 
-    private float oldScale;
+    private float oldScale,yaxis;
 
     private int enterId;
 
@@ -62,7 +62,10 @@ public class DoorButtonTrigger : Obstacleable
                 transform.DOScaleY(oldScale,0.5f);
             }
             else
-                gameObject.SetActive(false);
+            {
+                transform.DOLocalMoveY(-1.5f,1f).OnComplete(()=>gameObject.SetActive(false));
+            }
+                
         }
         
     }
