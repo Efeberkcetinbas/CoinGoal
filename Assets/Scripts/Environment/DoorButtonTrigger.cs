@@ -7,7 +7,7 @@ public class DoorButtonTrigger : Obstacleable
 {
     public int id;
 
-    private MeshRenderer meshRenderer;
+    [SerializeField] private MeshRenderer meshRenderer;
 
     [SerializeField] private Material greenMat,redMat;
 
@@ -20,9 +20,10 @@ public class DoorButtonTrigger : Obstacleable
 
     private bool isInAnyBall=false;
 
+     
+
     private void Start() 
     {
-        meshRenderer=GetComponent<MeshRenderer>();
         oldScale=transform.localScale.y;
     }
 
@@ -60,9 +61,8 @@ public class DoorButtonTrigger : Obstacleable
                 player.isInTheButton=false; 
                 transform.DOScaleY(oldScale,0.5f);
             }
-
-            
-            
+            else
+                gameObject.SetActive(false);
         }
         
     }
