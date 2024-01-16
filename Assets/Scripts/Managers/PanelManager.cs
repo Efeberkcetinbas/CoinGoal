@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class PanelManager : MonoBehaviour
 {
-    [SerializeField] private RectTransform StartPanel,BuffPanel,BallsPanel,ScoreImage,DiamondImage;
+    [SerializeField] private RectTransform StartPanel,BuffPanel,BallsPanel,IncrementalPanel,ScoreImage,DiamondImage;
 
 
     [SerializeField] private Image Fade;
 
-    [SerializeField] private float StartX,StartY,BuffX,BuffY,BallX,BallY,duration, scoreX,oldScoreX,diamondX,oldDiamondX;
+    [SerializeField] private float StartX,StartY,BuffX,BuffY,BallX,BallY,duration, scoreX,oldScoreX,diamondX,oldDiamondX,IncrementalY,IncrementalX;
 
     public GameData gameData;
 
@@ -33,6 +33,8 @@ public class PanelManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnBallMeshChange,OnBallMeshChange);
         EventManager.AddHandler(GameEvent.OnIncreaseScore,OnIncreaseScore);
         EventManager.AddHandler(GameEvent.OnIncreaseGold,OnIncreaseGold);
+        EventManager.AddHandler(GameEvent.OnBoughtBuff,OnIncreaseGold);
+
     }
 
 
@@ -44,6 +46,8 @@ public class PanelManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnBallMeshChange,OnBallMeshChange);
         EventManager.RemoveHandler(GameEvent.OnIncreaseScore,OnIncreaseScore);
         EventManager.RemoveHandler(GameEvent.OnIncreaseGold,OnIncreaseGold);
+        EventManager.RemoveHandler(GameEvent.OnBoughtBuff,OnIncreaseGold);
+        
     }
 
     private void Start() 
@@ -88,6 +92,8 @@ public class PanelManager : MonoBehaviour
     {
         DiamondImage.DOAnchorPosX(diamondX,.5f).OnComplete(()=>StartCoroutine(WaitForImage(DiamondImage,oldDiamondX)));
     }
+
+    
 
     private IEnumerator WaitForImage(RectTransform rectTransform,float val)
     {
@@ -138,6 +144,15 @@ public class PanelManager : MonoBehaviour
         EventManager.Broadcast(GameEvent.OnShopOpen);
     }
 
+    public void OpenIncrementalPanel()
+    {
+        EventManager.Broadcast(GameEvent.OnButtonClicked);
+        StartPanel.DOAnchorPos(new Vector2(StartX,StartY),duration).OnComplete(()=>StartPanel.gameObject.SetActive(false));
+        IncrementalPanel.gameObject.SetActive(true);
+        IncrementalPanel.DOAnchorPos(Vector2.zero,duration);
+        EventManager.Broadcast(GameEvent.OnOpenIncrementalPanel);
+    }
+
     public void BackToStart(bool isOnCharacter)
     {
 
@@ -160,6 +175,14 @@ public class PanelManager : MonoBehaviour
 
         EventManager.Broadcast(GameEvent.OnButtonClicked);
 
+    }
+
+    public void BackToStartFromIncremental()
+    {
+        StartPanel.gameObject.SetActive(true);
+        StartPanel.DOAnchorPos(Vector2.zero,duration);
+        IncrementalPanel.DOAnchorPos(new Vector2(IncrementalX,IncrementalY),duration);
+        EventManager.Broadcast(GameEvent.OnButtonClicked);
     }
 
 

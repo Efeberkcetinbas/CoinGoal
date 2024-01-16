@@ -34,10 +34,16 @@ public class BallData : ScriptableObject
     public void SaveData()
     {
         PlayerPrefs.SetInt("SelectedBallIndex",selectedBallIndex);
+        PlayerPrefs.SetInt("PriceValSpeed",PriceValSpeed);
+        PlayerPrefs.SetInt("PriceValDestroyer",PriceValDestroyer);
+        PlayerPrefs.SetInt("PriceValInvulnerability",PriceValInvulnerability);
     }
 
     public void LoadData()
     {
         selectedBallIndex=PlayerPrefs.GetInt("SelectedBallIndex");
+        PriceValSpeed=PlayerPrefs.GetInt("PriceValSpeed",20);
+        PriceValDestroyer=PlayerPrefs.GetInt("PriceValDestroyer",75);
+        PriceValInvulnerability=PlayerPrefs.GetInt("PriceValInvulnerability",50);
     }
 }

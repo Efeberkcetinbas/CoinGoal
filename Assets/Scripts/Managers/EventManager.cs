@@ -31,6 +31,7 @@ public enum GameEvent
     OnNormal,
     OnSpeedUp,
     OnSpeedNormal,
+    OnBoughtBuff,
 
     
 
@@ -47,6 +48,9 @@ public enum GameEvent
     OnWindSound,
     OnCollect,
     OnSticky,
+
+    //Incrementals
+    OnOpenIncrementalPanel,
 
     
     OnHitWall,

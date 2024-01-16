@@ -34,6 +34,11 @@ public class BuffControl : MonoBehaviour
 
 
     [SerializeField] private GameObject buffBar;
+
+    private void Start()
+    {
+        OnOpenBuffPanel();
+    }
     
     private void OnEnable() 
     {
@@ -91,6 +96,8 @@ public class BuffControl : MonoBehaviour
             val=true;
             isBuffused=true;
             gameData.diamond-=priceVal;
+            EventManager.Broadcast(GameEvent.OnBoughtBuff);
+            ballData.SaveData();
         }
 
         else
