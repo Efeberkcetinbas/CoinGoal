@@ -14,14 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 50
   diamond: 0
-  increaseScore: 10
-  increaseCoinAmount: 10
+  increaseScore: 5
+  increaseCoinAmount: 5
+  priceForIncreaseScore: 5
+  priceForIncreaseDiamond: 5
+  priceForBuffTime: 5
   LevelNumberIndex: 0
   LevelRequirementNumber: 5
   BorderIndex: 0
   levelProgressNumber: 5
   skyboxIndex: 0
-  BackTime: 25
+  BuffTime: 5
   ProgressNumber: 1
   isGameEnd: 1
   isMiniGame: 0

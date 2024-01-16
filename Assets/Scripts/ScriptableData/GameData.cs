@@ -12,6 +12,11 @@ public class GameData : ScriptableObject
     public int diamond;
     public int increaseScore;
     public int increaseCoinAmount;
+
+    //Price
+    public int priceForIncreaseScore;
+    public int priceForIncreaseDiamond;
+    public int priceForBuffTime;
     
     //Level Property
     public int LevelNumberIndex=1;
@@ -23,7 +28,7 @@ public class GameData : ScriptableObject
     
 
     //Buff
-    public int BackTime;
+    public int BuffTime;
     
     
     //UI Progress 
@@ -41,7 +46,14 @@ public class GameData : ScriptableObject
         PlayerPrefs.SetInt("Diamond",diamond);
         PlayerPrefs.SetInt("LevelNumberIndex",LevelNumberIndex);
         PlayerPrefs.SetInt("skyboxIndex",skyboxIndex);
+        PlayerPrefs.SetInt("increaseScore",increaseScore);
+        PlayerPrefs.SetInt("increaseCoinAmount",increaseCoinAmount);
+        PlayerPrefs.SetInt("BuffTime",BuffTime);
+
+        //Pricelari da set Et 
+        
     }
+
 
     public void LoadData()
     {
@@ -49,6 +61,10 @@ public class GameData : ScriptableObject
         diamond=PlayerPrefs.GetInt("Diamond");
         skyboxIndex=PlayerPrefs.GetInt("skyboxIndex");
         LevelNumberIndex=PlayerPrefs.GetInt("LevelNumberIndex");
+        increaseScore=PlayerPrefs.GetInt("increaseScore",5);
+        increaseCoinAmount=PlayerPrefs.GetInt("increaseCoinAmount",5);
+        BuffTime=PlayerPrefs.GetInt("BuffTime",5);
+        
     }
 
 }

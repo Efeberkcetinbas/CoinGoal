@@ -188,7 +188,7 @@ public class BuffControl : MonoBehaviour
     //Sure baslangicini iyi ayarlamak lazim
     private IEnumerator DoReverse(GameEvent gameEvent)
     {
-        yield return new WaitForSeconds(gameData.BackTime);
+        yield return new WaitForSeconds(gameData.BuffTime);
         EventManager.Broadcast(gameEvent);
     }
     #endregion
