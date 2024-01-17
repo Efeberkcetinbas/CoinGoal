@@ -191,6 +191,7 @@ public class GameManager : MonoBehaviour
 
         if(!miniGameControl.isMiniGame)
             UpdateRequirement();
+        
     }
 
     

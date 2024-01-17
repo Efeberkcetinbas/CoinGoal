@@ -24,6 +24,7 @@ public class GameData : ScriptableObject
     public int BorderIndex;
     public int levelProgressNumber;
     public int skyboxIndex;
+    public int tempLevelIndex;
 
     
 

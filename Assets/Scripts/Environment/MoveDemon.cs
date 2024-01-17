@@ -6,16 +6,19 @@ using TMPro;
 public class MoveDemon : MonoBehaviour
 {
     [SerializeField] private int demonRequire;
+    private int tempRequire;
 
     private WaitForSeconds waitForSeconds;
     [SerializeField] private TextMeshPro demonText;
 
     private bool isUnite=false;
+    private bool isFinish=false;
 
 
     private void Start()
     {
         waitForSeconds=new WaitForSeconds(3);
+        tempRequire=demonRequire;
         SetDemonText();
     }
 
@@ -25,6 +28,8 @@ public class MoveDemon : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnTouchEnd,OnTouchEnd);
         EventManager.AddHandler(GameEvent.OnBallsDivided,OnBallsDivided);
         EventManager.AddHandler(GameEvent.OnBallsUnited,OnBallsUnited);
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.AddHandler(GameEvent.OnOpenLevelFromPanel,OnOpenLevelFromPanel);
 
     }
 
@@ -35,6 +40,8 @@ public class MoveDemon : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnTouchEnd,OnTouchEnd);
         EventManager.RemoveHandler(GameEvent.OnBallsDivided,OnBallsDivided);
         EventManager.RemoveHandler(GameEvent.OnBallsUnited,OnBallsUnited);
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.RemoveHandler(GameEvent.OnOpenLevelFromPanel,OnOpenLevelFromPanel);
 
     }
 
@@ -70,13 +77,28 @@ public class MoveDemon : MonoBehaviour
         isUnite=true;
     }
 
+    private void OnRestartLevel()
+    {
+        demonRequire=tempRequire;
+        SetDemonText();
+        isFinish=false;
+    }
 
     private IEnumerator CheckForPass()
     {
         yield return waitForSeconds;
-        if(demonRequire<0)
+        if(demonRequire<0 && !isFinish)
+        {
             EventManager.Broadcast(GameEvent.OnTrapHitPlayer);
+            isFinish=true;
+        }
+            
 
+    }
+
+    private void OnOpenLevelFromPanel()
+    {
+        OnRestartLevel();
     }
 
     private void SetDemonText()

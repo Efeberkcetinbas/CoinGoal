@@ -45,6 +45,18 @@ public class LevelManager : MonoBehaviour
 
         levelIndex = PlayerPrefs.GetInt("NumberOfLevel");
         
+        if(gameData.tempLevelIndex<gameData.LevelNumberIndex)
+        {
+            gameData.tempLevelIndex=levelIndex;
+            //gameData.LevelNumberIndex=gameData.tempLevelIndex;
+        }
+
+        else
+        {
+            gameData.LevelNumberIndex=gameData.tempLevelIndex;
+        }
+        
+        
         if (levelIndex == levels.Count)
         {
             levelIndex = 0;
@@ -52,7 +64,7 @@ public class LevelManager : MonoBehaviour
         } 
 
         PlayerPrefs.SetInt("NumberOfLevel", levelIndex);
-       
+        
 
         for (int i = 0; i < levels.Count; i++)
         {
@@ -93,6 +105,8 @@ public class LevelManager : MonoBehaviour
 
     private void OnOpenLevelSystem()
     {
+        
+
         if(!isCompletedAllLevels)
         {
             for (int i = 0; i < levelButtons.Count; i++)
@@ -101,13 +115,34 @@ public class LevelManager : MonoBehaviour
                 levelButtons[i].lockImage.SetActive(true);
                 levelButtons[i].levelText.SetText((i+1).ToString());
             }
-            for (int i = 0; i < levelIndex; i++)
+            for (int i = 0; i < gameData.tempLevelIndex+1; i++)
             {
                 levelButtons[i].levelButton.interactable=true;
                 levelButtons[i].lockImage.SetActive(false);
             }
         }
         
+    }
+
+    public void OpenLevel(int thisLevelIndex)
+    {
+        gameData.LevelNumberIndex=thisLevelIndex;
+        levelIndex=thisLevelIndex;
+        for (int i = 0; i < levels.Count; i++)
+        {
+            levels[i].SetActive(false);
+        }
+        levels[thisLevelIndex].SetActive(true);
+
+        /*miniGameControl=FindObjectOfType<MiniGameControl>();
+        if(miniGameControl.isMiniGame)
+        {   
+            EventManager.Broadcast(GameEvent.OnMiniGameActive);
+            EventManager.Broadcast(GameEvent.OnMiniGameBall);
+        }*/
+        EventManager.Broadcast(GameEvent.OnNextLevel);
+
+        EventManager.Broadcast(GameEvent.OnOpenLevelFromPanel);
     }
 
     #endregion

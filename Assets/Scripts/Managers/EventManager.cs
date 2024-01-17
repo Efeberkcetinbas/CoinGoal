@@ -54,6 +54,7 @@ public enum GameEvent
 
     //Level System
     OnOpenLevelSystem,
+    OnOpenLevelFromPanel,
 
     
     OnHitWall,

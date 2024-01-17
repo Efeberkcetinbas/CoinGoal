@@ -9,6 +9,7 @@ public class PanelManager : MonoBehaviour
     [SerializeField] private RectTransform StartPanel,BuffPanel,BallsPanel,IncrementalPanel,LevelSystemPanel,ScoreImage,DiamondImage;
 
     [SerializeField] private List<GameObject> SceneUIs=new List<GameObject>();
+    [SerializeField] private GameObject miniLevel;
     [SerializeField] private Image Fade;
 
     [SerializeField] private float StartX,StartY,BuffX,BuffY,BallX,BallY,duration, scoreX,oldScoreX,diamondX,oldDiamondX,IncrementalY,IncrementalX,LevelSystemX,LevelSystemY;
@@ -34,6 +35,7 @@ public class PanelManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnIncreaseScore,OnIncreaseScore);
         EventManager.AddHandler(GameEvent.OnIncreaseGold,OnIncreaseGold);
         EventManager.AddHandler(GameEvent.OnBoughtBuff,OnIncreaseGold);
+        EventManager.AddHandler(GameEvent.OnOpenLevelFromPanel,OnOpenLevelFromPanel);
 
     }
 
@@ -47,6 +49,7 @@ public class PanelManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnIncreaseScore,OnIncreaseScore);
         EventManager.RemoveHandler(GameEvent.OnIncreaseGold,OnIncreaseGold);
         EventManager.RemoveHandler(GameEvent.OnBoughtBuff,OnIncreaseGold);
+        EventManager.RemoveHandler(GameEvent.OnOpenLevelFromPanel,OnOpenLevelFromPanel);
         
     }
 
@@ -161,6 +164,7 @@ public class PanelManager : MonoBehaviour
         LevelSystemPanel.DOAnchorPos(Vector2.zero,duration);
         EventManager.Broadcast(GameEvent.OnOpenLevelSystem);
         SetActivity(SceneUIs,false);
+        miniLevel.SetActive(false);
         
     }
 
@@ -203,6 +207,11 @@ public class PanelManager : MonoBehaviour
         LevelSystemPanel.DOAnchorPos(new Vector2(LevelSystemX,LevelSystemY),duration);
         EventManager.Broadcast(GameEvent.OnButtonClicked);
         SetActivity(SceneUIs,true);
+    }
+
+    private void OnOpenLevelFromPanel()
+    {
+        BackToStartFromLevelSystem();
     }
 
 
