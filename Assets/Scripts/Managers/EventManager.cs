@@ -52,6 +52,9 @@ public enum GameEvent
     //Incrementals
     OnOpenIncrementalPanel,
 
+    //Level System
+    OnOpenLevelSystem,
+
     
     OnHitWall,
     OnUpPortal,

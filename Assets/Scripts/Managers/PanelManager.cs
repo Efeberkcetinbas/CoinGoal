@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class PanelManager : MonoBehaviour
 {
-    [SerializeField] private RectTransform StartPanel,BuffPanel,BallsPanel,IncrementalPanel,ScoreImage,DiamondImage;
+    [SerializeField] private RectTransform StartPanel,BuffPanel,BallsPanel,IncrementalPanel,LevelSystemPanel,ScoreImage,DiamondImage;
 
-
+    [SerializeField] private List<GameObject> SceneUIs=new List<GameObject>();
     [SerializeField] private Image Fade;
 
-    [SerializeField] private float StartX,StartY,BuffX,BuffY,BallX,BallY,duration, scoreX,oldScoreX,diamondX,oldDiamondX,IncrementalY,IncrementalX;
+    [SerializeField] private float StartX,StartY,BuffX,BuffY,BallX,BallY,duration, scoreX,oldScoreX,diamondX,oldDiamondX,IncrementalY,IncrementalX,LevelSystemX,LevelSystemY;
 
     public GameData gameData;
 
@@ -153,6 +153,17 @@ public class PanelManager : MonoBehaviour
         EventManager.Broadcast(GameEvent.OnOpenIncrementalPanel);
     }
 
+    public void OpenLevelSystem()
+    {
+        EventManager.Broadcast(GameEvent.OnButtonClicked);
+        StartPanel.DOAnchorPos(new Vector2(StartX,StartY),duration).OnComplete(()=>StartPanel.gameObject.SetActive(false));
+        LevelSystemPanel.gameObject.SetActive(true);
+        LevelSystemPanel.DOAnchorPos(Vector2.zero,duration);
+        EventManager.Broadcast(GameEvent.OnOpenLevelSystem);
+        SetActivity(SceneUIs,false);
+        
+    }
+
     public void BackToStart(bool isOnCharacter)
     {
 
@@ -185,10 +196,27 @@ public class PanelManager : MonoBehaviour
         EventManager.Broadcast(GameEvent.OnButtonClicked);
     }
 
+    public void BackToStartFromLevelSystem()
+    {
+        StartPanel.gameObject.SetActive(true);
+        StartPanel.DOAnchorPos(Vector2.zero,duration);
+        LevelSystemPanel.DOAnchorPos(new Vector2(LevelSystemX,LevelSystemY),duration);
+        EventManager.Broadcast(GameEvent.OnButtonClicked);
+        SetActivity(SceneUIs,true);
+    }
+
 
     private void OnBallMeshChange()
     {
         skinParticle.Play();
+    }
+
+    private void SetActivity(List<GameObject> list,bool val)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            SceneUIs[i].SetActive(val);
+        }
     }
 
 }
