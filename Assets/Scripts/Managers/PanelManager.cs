@@ -109,7 +109,7 @@ public class PanelManager : MonoBehaviour
     {
         StartPanel.gameObject.SetActive(true);
         coinImage.DOAnchorPosY(-200,0.2f).OnComplete(()=>coinImage.transform.DORotate(new Vector3(0,0,0), 0.2f));
-        ScoreImage.DOAnchorPosX(scoreX,.5f);
+        GetScoreAndBuff();
         StartPanel.DOAnchorPos(Vector2.zero,0.1f);
         StartCoroutine(Blink(Fade.gameObject,Fade));
     }
@@ -128,6 +128,12 @@ public class PanelManager : MonoBehaviour
 
     }
 
+    private void GetScoreAndBuff()
+    {
+        ScoreImage.DOAnchorPosX(scoreX,.5f);
+        DiamondImage.DOAnchorPosX(diamondX,.5f);
+    }
+
 
     public void OpenBuffsPanel()
     {
@@ -136,6 +142,7 @@ public class PanelManager : MonoBehaviour
         BuffPanel.gameObject.SetActive(true);
         BuffPanel.DOAnchorPos(Vector2.zero,duration);
         EventManager.Broadcast(GameEvent.OnOpenBuffPanel);
+        GetScoreAndBuff();
     }
 
     public void OpenBallsPanel()
@@ -145,6 +152,7 @@ public class PanelManager : MonoBehaviour
         BallsPanel.gameObject.SetActive(true);
         BallsPanel.DOAnchorPos(Vector2.zero,duration);
         EventManager.Broadcast(GameEvent.OnShopOpen);
+        GetScoreAndBuff();
     }
 
     public void OpenIncrementalPanel()
@@ -154,6 +162,7 @@ public class PanelManager : MonoBehaviour
         IncrementalPanel.gameObject.SetActive(true);
         IncrementalPanel.DOAnchorPos(Vector2.zero,duration);
         EventManager.Broadcast(GameEvent.OnOpenIncrementalPanel);
+        GetScoreAndBuff();
     }
 
     public void OpenLevelSystem()

@@ -8,9 +8,25 @@ public class GroundTrigger : Obstacleable
     {
         canStay=false;
     }
+
+    private void OnEnable()
+    {
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+    }
+
     internal override void DoAction(Player player)
     {
         EventManager.Broadcast(GameEvent.OnBallsDivided);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+    }
+
+    private void OnRestartLevel()
+    {
+        gameObject.SetActive(true);
     }
 }

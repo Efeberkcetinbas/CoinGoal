@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ac34ccd1a225b4d9cf2e187a4a2478, type: 3}
   m_Name: BallData
   m_EditorClassIdentifier: 
-  currentBallIndex: 2
+  currentBallIndex: 0
   damageAmount: 1
-  BallSpeed: 0
-  ballsPassTime: 0
+  BallSpeed: 17.981697
+  ballsPassTime: 3
   hitBarrel: 0
   MaxBallSpeed: 20
-  PriceValSpeed: 20
-  PriceValDestroyer: 10
-  PriceValInvulnerability: 20
+  PriceValSpeed: 10
+  PriceValDestroyer: 5
+  PriceValInvulnerability: 5
   isItPassed: 0
   isInvulnerable: 0
   isDestroyer: 0
-  selectedBallIndex: 0
+  selectedBallIndex: 18

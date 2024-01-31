@@ -58,10 +58,10 @@ public class GameData : ScriptableObject
 
     public void LoadData()
     {
-        score=PlayerPrefs.GetInt("Score");
-        diamond=PlayerPrefs.GetInt("Diamond");
+        score=PlayerPrefs.GetInt("Score",0);
+        diamond=PlayerPrefs.GetInt("Diamond",0);
         skyboxIndex=PlayerPrefs.GetInt("skyboxIndex");
-        LevelNumberIndex=PlayerPrefs.GetInt("LevelNumberIndex");
+        LevelNumberIndex=PlayerPrefs.GetInt("LevelNumberIndex",0);
         increaseScore=PlayerPrefs.GetInt("increaseScore",5);
         increaseCoinAmount=PlayerPrefs.GetInt("increaseCoinAmount",5);
         BuffTime=PlayerPrefs.GetInt("BuffTime",5);
